@@ -1,0 +1,14 @@
+*.aux
+*.auxlock
+*.out
+*.toc
+*.log
+*.synctex.gz
+*.synctex.gz(busy)
+*.bcf
+*.bbl
+*.blg
+*.run.xml
+*.pdf
+
+figures/cache
