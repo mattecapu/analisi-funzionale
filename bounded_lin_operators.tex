@@ -365,6 +365,7 @@ da cui segue
 \end{proof}
 
 \begin{corollary}
+\label{cor:two_chap_1}
 	Sia $x_0 \in E \setminus\{0\}$.
 	Allora esiste $f_0 \in E'$ tale che
 	\begin{equation*}
@@ -396,6 +397,7 @@ da cui segue
 \end{remark}
 
 \begin{lemma}
+\label{lemma:zero_outside_G}
 	Sia $E$ uno spazio normato, $G \leq E$ sottospazio. Sia $x_0 \in E \setminus G$.%, tale che $\dist(x_0,G) \neq 0$.
 	Allora esiste $f \in E'$ tale che $f(x_0) \neq 0$ e $f\vert_G \equiv 0$.
 \end{lemma}
@@ -469,7 +471,7 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 	\end{equation*}
 	Allora esiste $\bar n \in \N$ tale che $f_{\bar n \equiv 0}$.
 
-	\noindent\textbf{Svolgimento.} L'ipotesi è tale per cui
+	\noindent\textbf{Svolgimento}. L'ipotesi è tale per cui
 	\begin{equation*}
 		\bigcup_{n \in \N} \ker f_n = E
 	\end{equation*}
@@ -564,7 +566,7 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 	\end{equation*}
 	Provare che $(E, \|\cdot\|_E)$ non è completo.
 
-	\noindent\textbf{Svolgimento.} La successione $p_n = x^n/n$ è di Cauchy, ma il suo limite non è un polinomio. Ma usiamo Banach--Steinhaus, considerando la successione $T_n : E \to \R$ delle derivazioni $n$-esime. La successione è definitivamente limitata puntualmente, perchè ogni polinomio viene ucciso da una derivazione sufficientemente alta, ma $T_n x^n = n \to \infty$, per cui non abbiamo uniforme limitatezza.
+	\noindent\textbf{Svolgimento}. La successione $p_n = x^n/n$ è di Cauchy, ma il suo limite non è un polinomio. Ma usiamo Banach--Steinhaus, considerando la successione $T_n : E \to \R$ delle derivazioni $n$-esime. La successione è definitivamente limitata puntualmente, perchè ogni polinomio viene ucciso da una derivazione sufficientemente alta, ma $T_n x^n = n \to \infty$, per cui non abbiamo uniforme limitatezza.
 
 	Una ulteriore maniera di confutare la completezza di $\R[x]$ è applicando l'Esercizio~\ref{ex:ptwise_eventually_null_seq}
 \end{exercise}
@@ -572,6 +574,7 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 Vediamo ora un corollario importante a Banach--Steinhaus:
 
 \begin{corollary}
+\label{cor:banach_steinhaus_liminf}
 	Sia $E$ di Banach ed $F$ normato. Consideriamo una successione $\{T_n\}_{n \in \N}$ di operatori lineari e continui $E \to F$ tali che $\lim_n T_n x \in F$ per ogni $x \in E$, cioè $\{T_n\}_{n \in \N}$ è puntualmente convergente ad un operatore $T: E \to F$.
 	Allora l'operatore limite $T$ è lineare e continuo, e si ha
 	\begin{equation*}
@@ -683,7 +686,7 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 \begin{exercise}
 	Sia $(x_n)_{n \in \N}$ una successione di numeri reali, provare che se $\sum_{n=1}^\infty x_n y_n$ converge per ogni $(y_n)_{n \in \N} \in \ell^2$, allora $(x_n)_{n \in \N} \in \ell^2$, e viceversa.
 
-	\noindent\textbf{Svolgimento.} Per ogni $n \in \N$ fissato, consideriamo gli operatori $T_n : \ell^2 \to \R$ e $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
+	\noindent\textbf{Svolgimento}. Per ogni $n \in \N$ fissato, consideriamo gli operatori $T_n : \ell^2 \to \R$ e $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
 	\begin{equation*}
 		|T_ny| = \left| \sum_{k=1}^n x_k y_k \right| \leq \left( \sum_{k=1}^n |x_k|^2\right)^{1/2} \left( \sum_{k=1}^n |y_k|^2 \right)^{1/2}
 	\end{equation*}
@@ -712,7 +715,7 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 	\end{eqalign*}
 	Si dimostri che $\Phi$ è un'isometria suriettiva (in quanto isometria, è sempre iniettiva).
 
-	\noindent\textbf{Svolgimento.} La buona definizione di $\Phi$ è oggetto della disuguglianza di H\"older. Il fatto che $\Phi$ sia isometria è lasciato come esercizio.
+	\noindent\textbf{Svolgimento}. La buona definizione di $\Phi$ è oggetto della disuguglianza di H\"older. Il fatto che $\Phi$ sia isometria è lasciato come esercizio.
 
 	Fissato ora $y \in \ell^p$, scriviamolo così: $y=(y_k)_{k \in \N} = \sum_{k=1}^\infty y_k e_k$, dove $(e_k)_h = \delta_{hk}$ (warning: questo funziona solo per $p < \infty$). Sia ora $F \in {\ell^p}'$. Si ha, per continuità di $F$:
 	\begin{equation*}
@@ -772,7 +775,7 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 		\end{equation*}
 	\end{enumerate}
 
-	\noindent\textbf{Svolgimento.}
+	\noindent\textbf{Svolgimento}.
 	\begin{description}
 		\item[$(1) \implies (2)$] $T\vert^{\im T}$ è bicontinua, dunque $T$ e $T^{-1}$ sono Lipschitz:
 		\begin{eqalign*}
@@ -878,3 +881,142 @@ In questa maniera la convergenza in $E \times F$ si può verificare per componen
 \end{proof}
 
 Questo ci permetterà di ottenere alcuni metateoremi per dedurre la continuità di certi operatori, ad esempio per l'inclusione di spazi, in presenza di certe norme `naturali'.
+
+\begin{theorem}[del grafico chiuso]
+	Siano $E$, $F$ spazi di Banach e $T : E \to F$ lineare. Se il grafico $G(T)$ è chiuso in $E \times F$, allora $T$ è continuo.
+\end{theorem}
+\begin{proof}
+	Definiamo in $E$ una nuova norma $\|\cdot\|_1$ ponendo
+	\begin{equation*}
+		\|x\|_1 = \|x\|_E + \|Tx\|_F, \qquad \text{per ogni $x \in E$}.
+	\end{equation*}
+	Rispetto a questa norma, che si può definire per qualunque operatore lineare, $T$ è automaticamente continuo.
+
+	Affermiamo che $(E, \|\cdot\|_1)$ sia Banach poichè $G(T)$ è chiuso.
+	Supponiamo allora che $\{x_n\}_{n \in \N}$ sia di Cauchy in $(E, \|\cdot\|_1)$, cioè che si abbia
+	\begin{equation*}
+		\lim_{n,m} \|x_n - x_m\|_1 = 0
+	\end{equation*}
+	che implica
+	\begin{equation*}
+		\lim_{n,m} \|x_n - x_m\|_E = 0, \qquad \lim_{n,m} \|Tx_n - Tx_m\|_F = 0
+	\end{equation*}
+	cioè che $\{(x_n, Tx_n)\}_{n \in \N}$ è di Cauchy in $E \times F$. Siccome $E$ ed $F$ sono di Banach, anche il loro prodotto lo è e dunque $\{(x_n, Tx_n)\}_{n \in \N}$ converge. Per chiusura di $G(T)$, il limite di tale successione è un punto del grafico. Si ha inoltre
+	\begin{equation*}
+		\|x_n - x\|_1 = \|x_n - x\|_E + \|Tx_n - Tx\|_F \conv[n] 0
+	\end{equation*}
+	che prova $(E, \|\cdot\|_1)$ completo.
+
+	Si noti ora che $E$ ha due strutture di Banach e si ha
+	\begin{equation*}
+		\|x\|_E \leq \|x\|_1
+	\end{equation*}
+	dunque per il Corollario~\ref{cor:equiv_norm}, le due norme sono infatti equivalenti. Ma siccome $T$ è banalmente continuo per $\|\cdot\|_1$, questo prova che è continuo anche per $\|\cdot\|_E$.
+\end{proof}
+
+\begin{remark}
+	Il teorema del grafico chiuso non vale senza completezza di $E$ ed $F$.
+	Il controesempio è dato da $E = \Cone[a,b]$ con la norma sup, $\Czero$ con la norma sup, e $T$ dato dalla derivazione. Abbiamo già visto che $T$ è lineare ma non continuo (Esercizio~\ref{ex:unif_deriv}), tuttavia andiamo a mostrare che $G(T)$ è chiuso prendendo una successione $\{(x_n, Tx_n)\}_{n \in \N} \subseteq G(T)$. Siccome $x_n \conv x$ in norma sup significa che si ha convergenza uniforme, e si ha pure $Tx_n = dx_n/dt \conv y$, per un teorema classico sulle successioni di funzioni $y = dx/dt$, testimoniando così la chiusura di $G(T)$.
+\end{remark}
+
+Gli operatori a grafico chiuso generalizzano gli operatori continui, come esplorato da Von Neumann. Questo è utile per poter parlare di operatori differenziali densamente definiti, che appaiono ad esempio in meccanica quantistica.
+
+	\begin{exercise}
+	Sia $\Omega \subseteq \R^n$ un insieme misurabile alla Lebesgue (ad esempio aperto), tale che $L^p(\Omega) \subseteq L^q(\Omega)$ per certi $p,q \in [1, \infty]$.
+	Allora esiste $C > 0$ tale che
+	\begin{equation*}
+		\|f\|_{L^q} \leq C\|f\|_{L^p}, \qquad \text{per ogni $f \in L^p(\Omega)$},
+	\end{equation*}
+	cioè l'inclusione di $L^p(\Omega)$ in $L^q(\Omega)$ è continua.
+
+	\noindent\textbf{Svolgimento}. Sia $I$ tale inclusione, che è ovviamente ben definitia e lineare. Per il teorema del grafico chiuso, se dimostriamo che $G(I)$ è chiuso allora possiamo concludere che $I$ sia continuo.
+	Si prenda $\{(f_n, f_n)\}_{n \in \N} \subseteq G(I)$ convergente a $(f,g) \in L^p(\Omega) \times L^q(\Omega)$. Dalla convergenza $f_n \conv f$, deduciamo che esiste una sottosuccessione $\{f_{n_h}\}_{h \in \N}$ che converge puntualmente quasi ovunque. Ma siccome $f_n \conv g$, allora esiste una sottosuccessione di $f_h$ che converge quasi ovunque a $g$, e dunque $f = g$ quasi ovunque, per cui $(f,g) \in G(I)$.
+\end{exercise}
+
+\begin{remark}
+	La dimostrazione di questo bound non è costruttiva, quindi non abbiamo informazioni sulla costante $C$, i.e.\ il modulo dell'inclusione. Nonostante ciò, ci sono casi in cui abbiamo una stima concreta su $C$, ad esempio quando $\Omega$ ha misura finita e $p > q$, allora $L^p(\Omega) \into L^q(\Omega)$ e
+	\begin{equation*}
+		\|f\|_{L^q} \leq |\Omega|^{\frac1q - \frac1p}\|f\|_{L^p}, \qquad \text{per ogni $f \in L^p(\Omega)$}.
+	\end{equation*}
+	Inoltre tale costante è sharp, poichè $f=1$ realizza l'uguaglianza.
+\end{remark}
+
+\section{Somme dirette topologiche}
+\begin{lemma}
+	Sia $E$ uno spazio di Banach, siano $G$ ed $L$ sottospazi chiusi tali che $G+L = \{ g + \ell \suchthat g \in G, \ell \in L\}$ è chiuso in $E$.
+	Allora esiste $C > 0$ tale che, per ogni $z \in G+L$, esistono $x \in G$, $y \in L$ tali che
+	\begin{equation*}
+		\|x\| \leq c\|z\|, \qquad \|y\| \leq c \|z\|.
+	\end{equation*}
+\end{lemma}
+\begin{remark}
+	Il lemma ci dice che possiamo trovare delle proiezioni continue controllate dalla stessa costante.
+\end{remark}
+\begin{proof}
+	Consideriamo la mappa somma $G \times L \to G+L$, dove gli spazi sono normati rispettivamente dalla norma canonica del prodotto e dalla norma di $E$. $T$ è lineare e continua, per definizione di norma. Inoltre $T$ è suriettiva. Vale dunque il teorema della mappa aperta, quindi è possibile trovare una palla aperta $B_{G+L}(0, C) \subseteq T(B_{G \times L}(0, 1))$, che in pratica significa che ogni $w \in G+L$ che abbia norma inferiore a $C$ è esprimibile come $\tilde x + \tilde y$, per $\tilde x \in G$ ed $\tilde y \in L$ e $\|\tilde x\|+\|\tilde y\|<1$.
+	Sia $z \in G+L$, $z \neq 0$. Definiamo $w=c/2\|z\| z$. Questo vettore cade nella palla $B_{G+L}(0, C)$, e quindi per la considerazione appena fatta
+	\begin{equation*}
+		\frac{c}{2 \|z\|}z = \tilde x + \tilde y
+	\end{equation*}
+	da cui $x = \frac2c \tilde x \|z\|$ e $y= \frac2c \tilde y \|z\|$, che verificano le disuguglianze in tesi.
+\end{proof}
+
+In generale, se io ho due insiemi chiusi la loro somma non è chiusa!
+
+\begin{counterexample}[Non-linearità]
+	Sia $G = \R \times \{0\}$ e $L = \{(x,1/x) \in \R^2 \suchthat x >0\}$. Entrambi sono chiusi in $\R^2$, ma non $G+L$ che è il semipiano superiore aperto inferiormente (perchè $1/x > 0$ sempre).
+\end{counterexample}
+
+\begin{counterexample}
+	Sia $E= \ell^2 \times \ell^2$, $G = \{(x,0) \in E \suchthat x \in \ell^2\}$ e $L=\{(x,Tx) \in E \suchthat x \in \ell^2\}$ per $T: \ell^2 \to \ell^2$ che manda $\{x_n\}_{n \in \N}$ in $\{x_n/n\}_{n \in \N}$. $G$ è chiuso perchè sottospazio, $L$ è continuo perchè $T$ lineare continuo, ma $G+L$ non è chiuso in quanto se così fosse, $M=\{(0, Tx) \suchthat x \in \ell^2\}$ sarebbe chiuso, da cui $N= \im T$ sarebbe chiuso, assurdo, perchè $N$ è denso e $T$ non è suriettivo.
+\end{counterexample}
+
+\begin{definition}
+	Sia $R$ spazio di Banach, $G$, $L$ sottospazi vettoriali tali che $E=G \oplus L$. La somma $G \oplus L$ è \defining{topologica} se inoltre $G$ ed $L$ sono chiusi, e si chiama $G$ il \defining{supplementare topologico} di $L$ e viceversa.
+\end{definition}
+
+\begin{theorem}
+\label{th:top_sum}
+	Sia $R$ spazio di Banach, $G$, $L$ sottospazi vettoriali tali che $E=G \oplus L$.
+	Allora tale somma è topologica se e solo se le due proiezioni naturali $p_G : E \to G$, $p_L : E \to L$ sono continue.
+\end{theorem}
+\begin{proof}
+	La direzione diretta è il lemma precedente. D'altra parte, $\ker p_G = G$ e $\ker p_L = L$, e i nuclei di operatori continui sono topologicamente chiusi.
+\end{proof}
+
+\begin{definition}
+	Sia $E$ uno spazio vettore, $G \leq E$ sottospazio.
+	Un \defining{proiettore lineare di $E$ du $G$} è una funzione lineare $p:E \to G$ che restringe all'identità su $G$.
+\end{definition}
+
+\begin{lemma}
+	Sia $E$ Banach, $G \leq E$ sottospazio chiuso.
+	Allora $G$ ammette un supplementare topologico se e solo se esiste un proiettore lineare e continuo $p:E \to G$.
+\end{lemma}
+\begin{proof}
+	Se esiste un supplementare topologico, il~\ref{th:top_sum} ci dà un proiettore su $G$ lineare e continuo.
+	D'altra parte, se $p$ è un tale proiettore, $\ker p$ è un sottospazio chiuso di $E$. È evidente che $\ker p \cap G = \{0\}$ e $E = \ker p \oplus G$: se $x \in E$, $x - p(x) \in \ker p$, $p(x) \in G$ e $p(x) +(x- p(x)) = x$.
+\end{proof}
+
+\begin{remark}
+	Il proiettore su $\ker p$ è dato da $1-p$.
+\end{remark}
+
+\begin{theorem}
+	Sia $E$ Banach, sia $G$ sottospazio di $E$.
+	\begin{enumerate}
+		\item Se $\dim G$ è finita, allora $G$ ammette un supplementare topologico.
+		\item Se $G$ è chiuso e $\operatorname{codim} G = \dim E/G$, allora $G$ ammette un supplementare topologico.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Sia $e_1, \ldots, e_n$ una base di $G$. Per Hahn--Banach, gli elementi della base duale si estendono a elementi di $E'$, per cui possiamo definire un proiettore lineare e continuo su $G$ dato da
+		\begin{equation*}
+			p(x) = \sum_{i=1}^n e^*_i(x)\,e_1, \qquad \text{per ogni $x \in E$}
+		\end{equation*}
+		dove indichiamo con $e^*_i$ l'estensione ad $E$ del duale di $e_i$.
+		\item Banale una volta osservato che $E = G \oplus E/G$.
+	\end{enumerate}
+\end{proof}

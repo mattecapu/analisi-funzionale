@@ -1,0 +1,640 @@
+\chapter{Topologie deboli}
+Ricordiamo che in spazi di Banach a dimensione infinita, non vale la caratterizzazione dei compatti come insiemi chiusi e limitati.
+
+\begin{theorem}
+\label{th:unit_ball_not_compact}
+	Sia $E$ normato di dimensione infinite.
+	Allora la palla unitaria chiusa non è compatta.
+\end{theorem}
+
+Si ha invece il seguente criterio:
+
+\begin{lemma}[Riesz]
+\label{lemma:riesz}
+	Sia $V \leq E$ sottospazio finito-dimensionale.
+	Allora esiste $z \in E$ di norma unitaria e tale che $d(z, V) \geq 1$.
+\end{lemma}
+\begin{proof}
+	Sia $x \in E \setminus V$, $\{x\}$ è compatto e $V$ è chiuso, quindi siccome $E$ è Hausdorff, $d(x,V) = r>0$.
+	Sia $C = V \cap \closure B(x, 2r)$. Allora $d(x, V) = d(x, C) = \inf_{y \in C} \|x-y\|$, inf che è realizzato da un punto $y^* \in V$ in virtù della compattezza di $C$ in $V$. Si ha $r = \|x-y^*\|$. Poniamo $z = (x-y^*)/r$ e verifichiamo che soddisfa $d(z, V) \geq 1$: infatti, per ogni $v \in V$
+	\begin{equation*}
+		\|z-v\| = \left\| \frac{x-y^*}{\|x-y^*\|} - v \right\| = \frac{\|x-\overbrace{y^* - v\|x-y^*\|}^{\in V}\|}{\|x-y^*\|} \geq \frac{r}r =1.
+	\end{equation*}
+\end{proof}
+
+\begin{proof}[Dimostrazione del Teorema~\ref{th:unit_ball_not_compact}]
+	Definiamo una successione per ricorsione, partendo da un qualsiasi $z_1$ di norma unitaria. Per il lemma di Riesz, esiste $z_2 \in E$ tale che $\|z_2 - z_1\| \geq 1$ e $z_2 \notin \langle z_1 \rangle$. Iterando questa costruzione, otteniamo una successione $\{z_n\}_{n \in \N}$ tale che
+	\begin{equation*}
+		\|z_n\| =1, \qquad z_n \notin \langle z_1, \ldots, z_{n-1}\rangle, \qquad \|z_n - z_m\| \geq 1,\ \text{per ogni $n, m \in \N$}.
+	\end{equation*}
+	La quale testimonia la non compattezza della palla unitaria.
+\end{proof}
+
+Avere pochi compatti è una grande ostruzione!
+
+\begin{theorem}[Weierstrass]
+	Sia $f:X \to \R$ una funzione continua sullo spazio topologico $X$.
+	Se $K \subseteq X$ è compatto, $f$ ammette massimo e minimo su $K$.
+\end{theorem}
+
+\section{Topologie iniziali}
+Si può artificialmente aumentare il numero di compatti togliendo aperti dalla topologia. Infatti questo diminuisce i possibili ricoprimenti di un chiuso, così che `sia più facile' per un insieme soddisfare la proprietà di compattezza.
+
+Chiaramente questo va equilibrato con l'esigenza di mantenere una topologia rilevante allo studio dell'analisi funzionale. Il `tipping point' è dato da $E'$: togliendo aperti infatti diminuiscono anche le possibili funzioni continue su $E$. Per cui prendiamo la topologia meno fine che conserva la continuità di tutti i funzionali su $E$ (definiti rispetto alla topologia naturale), ossia la topologia iniziale della famiglia $E'$.
+
+\begin{definition}
+	Data una famiglia di funzioni $\{\varphi_i : X \to Y_i\}_{i \in I}$, dove ciascun $Y_i$ è equipaggiato con una topologia, si chiama \defining{topologia iniziale} la topologia meno fine su $X$ che rende continue tutte le $\varphi_i$
+\end{definition}
+
+Se $\varphi : X \to Y$ è una funzione il cui codominio è dotato di una topologia, denotiamo con $\langle \varphi \rangle$ la topologia generata dalle controimmagini degli aperti di $Y$ secondo $\varphi$. Allora la topologia iniziale associata alla famiglia $\{\varphi_i : X \to Y_i\}_{i \in I}$ è data da
+\begin{equation*}
+	\tau := \bigcap_{i \in I} \langle \varphi_i \rangle.
+\end{equation*}
+Più esplicitamente, $\tau$ contiene tutte le unioni di controimmagini di insiemi aperti rispetto alle $\varphi_i$.
+
+Ricordiamo che una base di intorni per $x_0 \in X$ topologico è una famiglia $\{A_j\}_{j \in J}$ di intorni aperti di $x_0$ tali che ogni intorno di $x_0$ contiene almeno un $A_j$.
+
+Nel caso della topologia iniziale indotta da una famiglia $\{\varphi_i : X \to Y_i\}_{i \in I}$, una base di intorni è data da
+\begin{equation}
+\label{eq:neigh_basis}
+	\left\{ {\textstyle \bigcap_{i \in H} \varphi_i^{-1}(A_i)} \suchthat \text{$H \subseteq I$ finito e per ogni $i \in H$, $A_i$ aperto e $\varphi_i(x_0) \in A_i$} \right\}
+\end{equation}
+
+\begin{theorem}
+\label{th:weak_conv_and_cont}
+	Siano $X$, $Y_i$ e $\{\varphi_i : X \to Y_i\}_{i \in I}$ una situazione come sopra. Si doti $X$ della topologia iniziale indotta dalla famiglia $\{\varphi_i\}_{i \in I}$.
+	Allora
+	\begin{enumerate}
+		\item Una successione $\{x_n\}_{n \in \N}$ in $X$ converge a $x \in X$ se e solo se per ogni $i \in $i, $\varphi_i(x_n \conv[n] \varphi_i(x)$ in $Y_i$.
+		\item Sia $Z$ uno spazi topologico e $\psi : Z \to X$ funzione. Allora $\psi$ è continua se e solo se per ogni $i \in I$, $\varphi_i\psi$ è continua.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Supponiamo che $x_n \conv[n] x$ in $X$. Per continuità, le $\varphi_i$ conservano la convergenza. D'altra parte, supponiamo che ogni $\{\varphi_i(x_n)\}_{n \in \N}$ converga a $\varphi_i(x)$. Fissiamo un intorno di base di $x$, cioè un intorno aperto dato dall'intersezione di un numero finito di controimmagini della $\varphi_i$:
+		\begin{equation*}
+			x \in U=\bigcap_{i \in H} \varphi_i^{-1}(A_i), \qquad \text{$H \subseteq I$ finito e per ogni $i \in H$, $A_i$ aperto e $\varphi_i(x_0) \in A_i$}.
+		\end{equation*}
+		Fissato $i \in H$, per ipotesi di convergenza, tutti i punti $\varphi_i(x_n)$ da un certo $n_i \in \N$ in poi cadranno in $A_i$, perciò $x_n \in \varphi_i^{-1}(A_i)$. Preso $\bar n = \max \{n_i \suchthat i \in H\}$, deduciamo che da $\bar n$ n avanti tutti i punti $x_n$ giacciono in $U$, ossia $x_n \conv[n] x$.
+		\item Chiaramente se $\psi$ è continua si ha che $\varphi_i \psi$ è continua per ogni $i \in I$. D'altra parte, supponiamo che $\varphi_i \psi$ sia continua per ogni $i \in I$. Fissiamo $A \in X$ di base, cioè
+		\begin{equation*}
+			A = \bigcap_{i \in H} \varphi_i^{-1}(A_i), \qquad \text{$H \subseteq I$ finito e per ogni $i \in H$, $A_i$ aperto}
+		\end{equation*}
+		Per ipotesi, $\psi^{-1}(\varphi_i^{-1}A)$ è aperto, ma questo significa esattamente che $\psi$ è continua.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	La topologia prodotto è una topologia iniziale rispetto alle due proiezioni cartesiane.
+\end{example}
+
+\section{Topologia debole}
+\begin{definition}
+	Sia $E$ uno spazio normato.
+	La \defining{topologia debole} di $E$ è la topologia iniziale su $E$ rispetto alla famiglia di mappe $E'$.
+\end{definition}
+
+\begin{remark}
+	La topologia debole su $E$ è indicata con $\sigma(E, E')$.
+\end{remark}
+
+Un sottoinsieme di $E$ si dice \defining{debolmente chiuso} (resp. aperto) se lo è rispetto alla topologia debole su $E$. Analogamente, parliamo di successioni \defining{debolmente convergenti}, e scriviamo $x_n \weakconv x$, se tale convergenza avviene in topologia debole.
+
+Sia $x_0 \in E$. Una base di intorni per $x_0$ rispetto alla topologia debole è data come nel caso generale dalle intersezione finite di controimmagini di aperti contenenti l'immagine di $x_0$, rispetto a funzionali lineari.
+Nel nostro caso specifico però, possiamo prendere gli aperti su $\R$ come intervalli aperti, da cui l'espressione generica per un intorno fondamentale:
+\begin{equation*}
+	\{x \in E \suchthat |f(x - x_0)| < \varepsilon, \text{per ogni $f \in H$} \}, \qquad \text{per $H \subset E'$ finito}.
+\end{equation*}
+
+\begin{theorem}
+	Nel caso $E$ sia uno spazio normato di dimensione finita, la topologia debole coincide con la topologia indotta dalla norma di $E$.
+\end{theorem}
+\begin{proof}
+	È sufficiente dimostrare che un aperto rispetto alla norma è anche debolmente aperto, o ancora più semplicemente, dati $x_0 \in E$ e $r > 0$, dobbiamo dimostrare che esiste un intorno debole $U$ di $x_0$ contenente $B_E(x_0, r)$.
+
+	Sia $e_1, \ldots, e_n$ una base di $E$. Consideriamo le proiezioni canoniche $\pi_i : E \to \R$, che mandano un vettore $x \in E$ nella sua $i$-esima componente rispetto alla base scelta. Queste sono lineari e continue, dunque $\pi_i \in E'$ per ogni $1 \leq i \leq n$.
+	Sia $U$ l'intorno debole del punto $x_0$ così definito:
+	\begin{eqalign*}
+		U &= \{ x \in E \suchthat |\pi_i(x-x_0)| < \varepsilon, \text{per ogni $1 \leq i \leq n$} \}, \qquad \varepsilon > 0\\
+		&= \{ x \in E \suchthat |x_i-{x_0}_i| < \varepsilon, \text{per ogni $1 \leq i \leq n$} \}\\
+		&= \{ x \in E \suchthat \max_{1 \leq i \leq n} |x_i-{x_0}_i| < \varepsilon \}\\
+		&= B_{\|\cdot\|_\infty}(x_0, \varepsilon).
+	\end{eqalign*}
+	Siccome in dimensione finita tutta le norme sono equivalenti, esiste un $\varepsilon > 0$ tale che $B_{\|\cdot\|_\infty}(x_0, \varepsilon) \subseteq B(x_0, r)$, come volevasi dimostrare.
+\end{proof}
+\begin{theorem}
+	Nel caso $E$ sia uno spazio normato di dimensione infinita, la topologia debole è strettamente meno fine della topologia indotta dalla norma di $E$, in particolare ogni intorno debole $U$ di ogni punto $x_0 \in E$, esiste sempre una retta (sottospazio affine di $E$ di dimensione $1$) contenuta in $U$.
+\end{theorem}
+\begin{proof}
+	Prendiamo un qualsiasi intorno di base di un punto $x_0$:
+	\begin{equation*}
+		U = \{ x \in E \suchthat |f_i(x-x_0)| < \varepsilon, \text{per ogni $1 \leq i \leq n$} \}, \qquad n \in \N,\ \varepsilon > 0,\ f_i, \ldots, f_n \in E'.
+	\end{equation*}
+	Sia $F: E \to \R^n$ la mappa $x \mapsto (f_1(x), \ldots, f_n(x))$. Siccome $\dim E = \infty$, $F$ non è iniettiva (altrimenti $\dim E \leq n$). Dunque $\ker F \neq 0$, ossia esiste un vettore non nullo $y_0 \in E$ che annulla tutte le $f_i$ simultaneamente. Allora consideriamo la retta $x_0 + t y_0$, parametrizzata da $t \in \R$. Si verifica che per ogni $t \in \R$:
+	\begin{equation*}
+		f_i(x_0+ty_0 - x_0) = t \cancelto{0}{f_i(y_0)}=0 < \varepsilon.
+	\end{equation*}
+\end{proof}
+
+\begin{remark}
+	Dalla dimostrazione di questo teorema vediamo che ci sono in realtà parecchie rette contenute in un qualsiasi intorno, poichè $\ker F$ ha codimensione finita in uno spazio a dimensione infinita.
+\end{remark}
+
+Nonostante in dimensione finita la topologia debole sia uguale a quella usuale, è interessante andare a vedere come sono gli intorni fondamentali. Si vede che essi sono costruiti per `taglio' dello spazio con iperpiani, e quindi in dimensione finita possono delimitare regioni limitate di spazio di forma politopica. In dimensione infinita ciò non è possibile, perchè intuitivamente non ho mai abbastanza iperpiani per chiudere il politopo (ne servirebbero infiniti ma ne ho sempre in quantità finita).
+
+\begin{corollary}
+	Se la dimensione di $E$, spazio normato, è infinita, la sfera unitaria $S$ non è debolmente chiusa.
+\end{corollary}
+\begin{proof}
+	Sia $x_0 \in E$ di norma inferiore a $1$. Sia $U$ un intorno debole di $x_0$. Sia $R$ una retta contenuta in $U$ e diretta da $y_0$. Si ponga $g(t) = \|x_0 + ty_0\|$, e si osservi che $g$ è continua su $R$. D'altra parte $g(0) = \|x_0\| < 1$ mentre $g(+\infty) = + \infty$, per cui deve esistere almeno un punto di $R$ che giace al di fuori della palla, e quindi $R$ interseca $S$ in almeno un punto.
+
+	Questo dimostra che $S$ non è chiuso, siccome $E \setminus S$ dovrebbe essere aperto e contenere un $U$, ma in $U$ giacciono punti di $S$, assurdo.
+\end{proof}
+
+\begin{exercise}
+	Qual è la chiusura debole di $S$?
+\end{exercise}
+
+\begin{theorem}
+	Sia $E$ normato, sia $C$ sottoinsieme di $E$ chiuso e convesso.
+	Allora $C$ è debolmente chiuso.
+\end{theorem}
+\begin{proof}[Idea delle dimostrazione]
+	Si usa il seguente teorema di separazione:
+	\begin{theorem}[Hahn--Banach geometrico]
+	\label{th:geom_hahn_banach}
+		Sia $E$ normato, siano $C$ chiuso e $K$ compatto in $E$, e si supponga siano disgiunti.
+		Se $C$ e $K$ sono convessi, allora sono separati da un iperpiano, cioè esiste $f \in E$' ed esistono $\alpha, \beta \in \R$ tali che
+		\begin{equation*}
+			f(x) \leq \alpha < \beta \leq f(y), \qquad \text{per ogni $x \in C$, $y \in K$.}
+		\end{equation*}
+	\end{theorem}
+	Sapendo ciò, ci poniamo nel caso banale $C \neq E$. Prendiamo un punto $x_0 \in E \setminus C$. Il singoletto $\{x_0\}$ è compatto e convesso, dunque per il teorema di Hahn--Banach geometrico possiamo separarli con un iperpiano, cioè esistono $f \in E$' ed $\alpha, \beta \in \R$ tali che
+	\begin{equation*}
+		f(x) \leq \alpha < \beta \leq f(y), \qquad \text{per ogni $x \in C$, $y \in K$.}
+	\end{equation*}
+	Perciò $x_0 \in f^{-1}(\alpha, \infty) = U \in \sigma(E, E')$, e $U \subseteq E \setminus C$. Ma allora $E \setminus C$ è un aperto debole, in quanto contiene un intorno debole di $x_0$.
+\end{proof}
+
+\begin{lemma}
+	La topologia debole è di Hausdorff, cioè se $x_1, x_2 \in E$ sono punti distinti allora esistono due aperti deboli disgiunti $U_1$ e $U_2$ tali che $x_1 \in U_1$ e $x_2 \in U_2$.
+\end{lemma}
+\begin{proof}
+	Per il Corollario~\ref{cor:two_chap_1}, essendo $x_1 - x_2 \neq 0$ per ipotesi, esiste un operatore lineare continuo $f \in E'$ tale che $f(x_1 - x_2) = \|x_1 - x_2\| \neq 0$. Allora poniamo $\varepsilon = |f(x_1-x_2)|/4$, e si prendano gli intorni deboli di $x_1$ e $x_2$ dati rispettivamente da:
+	\begin{equation*}
+		U_1 = \{x \in E \suchthat |f(x-x_1)| < \varepsilon \}, \qquad U_2 = \{x \in E \suchthat |f(x-x_2)| < \varepsilon \}.
+	\end{equation*}
+	Dichiariamo che $U_1 \cap U_2 = \varnothing$. Sia per assurdo $x \in U_1 \cap U_2 \neq \varnothing$, allora
+	\begin{eqalign*}
+		|f(x_1- x_2)| &\leq |f(x_1 - x + x - x_2)|\\
+		&\leq |f(x_1-x)| + |f(x-x_2)|\\
+		&< 2\varepsilon = \frac{|f(x_1-x_2)|}2,
+	\end{eqalign*}
+	assurdo.
+\end{proof}
+
+\begin{remark}
+	Il lemma ha la conseguenza estremamente importante di garantire l'unicità del limite debole.
+\end{remark}
+
+\begin{lemma}
+\label{lemma:weaktop_five}
+	Sia $E$ uno spazio normato, $\{x_n\}_{n \in \N}$ una successione di punti di $E$. Allora
+	\begin{enumerate}
+		\item $x_n \weakconv x$ se e soltanto se $f(x_n) \conv f(x)$ per ogni $f \in E'$,
+		\item $x_n \conv x$ comporta $x_n \weakconv x$,
+		\item $x_n \weakconv x$ comporta che $\{x_n\}_{n \in \N}$ è limitata, ed in particolare
+		\begin{equation*}
+			\|x\|_E \leq \liminf_n \|x_n\|_E
+		\end{equation*}
+		\item Se $x_n \weakconv x$ e $f_n \conv f$ in $E'$, allora $f_n(x_n) \conv f(x)$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Si veda il Teorema~\ref{th:weak_conv_and_cont}.
+		\item Banalmente, siccome la topologia debole è meno fine.
+		\item Sia $T_y : E' \to \R$ la valutazione su $y \in E$. Vale $\|T_y\|_{E' \to \R} = \|y\|_E$, quindi si ha che $x_n \weakconv x$ implica $T_{x_n} \conv T_x$ puntualmente. Ma allora per Banach--Steinhaus le norme $\|T_{x_n}\|$ si possono controllare uniformemente per un certo $M$, che quindi controlla anche le norme degli $x_n$. Dal Corollario~\ref{cor:banach_steinhaus_liminf} si ottiene il bound con il liminf.
+		\item Si ha
+		\begin{eqalign*}
+			|f_n(x_n) - f(x)| &\leq |f_n(x_n) - f(x_n)| + |f(x_n) - f(x)|\\
+			&\leq \|f_n-f\|_{E'}\|x_n\|_E + |f(x_n) - f(x)|\\
+			&\leq \underbrace{\|f_n-f\|_{E'}}_{\conv 0} (\liminf_n \|x_n\|_E) + \underbrace{|f(x_n) - f(x)|}_{\conv 0}\\
+			&\conv 0.
+		\end{eqalign*}
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Siano $E$ ed $F$ spazi di Banach, $T : E \to F$ lineare. Allora $T$ è continua rispetto alle topologie delle norme se e solo se è continua rispetto alle topologie deboli.
+\end{theorem}
+\begin{proof}
+	Supponiamo $T$ sia continua rispetto alle norme. Dal Teorema~\ref{th:weak_conv_and_cont} basta provare che $\varphi T$ sia continua rispetto alla topologia debole di $E$ per ogni $\varphi \in F'$. Ma questo è vero semplicemente perchè $\varphi T \in E'$, dunque è continua rispetto alla topologia debole.
+
+	Viceversa, supponiamo che $T$ sia continua rispetto alle topologie deboli. Abbiamo dimostrato che $(F, \sigma(F,F'))$ è Hausdorff, che ci permette quindi di dire che $G(T)$ è chiuso. Consideriamo allora la mappa
+	\begin{eqalign*}
+		I : (E, \|\cdot\|_E) \times (F,\|\cdot\|_F) &\longto (E, \sigma(E,E')) \times (F, \sigma(F,F'))\\
+			(x,y) &\longmapsto (x,y)
+	\end{eqalign*}
+	Si osserva facilmente che $I$ è continua. Allora $I^{-1}(G(T)) = G(T)$ è chiuso anche nel prodotto topologizzato dalle norme, da cui segue (teorema del grafico chiuso) che $T$ è continua rispetto alla topologia delle norme.
+\end{proof}
+
+\begin{remark}
+	Il teorema ci dice che passare alla topologia debole non ingrandisce lo spazio duale. Si osservi, d'altra parte, che l'ipotesi di linearità è cruciale. Ad esempio la norma di $E$ è continua rispetto alla topologia che induce, ma non debolmente continua: abbiamo mostrato che $\|\cdot\|^{-1}\{1\} = S$ non è debolmente chiuso.
+\end{remark}
+
+\begin{exercise}
+	Sia $E=\Czero[0,1]$, dotato della norma $\|\cdot\|_\infty$, con l'operatore $Tx = \int_0^1 x^2(t)\,dt$. Provare che
+	\begin{enumerate}
+		\item $T$ è fortemente continua,
+		\item $T$ non è debolmente continua,
+		\item Se $x_n \weakconv x$ in $E$, allora $Tx_n \conv Tx$, cioè che $T$ è sequenzialmente debolmente continua.
+		\item Dedurre che $E$, dotato della topologia debole, non è metrizzabile.
+	\end{enumerate}
+
+	\noindent\textbf{Svolgimento}.
+	\begin{enumerate}
+		\item L'integrale rispetta la convergenza uniforme, quindi se $x_n \conv x$ in $E$ allora anche $x^2_n \conv x^2$ e dunque $Tx_n \conv Tx$.
+		\item Se $T$ fosse debolmente continua, allora $T^{-1}(-1,1)$ sarebbe debolmente aperta. Si osservi che la funzione nulla è contenuta in $T^{-1}(1,1)$, poichè il suo integrale è nullo. Ora, se $T^{-1}(-1,1)$ fosse aperto, allora conterrebbe un intera retta passante per $0$, diretta diciamo da un vettore $v \in E$ non nullo. D'altra parte questo vorrebbe dire che $T(0+sv) = s^2 \int_0^1 v(t)\,dt \in (-1,1)$ per ogni $s \in \R$, assurdo.
+		\item Siccome le valutazioni $v_s : E \to \R$ ($v_s(x) = x(s)$) sono nel duale $E'$, la convergenza debole delle $x_n$ ci permette di concludere la convergenza $v_s(x_n) \conv v_s(x)$, cioè che $x_n \conv x$ puntualmente. Inoltre, il fatto che $x_n \weakconv x$ implica che $\|x_n\|_\infty \leq M$ uniformemente in $n \in \N$.  Allora $Tx_n \conv Tx$ per convergenza dominata.
+		\item Se fosse metrizzabile, la continuità per successioni sarebbe equivalente alla continuità per aperti, in conflitto con il punto precedente.
+	\end{enumerate}
+\end{exercise}
+
+Si osservi che la continuità di $T$ è fallita perchè siamo stati in grado di scegliere un aperto limitato in $\R$. Se equipaggiassimo $\R \cup \{+\infty\}$ con la topologia inferiore (la topologia generata dalle semirette destre aperte), ciò non sarebbe stato possibile.
+
+Ricordiamo che in questa topologia, $x_n \conv x$ se e solo se $x \leq \liminf_n x_n$. In particolare, tale topologia non è di Hausdorff!
+
+\begin{theorem}
+	Sia $E$ normato, sia $F$ una funzione $E \to (-\infty, +\infty]$ convessa.
+	Se $F : (E, \|\cdot\|_E) \to \R_{\inf}$ è continua, allora $F : (E, \sigma(E,E')) \to \R_{\inf}$ è continua.
+	In particolare, se $x_n \weakconv x$ allora $F(x) \leq \liminf_n F(x_n)$.
+\end{theorem}
+\begin{proof}
+	Sia $C \subseteq (-\infty, + \infty]$ chiuso, cioè $C=(-\infty, M]$. Per convessità di $F$, $F^{-1}(C)$ è convesso\footnote{Si usa il fatto che presi due punti qualunque $x,y \in E$, $F(x+t(y-x)) \leq F(x) + t(F(y) - F(x))$, per ogni $t \in [0,1]$. Si noti che $C$ deve avere la forma di una semiretta sinistra affinchè questa disuguaglianza sia utile.}
+	Siccome $F$ è continua, si ha anche $F^{-1}(C)$ è fortemente chiuso. Ma fortemente chiuso e convesso implica debolmente chiuso, quindi il teorema è dimostrato.
+\end{proof}
+
+\begin{remark}
+	Dal teorema segue che la funzione $T: \Czero[0,1] \to (-\infty,+\infty]$ data dall'integrale del quadrato sia debolmente continua.
+\end{remark}
+
+\begin{exercise}
+	Sia $p \in (1, \infty)$, sia $\{x^(n)\}_{n \in \N}$ una successione di $\ell^p$.
+	Provare che $x^{(n)} \weakconv x$ se e solo se
+	\begin{equation*}
+		\sup_n \|x^{(n)}\|_{\ell^p} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$}.
+	\end{equation*}
+
+	\noindent\textbf{Svolgimento}.
+	\begin{description}
+		\item[$(\implies)$] Dal Lemma~\ref{lemma:weaktop_five}, la debole convergenza dà uniforme limitatezza. Inoltre $x^{(n)}_h = \pi_h(x^{(n)})$, ed essendo le $\pi_h$ lineari continue preservano la convergenza.
+		\item[$(\implied)$] Dobbiamo provare che per ogni $\varphi \in {\ell^p}'$ si ha $\varphi(x^{(n)}) \conv \varphi(x)$. D'altra parte ${\ell^p}' \iso \ell^q$ per $q$ H\"older coniugato di $p$. Allora esiste $z \in \ell^q$ tale che $\varphi(y) = \sum_{h=1}^\infty x_h z_h$. Dobbiamo dunque verificare che
+		\begin{equation*}
+			\sum_{h=1}^\infty x^{(n)}_h z_h \conv \sum_{h=1}^\infty x_h z_h.
+		\end{equation*}
+		Posto $M = \sup_n \|x^{(n)}\|$, abbiamo
+		\begin{eqalign*}
+			\left| \sum_{h=1}^\infty x^{(n)}_h z_h - \sum_{h=1}^\infty x_h z_h \right| &\leq \sum_{h=1}^\infty |x^{(n)}_h-x_h||z_h|\\
+			&\leq \sum_{h=1}^N |x^{(n)}-x_h||z_h| + \sum_{h=N+1}^\infty |x^{(n)}-x_h||z_h|\\
+			&\leq \left( \sum_{h=1}^N |x^{(n)}_h-x_h|^p \right)^{1/p}\! \left( \sum_{h=1}^N |z_h|^q \right)^{1/q}\! +\\
+			&\qquad + \left( \sum_{h=N+1}^\infty |x^{(n)}_h-x_h|^p \right)^{1/p}\! \left( \sum_{h=N+1}^\infty |z_h|^q \right)^{1/q}\\
+			&\leq \left( \sum_{h=1}^N |x^{(n)}_h-x_h|^p \right)^{1/p}\!\! \|z\|_{\ell^q} + \left( \|x^{(n)}\|_{\ell^p} + \|x\|_{\ell^p} \right) \left( \sum_{h=N+1}^\infty |z_h|^q \right)^{1/q}\\
+			&\leq (M + \|z\|_{\ell^q}) \Bigg(\underbrace{\left( \sum_{h=1}^N |x^{(n)}_h-x_h|^p \right)^{1/p}}_{(1)} + \underbrace{\left( \sum_{h=N+1}^\infty |z_h|^q \right)^{1/q}}_{(2)} \Bigg)
+		\end{eqalign*}
+		Ora si fissi $\varepsilon > 0$, e sia $N$ preso in maniera che $(2) < \varepsilon$. Allora per puntuale convergenza delle $x^{(n)}$ a $x$, preso $n$ sufficentemente grande anche $(2) < \varepsilon$.
+		Segue la convergenza cercata.
+	\end{description}
+\end{exercise}
+
+\begin{remark}
+	Nel precedente, $(\implies)$ vale anche nel caso $p=1,\infty$, ma non $(\implied)$. Infatti nel caso $p=1,\infty$ il coniugato $q$ è rispettivamente $\infty$, $0$, il che non ci permette di portare avanti le stime utilizzate.
+\end{remark}
+
+\begin{theorem}
+	Una successione $\{x^{(n)}\}_{n \in \N}$ di $\ell^1$ è fortemente convergente se e solo se è debolmente convergente.
+\end{theorem}
+\begin{proof}
+	Omissis, vedere Dundford--Schwarz, `Linear operators'
+\end{proof}
+
+\begin{remark}
+	Quest'ultimo risultato mostra che la topologia debole su $\ell^1$ non è metrizzabile.
+\end{remark}
+
+\begin{remark}
+	Nel caso $p=\infty$ si può rimpiazzare $\ell^\infty$ con $c_0$ come segue:
+\end{remark}
+
+\begin{exercise}
+	Provare che $x^{(n)} \weakconv x$ in $c_0$ se e soltanto se
+	\begin{equation*}
+		\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$}.
+	\end{equation*}
+\end{exercise}
+
+Riassumendo:
+
+\begin{tabular}{c|c}
+	\textbf{Spazio $E$} & \textbf{Convergenza debole se e solo se}\\
+	$(\ell^1, \|\cdot\|_{\ell^1})$ & $x^{(n)} \conv x$\\
+	$(\ell^p, \|\cdot\|_{\ell^p})$ & $\sup_n \|x^{(n)}\|_{\ell^p} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$}.$\\
+	$(c_0, \|\cdot\|_\infty)$ & $\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$}.$\\
+	$(c, \|\cdot\|_\infty)$ & $\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$} \ \text{e}\ \lim_n\lim_h x^{(n)}_h = \lim_h x_h$
+\end{tabular}
+
+\begin{exercise}
+	Sia $x \in \ell^p$ non nullo, $1 \leq p < \infty$. Consideriamo la successione::
+	\begin{equation*}
+		x^{(n)}_h = \begin{cases}
+			0 & h <n\\
+			x_{h-n+1} & h \geq n.
+		\end{cases}
+	\end{equation*}
+	Discuterne la convergenza debole e forte.
+
+	\noindent\textbf{Svolgimento}. Si osservi che $\|x^{(n)}\|_{\ell^p} = \|x\|_{\ell^p} \neq 0$, per ogni $n \in \N$. Consideriamo prima il caso $p \neq 1$: fissato $h \in \N$, $x^{(n)}_h \conv[n] 0$ ed inoltre le norme delle $x^{(n)}$ sono uniformemente limitate, dunque $x^{(n)} \weakconv 0$.
+	Nel caso $p = 1$ invece, il limite candidato è $0$. Se $x^(n) \weakconv 0$, allora anche $x^{(n)} \conv 0$, ma ciò vorrebbe dire che $\|x^{(n)}\| \conv 0$, assurdo.
+\end{exercise}
+
+\begin{exercise}
+	Sia $\{x^{(n)}\}_{n \in \N}$ in $\ell^2$, così definita:
+	\begin{equation*}
+		x^{(n)}_h = \begin{cases}
+			\frac1h & h \neq n\\
+			1 & h=n
+		\end{cases}
+	\end{equation*}
+	Provare che $x^{(n)} \weakconv \{1/h\}_{h \in \N}$ ma non fortemente.
+\end{exercise}
+
+\begin{exercise}
+	Dimostrare che $(E, \sigma(E,E'))$ è uno spazio vettorale topologico.
+
+	\noindent\textbf{Svolgimento}.
+	Consideriamo $(x_1,x_2) \in E \times E$, e fissiamo un intorno di base di $x_1 + x_2$:
+	\begin{equation*}
+		U = \{x \in E \suchthat |f_i(x-(x_1+x_2))| < \varepsilon, \ \text{per ogni $i \in F$}\}, \quad \text{$F$ finito, $f_i \in E'$ per ogni $i \in F$.}
+	\end{equation*}
+	Se troviamo un intorno di $(x_1,x_2)$ mandato in $U$, ho dimostrato la continuità. Fissiamo $F$ e le $f_i$, e definiamo
+	\begin{eqalign*}
+		U_1 &= \{x \in E \suchthat |f_i(x-x_1)| < \varepsilon/2, \ \text{per ogni $i \in F$}\},\\
+		U_2 &= \{x \in E \suchthat |f_i(x-x_2)| < \varepsilon/2, \ \text{per ogni $i \in F$}\}.
+	\end{eqalign*}
+	Chiaramente $U_1 \ni x_1$, $U_2 \ni x_2$ e dunque $U_1 \times U_2 \ni (x_1,x_2)$. Ora siano $y_1 \in U_1$ e $y_2 \in U_2$, e verifichiamo che $y_1+y_2 \in U$:
+	\begin{equation*}
+		|f_i(y_1+y_2-(x_1+x_2))| < \varepsilon/2 + \varepsilon/2 = \varepsilon.
+	\end{equation*}
+\end{exercise}
+
+\section{Topologia debole$^*$}
+Ricordiamo che dato uno spazio normato, la funzione
+\begin{eqalign}
+	J : E &\longto E''\\
+	x &\longmapsto (f \mapsto f(x))
+\end{eqalign}
+è la mappa di immersione di $E$ nel suo biduale. Dal teorema di Hahn--Banach (Corollario~\ref{cor:equiv_norm}) sappiamo che $J$ è un'isometria, ma in generale non è suriettiva, il che è un'ostruzione importante.
+
+\begin{definition}
+	Sia $E'$ il duale di uno spazio normato. La \defining{topologia debole$^*$} su $E'$ è la topologia iniziale associata a $\{J_x\}_{x \in E}$, immagine dell'immersione $E \into E''$.
+\end{definition}
+
+\begin{remark}
+	Tale topologia è più fine della topologia debole di $E'$:
+	\begin{equation*}
+		\underbrace{\sigma(E',E)}_{\text{debole}^*} \subsetneq \underbrace{\sigma(E',E'')}_{\text{debole}} \subsetneq \|\cdot\|_{E'}.
+	\end{equation*}
+\end{remark}
+
+\begin{lemma}
+	\leavevmode
+	\begin{enumerate}
+		\item Fissato $f_0 \in E'$, una base di intorni aperti di $f_0$ rispetto alla topologia debole$^*$ è data da
+		\begin{equation*}
+			\{f \in E' \suchthat |(f-f_0)(x_i)| < \varepsilon, \text{per ogni $i \in F$}\}, \quad \text{$F$ finito, $x_i \in E$ per ogni $i \in F$.}
+		\end{equation*}
+		\item La topologia debole$^*$ è di Hausdorff.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Segue dal fatto generale per le topologie iniziali.
+		\item Siano $f_1 \neq f_2 \in E'$. Allora esiste almeno un punto $x \in E$ tale per cui $f_1(x) \neq f_2(x)$. Senza perdita di generalità, assumiamo che $f_1(x) < f_2(x)$. Sia allora $\alpha \in [f_1(x), f_2(x)]$ e definiamo
+		\begin{eqalign*}
+			U_1 &= \{f \in E' \suchthat |f(x)| < \alpha\} = J_x^{-1}(-\infty, \alpha)\\
+			U_2 &= \{f \in E' \suchthat |f(x)| > \alpha\} = J_x^{-1}(\alpha, +\infty).
+		\end{eqalign*}
+		Questi sono aperti perchè controimmagini di aperti rispetto a mappe di valutazione. Inoltre $f_1 \in U_1$, $f_2 \in U_2$, $U_1 \cap U_2 = \varnothing$, e dunque la tesi è provata.
+	\end{enumerate}
+\end{proof}
+
+Diremo che $C \subseteq E'$ è debolmente$*$ chiuso se il suo complementare è aperto rispetto alla topologia debole$^*$. Diciamo che $f_n$ converge debole$^*$ ad $f$, scritto $f_n \weakconv^* f$, se $f_n$ converge a $f$ nella topologia debole$^*$.
+
+\begin{lemma}
+	Sia $E$ uno spazio normato, $\{f_n\}_{n \in \N}$ successione di $E'$, $f \in E'$.
+	\begin{enumerate}
+		\item $f_n \weakconv^* f$ se e soltanto se $f_n(x) \conv f(x)$ per ogni $x \in E$.
+		\item $f_n \conv f$ implica $f_n \weakconv f$ implica $f_n \weakconv^* f$.
+		\item Se $E$ è di Banach e $f_n \weakconv^* f$, allora
+		\begin{equation*}
+			\sup_n \|f_n\|_{E'} < \infty \word{e} \|f\|_{E'} \leq \liminf_n \|f_n\|_{E'}.
+		\end{equation*}
+		\item Se $E$ è di Banach e $f_n \weakconv^* f$ e $x_n \conv x$ in $E$, allora $f_n(x_n) \conv f(x)$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Caso particolare del Teorema~\ref{th:weak_conv_and_cont}.
+		\item Banale, per inclusione delle topologie.
+		\item Caso particolare del Corollario~\ref{cor:banach_steinhaus_liminf}, in cui invece di dire `convergenza puntuale' diciamo `convergenza debole$^*$'.
+		\item Per disuguaglianza triangolare,
+		\begin{equation*}
+			|f_n(x_n) - f(x)| \leq |f_n(x_n) - f_n(x)| + |f_n(x) - f(x)| \leq \|f_n\|_{E'}\|x_n - x\|_E + |f_n(x) - f(x)|.
+		\end{equation*}
+		Il primo termine converge a zero per ipotesi sulla successione $\{x_n\}_{n \in \N}$, e siccome dal punto precedente sappiamo che $\|f_n\|_{E'}$ è uniformemente limitato, mentre il secondo per ipotesi sulla successione $\{f_n\}_{n \in \N}$.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Ricordiamo che si può identificare $\ell^\infty$ con $(\ell^1)'$ tramite $J_x : y \mapsto \sum_{n=1}^\infty x_n y_n$ suriettiva. Ogni elemento di $x \in \ell^\infty$ si può immaginare come $J_x \in (\ell^1)'$. Diremo allora che $x^(n) \weakconv^* x$ in $\ell^\infty$ se $J_{x^{(n)}} \weakconv^* J_x$, cioè se $\sum_{h=1}^\infty x^{(n)}_h y_h \conv \sum_{h=1}^\infty x_hy_h$.
+\end{example}
+
+\begin{exercise}
+	Provare che $x^{(n)} \weakconv^* x$ in $\ell^\infty$ se e soltanto se $x^{(n)}_h \conv x_h$ per ogni $h \in \N$ e $\sup_n\|x^{(n)}\|_\infty < \infty$.
+
+	\noindent\textbf{Svolgimento}.
+	\begin{description}
+		\item[$(\implies)$] Già dimostrata (e segue dal lemma precedente).
+		\item[$(\implied)$] Sia $y \in \ell^1$.
+		\begin{eqalign*}
+			\left| \sum_{h=1}^\infty x^{(n)}_h y_h - \sum_{h=1}^\infty x_h y_h \right| &\leq \sum_{h=1}^N |x^{(n)}_h - x_h||y_h| + \sum_{h=N+1}^\infty |x^{(n)}_h - x_h||y_h|\\
+			&\leq (\max_{h=1,\ldots,N}|x^{(n)}_h - x_h|)\|y\|_{\ell^1} + \underbrace{M}_{2\sup_n \|x^{(n)\|_{\ell^\infty}}} \sum_{h=N+1}^\infty |y_h|.
+		\end{eqalign*}
+		Scelgo $N$ grande in modo che $\sum_{h=N+1}^\infty |y_h| < \varepsilon$ fissato (posso farlo perche $y \in \ell^1$ significa proprio che tale serie è convergente, quindi ha code definitivamente nulle). A questo punto mandando $n \to \infty$, anche il primo termine svanisce in quanto abbiamo assunto $x^{(n)}_h \to x_h$ per ogni $h \in \N$.
+	\end{description}
+\end{exercise}
+
+\begin{lemma}
+\label{lemma:weaktop_eight}
+	Sia $E$ normato.
+	\begin{enumerate}
+		\item Se $T : E' \to \R$ è lineare e debolmente$^*$ continua allora esiste $x \in E$ tale che $T=J_x$.
+		\item La topologia debole e la topologia debole$^*$ coincidono se e solo se $J$ è suriettiva.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Omissis.
+		\item \begin{description}
+			\item[$(\implied)$] Ovvio.
+			\item[$(\implies)$] Sia $T \in E''$. Sappiamo che $T$ è ancora debolmente$^*$ continuo, dunque per ipotesi $T$ è anche debolmente continuo. Ma allora per il primo punto, $T= J_x$ per un qualche $x \in E$, cioè $T \in \im J$.
+		\end{description}
+	\end{enumerate}
+\end{proof}
+
+\subsection{Il teorema di Banach--Alaouglu}
+Ricordiamo:
+
+\begin{theorem}[Tychonoff]
+\label{th:tychonoff}
+	Sia $\{X_i\}_{i \in I}$ una famiglia di spazi topologici.
+	Allora gli $X_i$ sono compatti se e solo se $\prod_{i \in I} X_i$ è compatto.
+\end{theorem}
+
+\begin{theorem}[Banach--Alaouglu]
+\label{th:banach_alaouglu}
+	Sia $E$ uno spazio normato.
+	Allora $B_{E'}(0,1)$ è debolmente$^*$ compatto.
+\end{theorem}
+\begin{proof}
+	Consideriamo lo spazio $\R^E = \prod_{x \in E} \R$, dotato della topologia prodotto.
+	Chiamiamo $\Phi : B_{E'}(0,1) \to \R^E$ la mappa che manda una funzione $f : E \to \R$ nella palla unitaria di $E'$ nella sua `rappresentazione' come $E$-pla. Vogliamo mostrare che tale mappa è un'immersione topologica rispetto alla topologia debole$^*$ su $E'$.
+	\begin{enumerate}
+		\item \textbf{$\Phi$ è continua}. Dobbiamo allora dimostrare che per ogni $x \in E$, $\pi_x \Phi$ è continua. Ma $\pi_x = J_x$, che è certamente debolmente$^*$ continua.
+		\item \textbf{$\Phi^{-1}$, definita sull'immagine di $\Phi$, è continua}. Dobbiamo allora dimostrare che per ogni $x \in E$, $J_x \Phi^{-1}$ è continua. Ma questa è la proiezione $x$-esima, dunque continua rispetto alla topologia prodotto.
+	\end{enumerate}
+	Possiamo dunque dimostrare il teorema mostrando la compattezza di $\Phi(B_{E'}(0,1))$. La strategia allora è di mostrare che tale insieme è l'intersezione di un chiuso $C$ ed un compatto $K$ in $\R^E$. Affermiamo che
+	\begin{eqalign*}
+		C &= \{f : E \to \R \suchthat \text{$f$ lineare}\},\\
+		K &= \{f : E \to \R \suchthat |f(x)| \leq \|x\|_E, \text{per ogni $x \in E$}\}.
+	\end{eqalign*}
+	Il primo è chiuso perchè equalizzatore di chiusi, mentre il secondo è compatto perchè uguale al prodotto di compatti $\prod_{x \in E} [-\|x\|, \|x\|]$. Il teorema è provato perchè $C \cap K$ è esattamente l'insieme di tutte le funzioni lineari e continue di norma al più unitaria, cioè $\Phi(B_{E'}(0,1))$.
+\end{proof}
+
+\subsection{Spazi riflessivi, teorema di Kakutani}
+\begin{definition}
+	Si dice riflessivo uno spazio normato $E$ per cui l'isometria canonica delle valutazioni $J : E \into E''$ è suriettiva.
+\end{definition}
+
+\begin{remark}
+	Riflessivo implica Banach, poichè $E''$ è Banach e $J$ ne esibisce un isomorfismo con $E$.
+\end{remark}
+\begin{remark}
+	Dal Lemma~\ref{lemma:weaktop_eight}, $E$ è riflessivo se e solo se topologia debole e debole$^*$ coincidono.
+\end{remark}
+
+\begin{lemma}[Helly]
+	Sia $E$ uno spazio normato, $f : E \to \R^n$ tale che $f_1, \ldots, f_n \in E'$ e sia $\vec \alpha \in \R^n$.
+	Allora
+	\begin{equation*}
+		\vec \alpha \in \closure{f(B_E(0,1))} \sse \text{per ogni $\vec \beta \in \R^n$},\ \left| \sum_{i=1}^n \alpha_i \beta_i \right| \leq \| \sum_{i=1}^n f_i\beta_i \|_{E'}.
+	\end{equation*}
+\end{lemma}
+\begin{remark}
+	Si può anche scrivere $|\alpha \cdot \beta| \leq \|f \cdot \beta\|$.
+\end{remark}
+\begin{proof}
+	\begin{description}
+		\item[$(\implies)$] Omissis.
+		\item[$(\implied)$] Per assurdo, supponiamo che $\vec \alpha \notin \closure{f(B_E(0,1))}$. Allora possiamo usare il teorema di Hahn--Banach geometrico (Teorema~\ref{th:geom_hahn_banach}) per separare il compatto $\{\vec\alpha\}$ e il chiuso convesso $\closure{f(B_E(0,1))}$ con un iperpiano. In pratica, esistono $\vec\beta \in \R^n$ e $\gamma \in \R$ tali che
+		\begin{equation*}
+			f(x) \cdot \vec \beta < \gamma < \vec \alpha \cdot \vec \beta, \qquad \text{per ogni $x \in B_E(0,1)$}.
+		\end{equation*}
+		D'altra parte, siccome la disuguaglianza vale uniformemente per $x \in B_E(0,1)$, otteniamo quindi
+		\begin{equation*}
+			\sup_{\|x\| \leq 1} |f(x) \cdot \vec \beta| < \gamma < \vec \alpha \cdot \vec \beta, \qquad \text{per ogni $x \in B_E(0,1)$}.
+		\end{equation*}
+		Ma $\sup_{\|x\| \leq 1} |f(x) \cdot \vec \beta| = \|\sum_{i=1}^n f_i \beta_i\|_{E'}$, e dunque la disuguaglianza ottenuta contraddice l'ipotesi.
+	\end{description}
+\end{proof}
+
+\begin{lemma}[Goldstein]
+	Sia $E$ normato.
+	Allora $J(B_E(0,1))$ è debolmente$^*$ denso in $B_{E''}(0,1)$.
+\end{lemma}
+\begin{proof}
+	Sia $\xi \in B_{E''}(0,1)$ e $V$ intorno debole$^*$ di $\xi$ del tipo
+	\begin{equation*}
+		V = \{ \eta \in E'' \suchthat |f_i(\eta-\xi)| < \varepsilon, \text{per ogni $i=1,\ldots,n$} \}, \quad f_1, \ldots, f_n \in E'.
+	\end{equation*}
+	Vogliamo allora dimostrare che $J(B_E(0,1)) \cap V \neq \varnothing$, cioè dobbiamo trovare un $x \in B_E(0,1)$ tale che $|f_i(J_x - \xi)| < \varepsilon$. Essendo $\varepsilon$ arbitrario, ciò equivale a provare che il vettore $\vec\alpha = \vec f(\xi)$ appartenga a $\closure{f(B_E(0,1))}$. Allora possiamo appoggiarci al lemma di Helly, e provare che per ogni $\vec\beta \in \R^n$, si abbia $|\vec\alpha \cdot \vec\beta| \leq \|f \cdot \vec\beta\|$.
+	\begin{eqalign*}
+		\left| \sum_{i=1}^n f_i(\xi)\beta_i \right| &= \left| \left(\sum_{i=1}^n f_i\beta_i \right)(\xi) \right|\\
+		&\leq \|\xi\|_{E''} \|f \cdot \beta\|_{E'}\\
+		&\leq \|f \cdot \beta\|_{E'} \comment{poichè $\|\xi\|_{E''} \leq 1$ per ipotesi.}
+	\end{eqalign*}
+\end{proof}
+
+\begin{theorem}[Kakutani]
+\label{th:kakutani}
+	Sia $E$ normato.
+	Allora $E$ è riflessivo se e solo se la palla unitaria chiusa $\closure B_E(0,1)$ è debolmente compatta.
+\end{theorem}
+\begin{proof}
+	\leavevmode
+	\begin{description}
+		\item[$(\implies)$] $E$ riflessivo implica che $J$ è un isomorfismo, dunque resta definita l'isometria continua $J^{-1} : E'' \to E$. Banalmente $J^{-1}B_{E''}(0,1) = B_E(0,1)$, e il teorema di Alaouglu ci dà la compattezza di $B_{E''}(0,1)$, per cui se $J^{-1}$ fosse continua rispetto alle topologia debole$^*$, $B_E(0,1)$ sarebbe compatto perchè immagine continua di un compatto.
+
+		Per fare ciò, debbo verificare che per ogni $f \in E'$, la mappa $f J^{-1} : (E'', \sigma(E'', E)) \to \R$ è continua. Essa agisce su un elemento $F \in E''$ per valutazione su $J^{-1}(F) \in E$, dunque è continua rispetto alla topologia debole$^*$.
+
+		\item[$(\implied)$] Supponiamo che $B_E(0,1)$ sia debolmente compatta in $E$. Sappiamo che $J:E \to E''$ è continua anche rispetto alle topologie deboli su $E$ ed $E''$. Notiamo, inoltre, che ciò resta vero se riduciamo la topologia di $E''$ alla topologia debole$^*$. Allora $J$ mappa compatti deboli di $E$ in compatti deboli$^*$ di $E''$, in particolare in chiusi deboli$^*$ (perchè la topologia debole$^*$ è Hausdorff). Dal lemma di Goldstein sappiamo inoltre che $J(B_E(0,1))$ è densa in $B_{E''}(0,1)$. Ma allora $J(B_E(0,1)) = \closure{J(B_E(0,1))} = B_{E''}(0,1)$, che per linearità comporta $J(E) = E''$.
+	\end{description}
+\end{proof}
+
+\begin{lemma}
+	\leavevmode
+	\begin{enumerate}
+		\item Se $E$ è riflessivo e $M \leq R$ è un sottospazio chiuso, allora anche $M$ è riflessivo.
+		\item Se $E$ è uno spazio vettoriale e $\|\cdot\|_1$, $\|\cdot\|_2$ sono norme equivalenti su $E$, allora $(E, \|\cdot\|_1)$ è riflessivo se e solo se $(E, \|\cdot\|_2)$ è riflessivo.
+		\item Se $E$ ed $F$ sono spazi normati isometrici allora $E$ è riflessivo se e solo se $F$ è riflessivo.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Su $M$ possiamo mettere due topologie deboli. La prima è la topologia debole associata alla topologia sottospazio di $M$, mentre l'altra è la topologia sottospazio di $M$ rispetto alla topologia debole di $E$. Affermiamo che in realtà queste due topologie coincidono. Consideriamo la mappa identica $I$ tra $(M, \|\cdot\|_E)$ e $(E, \|\cdot\|_E)$. Essa è continua rispetto alle norme, dunque anche rispetto alle topologie deboli. Segue che $\sigma(E,E')\vert_M \subseteq \sigma(M,M')$. Viceversa anche la mappa identica $(M, \sigma(E,E')\vert_M) \to (M, \sigma(M,M'))$ è continua. Infatti preso un elemento $f \in M'$, $fI = f : (M, \sigma(E,E')\vert_M) \to \R$ è continua, perchè per il teorema di Hahn--Banach $f$ ammette un'estensione $F \in E'$, debolmente continua su $E$. Allora $F\vert_M = f = fI$ è continua. Segue che $\sigma(M,M') \subseteq \sigma(E,E')$, completando la dimostrazione.
+
+		Ora sapendo che $E$ è riflessivo, dal teorema di Kakutani sappiamo che $B_E(0,1)$ è debolmente compatta. D'altra parte $M$ è chiuso e convesso, quindi debolmente chiuso. Pertanto $B_E(0,1) \cap M$ è debolmente compatto in $E$, quindi debolmente compatto in $M$. Ma $B_E(0, 1) \cap M = B_M(0,1)$, quindi dal teorema di Kakutani si ottiene la riflessività di $M$.
+
+		\item Ovvio.
+
+		\item Sia $T:E \to F$ un'isometria suriettiva. Allora $T$ e $T^{-1}$ sono debolmente continue, e dunque si scambiano palle unitarie conservando la compattezza. Dal teorema di Kakutani segue la tesi.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	\leavevmode
+	\begin{enumerate}
+		\item Se $E$ è uno spazio normato riflessivo allora $E'$ è riflessivo,
+		\item Se $E'$ è riflessivo ed $E$ è di Banach allora $E$ è riflessivo.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Se $E$ è riflessivo, le topologie debole e debole$^*$ su $E'$ coincidono. Per il teorema di Banach--Alaouglu (Teorema~\ref{th:banach_alaouglu}), la palla $B_{E'}(0,1)$ è debolmente$^*$ compatta, quindi anche debolmente compatta per ipotesi. Dal teorema di Kakutani segue la tesi.
+
+		\item Dal punto precedente, $E''$ è riflessivo. Allora l'isometria $J:E \to E''$ ha immagine completa in $E''$, in particolare ha immagine chiusa, pertanto dal lemma precedente riflessiva. Ma $E \iso J(E)$, dunque $E$ è riflessivo.
+	\end{enumerate}
+\end{proof}
+
+Moralmente, questo teorema vuol dire:
+
+\begin{corollary}
+	Uno spazio di Banach è riflessivo se e solo se lo è il suo duale.
+\end{corollary}
