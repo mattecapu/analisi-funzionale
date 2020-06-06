@@ -3,7 +3,7 @@ Ricordiamo che in spazi di Banach a dimensione infinita, non vale la caratterizz
 
 \begin{theorem}
 \label{th:unit_ball_not_compact}
-	Sia $E$ normato di dimensione infinite.
+	Sia $E$ normato di dimensione infinita.
 	Allora la palla unitaria chiusa non è compatta.
 \end{theorem}
 
@@ -141,7 +141,7 @@ Nel nostro caso specifico però, possiamo prendere gli aperti su $\R$ come inter
 	Dalla dimostrazione di questo teorema vediamo che ci sono in realtà parecchie rette contenute in un qualsiasi intorno, poichè $\ker F$ ha codimensione finita in uno spazio a dimensione infinita.
 \end{remark}
 
-Nonostante in dimensione finita la topologia debole sia uguale a quella usuale, è interessante andare a vedere come sono gli intorni fondamentali. Si vede che essi sono costruiti per `taglio' dello spazio con iperpiani, e quindi in dimensione finita possono delimitare regioni limitate di spazio di forma politopica. In dimensione infinita ciò non è possibile, perchè intuitivamente non ho mai abbastanza iperpiani per chiudere il politopo (ne servirebbero infiniti ma ne ho sempre in quantità finita).
+Nonostante in dimensione finita la topologia debole sia uguale a quella usuale, è interessante andare a vedere come sono gli intorni fondamentali. Si vede che essi sono costruiti per `taglio' dello spazio con iperpiani, e quindi in dimensione finita possono delimitare regioni limitate di spazio di forma poliedrale. In dimensione infinita ciò non è possibile, perchè intuitivamente non ho mai abbastanza iperpiani per chiudere il poliedro (ne servirebbero infiniti ma ne ho sempre in quantità finita).
 
 \begin{corollary}
 	Se la dimensione di $E$, spazio normato, è infinita, la sfera unitaria $S$ non è debolmente chiusa.
@@ -290,7 +290,12 @@ Ricordiamo che in questa topologia, $x_n \conv x$ se e solo se $x \leq \liminf_n
 
 	\noindent\textbf{Svolgimento}.
 	\begin{description}
-		\item[$(\implies)$] Dal Lemma~\ref{lemma:weaktop_five}, la debole convergenza dà uniforme limitatezza. Inoltre $x^{(n)}_h = \pi_h(x^{(n)})$, ed essendo le $\pi_h$ lineari continue preservano la convergenza.
+		\item[$(\Longrightarrow)$] Dal Lemma~\ref{lemma:weaktop_five}, la debole convergenza dà uniforme limitatezza. Inoltre
+		\begin{equation*}
+			{x^{(n)}_h = \pi_h(x^{(n)})},
+		\end{equation*}
+		ed essendo le $\pi_h$ lineari continue preservano la convergenza.
+
 		\item[$(\implied)$] Dobbiamo provare che per ogni $\varphi \in {\ell^p}'$ si ha $\varphi(x^{(n)}) \conv \varphi(x)$. D'altra parte ${\ell^p}' \iso \ell^q$ per $q$ H\"older coniugato di $p$. Allora esiste $z \in \ell^q$ tale che $\varphi(y) = \sum_{h=1}^\infty x_h z_h$. Dobbiamo dunque verificare che
 		\begin{equation*}
 			\sum_{h=1}^\infty x^{(n)}_h z_h \conv \sum_{h=1}^\infty x_h z_h.
@@ -304,20 +309,20 @@ Ricordiamo che in questa topologia, $x_n \conv x$ se e solo se $x \leq \liminf_n
 			&\leq \left( \sum_{h=1}^N |x^{(n)}_h-x_h|^p \right)^{1/p}\!\! \|z\|_{\ell^q} + \left( \|x^{(n)}\|_{\ell^p} + \|x\|_{\ell^p} \right) \left( \sum_{h=N+1}^\infty |z_h|^q \right)^{1/q}\\
 			&\leq (M + \|z\|_{\ell^q}) \Bigg(\underbrace{\left( \sum_{h=1}^N |x^{(n)}_h-x_h|^p \right)^{1/p}}_{(1)} + \underbrace{\left( \sum_{h=N+1}^\infty |z_h|^q \right)^{1/q}}_{(2)} \Bigg)
 		\end{eqalign*}
-		Ora si fissi $\varepsilon > 0$, e sia $N$ preso in maniera che $(2) < \varepsilon$. Allora per puntuale convergenza delle $x^{(n)}$ a $x$, preso $n$ sufficentemente grande anche $(2) < \varepsilon$.
+		Ora si fissi $\varepsilon > 0$, e sia $N$ preso in maniera che $(2) < \varepsilon$. Allora per puntuale convergenza delle $x^{(n)}$ a $x$, preso $n$ sufficientemente grande anche $(1) < \varepsilon$.
 		Segue la convergenza cercata.
 	\end{description}
 \end{exercise}
 
 \begin{remark}
-	Nel precedente, $(\implies)$ vale anche nel caso $p=1,\infty$, ma non $(\implied)$. Infatti nel caso $p=1,\infty$ il coniugato $q$ è rispettivamente $\infty$, $0$, il che non ci permette di portare avanti le stime utilizzate.
+	Nel precedente, $(\Longrightarrow)$ vale anche nel caso $p=1,\infty$, ma non $(\implied)$. Infatti nel caso $p=1,\infty$ il coniugato $q$ è rispettivamente $\infty$, $0$, il che non ci permette di portare avanti le stime utilizzate.
 \end{remark}
 
 \begin{theorem}
 	Una successione $\{x^{(n)}\}_{n \in \N}$ di $\ell^1$ è fortemente convergente se e solo se è debolmente convergente.
 \end{theorem}
 \begin{proof}
-	Omissis, vedere Dundford--Schwarz, `Linear operators'
+	Omissis, vedere \cite{dunford1958linear}.
 \end{proof}
 
 \begin{remark}
@@ -337,13 +342,15 @@ Ricordiamo che in questa topologia, $x_n \conv x$ se e solo se $x \leq \liminf_n
 
 Riassumendo:
 
-\begin{tabular}{c|c}
-	\textbf{Spazio $E$} & \textbf{Convergenza debole se e solo se}\\
-	$(\ell^1, \|\cdot\|_{\ell^1})$ & $x^{(n)} \conv x$\\
-	$(\ell^p, \|\cdot\|_{\ell^p})$ & $\sup_n \|x^{(n)}\|_{\ell^p} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$}.$\\
-	$(c_0, \|\cdot\|_\infty)$ & $\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$}.$\\
-	$(c, \|\cdot\|_\infty)$ & $\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$} \ \text{e}\ \lim_n\lim_h x^{(n)}_h = \lim_h x_h$
-\end{tabular}
+\begin{center}
+	\begin{tabular}{cl}
+		\textbf{Spazio} & \textbf{Convergenza debole se e solo se}\\
+		$(\ell^1, \|\cdot\|_{\ell^1})$ & $x^{(n)} \conv x$\\
+		$(\ell^p, \|\cdot\|_{\ell^p})$ & $\sup_n \|x^{(n)}\|_{\ell^p} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \ \forall h \in \N.$\\
+		$(c_0, \|\cdot\|_\infty)$ & $\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \ \forall h \in \N.$\\
+		$(c, \|\cdot\|_\infty)$ & $\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \ \forall h \in \N \ \text{e}\ \lim_n\lim_h x^{(n)}_h = \lim_h x_h$
+	\end{tabular}
+\end{center}
 
 \begin{exercise}
 	Sia $x \in \ell^p$ non nullo, $1 \leq p < \infty$. Consideriamo la successione::
@@ -371,7 +378,7 @@ Riassumendo:
 \end{exercise}
 
 \begin{exercise}
-	Dimostrare che $(E, \sigma(E,E'))$ è uno spazio vettorale topologico.
+	Dimostrare che $(E, \sigma(E,E'))$ è uno spazio vettoriale topologico.
 
 	\noindent\textbf{Svolgimento}.
 	Consideriamo $(x_1,x_2) \in E \times E$, e fissiamo un intorno di base di $x_1 + x_2$:
@@ -388,6 +395,8 @@ Riassumendo:
 		|f_i(y_1+y_2-(x_1+x_2))| < \varepsilon/2 + \varepsilon/2 = \varepsilon.
 	\end{equation*}
 \end{exercise}
+
+L'analisi funzionale è storicamente affrontata in due diversi maniere: tramite gli spazi normati, seguendo Schwarz \cite{dunford1958linear,dunford1965linear}, o tramite gli spazi vettoriali topologici, seguendo Grothendieck \cite{grothendieck1973topological}.
 
 \section{Topologia debole$^*$}
 Ricordiamo che dato uno spazio normato, la funzione
@@ -468,7 +477,7 @@ Diremo che $C \subseteq E'$ è debolmente$*$ chiuso se il suo complementare è a
 
 	\noindent\textbf{Svolgimento}.
 	\begin{description}
-		\item[$(\implies)$] Già dimostrata (e segue dal lemma precedente).
+		\item[$({\Longrightarrow})$] Già dimostrata (e segue dal lemma precedente).
 		\item[$(\implied)$] Sia $y \in \ell^1$.
 		\begin{eqalign*}
 			\left| \sum_{h=1}^\infty x^{(n)}_h y_h - \sum_{h=1}^\infty x_h y_h \right| &\leq \sum_{h=1}^N |x^{(n)}_h - x_h||y_h| + \sum_{h=N+1}^\infty |x^{(n)}_h - x_h||y_h|\\
@@ -491,8 +500,8 @@ Diremo che $C \subseteq E'$ è debolmente$*$ chiuso se il suo complementare è a
 	\begin{enumerate}
 		\item Omissis.
 		\item \begin{description}
+			\item[$(\Longrightarrow)$] Sia $T \in E''$. Sappiamo che $T$ è ancora debolmente$^*$ continuo, dunque per ipotesi $T$ è anche debolmente continuo. Ma allora per il primo punto, $T= J_x$ per un qualche $x \in E$, cioè $T \in \im J$.
 			\item[$(\implied)$] Ovvio.
-			\item[$(\implies)$] Sia $T \in E''$. Sappiamo che $T$ è ancora debolmente$^*$ continuo, dunque per ipotesi $T$ è anche debolmente continuo. Ma allora per il primo punto, $T= J_x$ per un qualche $x \in E$, cioè $T \in \im J$.
 		\end{description}
 	\end{enumerate}
 \end{proof}
@@ -542,15 +551,13 @@ Ricordiamo:
 	Sia $E$ uno spazio normato, $f : E \to \R^n$ tale che $f_1, \ldots, f_n \in E'$ e sia $\vec \alpha \in \R^n$.
 	Allora
 	\begin{equation*}
-		\vec \alpha \in \closure{f(B_E(0,1))} \sse \text{per ogni $\vec \beta \in \R^n$},\ \left| \sum_{i=1}^n \alpha_i \beta_i \right| \leq \| \sum_{i=1}^n f_i\beta_i \|_{E'}.
+		\vec \alpha \in \closure{f(B_E(0,1))} \sse \text{per ogni $\vec \beta \in \R^n$},\ |\vec\alpha \cdot \vec\beta| \leq \|\vec f \cdot \vec \beta\|.
 	\end{equation*}
 \end{lemma}
-\begin{remark}
-	Si può anche scrivere $|\alpha \cdot \beta| \leq \|f \cdot \beta\|$.
-\end{remark}
 \begin{proof}
+	\leavevmode
 	\begin{description}
-		\item[$(\implies)$] Omissis.
+		\item[$(\Longrightarrow)$] Omissis.
 		\item[$(\implied)$] Per assurdo, supponiamo che $\vec \alpha \notin \closure{f(B_E(0,1))}$. Allora possiamo usare il teorema di Hahn--Banach geometrico (Teorema~\ref{th:geom_hahn_banach}) per separare il compatto $\{\vec\alpha\}$ e il chiuso convesso $\closure{f(B_E(0,1))}$ con un iperpiano. In pratica, esistono $\vec\beta \in \R^n$ e $\gamma \in \R$ tali che
 		\begin{equation*}
 			f(x) \cdot \vec \beta < \gamma < \vec \alpha \cdot \vec \beta, \qquad \text{per ogni $x \in B_E(0,1)$}.
@@ -588,7 +595,7 @@ Ricordiamo:
 \begin{proof}
 	\leavevmode
 	\begin{description}
-		\item[$(\implies)$] $E$ riflessivo implica che $J$ è un isomorfismo, dunque resta definita l'isometria continua $J^{-1} : E'' \to E$. Banalmente $J^{-1}B_{E''}(0,1) = B_E(0,1)$, e il teorema di Alaouglu ci dà la compattezza di $B_{E''}(0,1)$, per cui se $J^{-1}$ fosse continua rispetto alle topologia debole$^*$, $B_E(0,1)$ sarebbe compatto perchè immagine continua di un compatto.
+		\item[$(\Longrightarrow)$] $E$ riflessivo implica che $J$ è un isomorfismo, dunque resta definita l'isometria continua $J^{-1} : E'' \to E$. Banalmente $J^{-1}B_{E''}(0,1) = B_E(0,1)$, e il teorema di Alaouglu ci dà la compattezza di $B_{E''}(0,1)$, per cui se $J^{-1}$ fosse continua rispetto alle topologia debole$^*$, $B_E(0,1)$ sarebbe compatto perchè immagine continua di un compatto.
 
 		Per fare ciò, debbo verificare che per ogni $f \in E'$, la mappa $f J^{-1} : (E'', \sigma(E'', E)) \to \R$ è continua. Essa agisce su un elemento $F \in E''$ per valutazione su $J^{-1}(F) \in E$, dunque è continua rispetto alla topologia debole$^*$.
 
@@ -607,9 +614,9 @@ Ricordiamo:
 \begin{proof}
 	\leavevmode
 	\begin{enumerate}
-		\item Su $M$ possiamo mettere due topologie deboli. La prima è la topologia debole associata alla topologia sottospazio di $M$, mentre l'altra è la topologia sottospazio di $M$ rispetto alla topologia debole di $E$. Affermiamo che in realtà queste due topologie coincidono. Consideriamo la mappa identica $I$ tra $(M, \|\cdot\|_E)$ e $(E, \|\cdot\|_E)$. Essa è continua rispetto alle norme, dunque anche rispetto alle topologie deboli. Segue che $\sigma(E,E')\vert_M \subseteq \sigma(M,M')$. Viceversa anche la mappa identica $(M, \sigma(E,E')\vert_M) \to (M, \sigma(M,M'))$ è continua. Infatti preso un elemento $f \in M'$, $fI = f : (M, \sigma(E,E')\vert_M) \to \R$ è continua, perchè per il teorema di Hahn--Banach $f$ ammette un'estensione $F \in E'$, debolmente continua su $E$. Allora $F\vert_M = f = fI$ è continua. Segue che $\sigma(M,M') \subseteq \sigma(E,E')$, completando la dimostrazione.
+		\item Su $M$ possiamo mettere due `topologie deboli': la prima è la topologia debole associata alla topologia sottospazio di $M$, mentre l'altra è la topologia sottospazio di $M$ rispetto alla topologia debole di $E$. Affermiamo che in realtà queste due topologie coincidono. Consideriamo la mappa identica $I$ tra $(M, \|\cdot\|_E)$ e $(E, \|\cdot\|_E)$. Essa è continua rispetto alle norme, dunque anche rispetto alle topologie deboli. Segue che $\sigma(E,E')\vert_M \subseteq \sigma(M,M')$. Viceversa anche la mappa identica $(M, \sigma(E,E')\vert_M) \to (M, \sigma(M,M'))$ è continua. Infatti preso un elemento $f \in M'$, $fI = f : (M, \sigma(E,E')\vert_M) \to \R$ è continua, perchè per il teorema di Hahn--Banach $f$ ammette un'estensione $F \in E'$, debolmente continua su $E$. Allora $F\vert_M = f = fI$ è continua. Segue che $\sigma(M,M') \subseteq \sigma(E,E')$.
 
-		Ora sapendo che $E$ è riflessivo, dal teorema di Kakutani sappiamo che $B_E(0,1)$ è debolmente compatta. D'altra parte $M$ è chiuso e convesso, quindi debolmente chiuso. Pertanto $B_E(0,1) \cap M$ è debolmente compatto in $E$, quindi debolmente compatto in $M$. Ma $B_E(0, 1) \cap M = B_M(0,1)$, quindi dal teorema di Kakutani si ottiene la riflessività di $M$.
+		Ora sapendo che $E$ è riflessivo, dal teorema di Kakutani sappiamo che $B_E(0,1)$ è debolmente compatta. D'altra parte $M$ è chiuso e convesso, quindi debolmente chiuso. Pertanto $B_E(0,1) \cap M$ è debolmente compatto in $E$, quindi debolmente compatto in $M$. Ma $B_E(0, 1) \cap M = B_M(0,1)$, quindi dal teorema di Kakutani si ottiene la tesi.
 
 		\item Ovvio.
 
