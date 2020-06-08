@@ -75,7 +75,7 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 		$$
 			\|T(x-x_0)\|_F \leq C \|x-x_0\|_E
 		$$
-		per una qualche costante $C > 0$. Sia $\varepsilon > 0$, e poniamo $\delta := \varepsilon/C$. Se $\|x-x_0\| < \delta allora$, si ha
+		per una qualche costante $C > 0$. Sia $\varepsilon > 0$, e poniamo $\delta := \varepsilon/C$. Se $\|x-x_0\| < \delta$ allora si ha
 		$$
 			\|Tx - Tx_0\|_F = \|T(x-x_0)\|_F \leq C\|x-x_0\|_E < \varepsilon
 		$$
@@ -98,7 +98,7 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 			\frac{\|Tx\|_F}{\|x\|_E} = \left\| \frac{Tx}{\|x\|_E} \right\|_F = \left\|T\left(\frac{x}{\|x\|_E}\right)\right\|_F
 		$$
 		da cui segue l'uguaglianza cercata.
-		\item[$(3)$] È ovvio che $\sup_{\|x\|_E=1} \|Tx\|_F \geq \sup_{\|x\|_E \leq 1} \|Tx\|_F$. D'altra parte:
+		\item[$(3)$] È ovvio che $\sup_{\|x\|_E=1} \|Tx\|_F \leq \sup_{\|x\|_E \leq 1} \|Tx\|_F$. D'altra parte:
 		$$
 			\sup_{\|x\|_E \leq 1} \|Tx\|_F \leq \sup_{0 < \|x\|_E \leq 1} \frac{\|Tx\|_F}{\|x\|_E} \leq  \sup_{x \neq 0} \frac{\|Tx\|_F}{\|x\|_E} = \sup_{\|x\|_E = 1} \|Tx\|_F.
 		$$
@@ -131,7 +131,7 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 \begin{remark}
 	È vero che
 	$$
-		\|Tx\|_F \leq \|T\|_{E \to F} \|x\|_E, \qquad \forall x \in E,
+		\|Tx\|_F \leq \|T\|_{E \to F} \|x\|_E, \qquad \text{per ogni $x \in E$},
 	$$
 	però in generale il $\sup$ che definisce $\|T\|_{E \to F}$ non è un max.
 \end{remark}
@@ -164,7 +164,7 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 
 È sufficiente usare la `giusta' norma su $\Cone$, cioè
 $$
-	\|x\|_E = \|x\|_{\Cone[a,b]} = \|x\|_\infty + \left\|\der{x}{t}\right\|_\infty, \qquad \forall x \in E.
+	\|x\|_E = \|x\|_{\Cone[a,b]} = \|x\|_\infty + \left\|\der{x}{t}\right\|_\infty, \qquad \text{per ogni $x \in E$}.
 $$
 Adesso è vero che
 $$
@@ -181,7 +181,7 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 \begin{remark}
 	Per provare la discontinuità nell'Esempio~\ref{ex:unif_deriv} si sarebbe potuta usare anche la successione:
 	$$
-		x_n(t) = \frac{\sin (nt)}n, \qquad \forall t \in [a,b]
+		x_n(t) = \frac{\sin (nt)}n, \qquad \text{per ogni $t \in [a,b]$}
 	$$
 	la quale converge uniformemente a $0$ ma le cui derivate $\der{x_n}t = \cos(nt) \not\conv[n] 0$.
 \end{remark}
@@ -246,16 +246,16 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 \begin{proof}
 	Sia $\{T_n\}_{n \in \N}$ una successione di Cauchy in $E \to F$, dunque tale che per ogni scelta di $\varepsilon > 0$ esiste $n_\varepsilon \in \N$ tale che
 	\begin{equation*}
-		\|T_n - T_m\|_{E \to F} < \varepsilon, \qquad \forall n , m \geq n_\varepsilon.
+		\|T_n - T_m\|_{E \to F} < \varepsilon, \qquad \text{per ogni $n , m \geq n_\varepsilon$}.
 	\end{equation*}
 	Per definizione di $\|\cdot\|_{E \to F}$, ciò comporta che
 	\begin{equation*}
 		\forall x \in E, \quad \|T_nx - T_mx\|_F \leq \|T_n - T_m\|_{E \to F}\|x\|_E < \varepsilon\|x\|_E.
 	\end{equation*}
 	Per cui la successione $\{T_nx\}_{n \in \N}$ è di Cauchy in $F$ (si usi, dato $\varepsilon > 0$, l'$n_{\varepsilon/\|x\|_E}$ di $\{T_n\}_{n \in \N}$).
-	Siccome $F$ è Banach, questo significa che $T_n x$ converge ad un certo elemento di $F$, che definiamo $Tx$. Infatti la corrispondenza $x \mapsto Tx$ definisce un operatore lineare, che affermiamo essere anche continuo e limite di $\{T_n\}_{n \in \N}$.
+	Siccome $F$ è Banach, questo significa che $T_n x$ converge ad un certo elemento di $F$, che indichiamo con $Tx$: la corrispondenza $x \mapsto Tx$ definisce un operatore lineare, che affermiamo essere anche continuo e limite di $\{T_n\}_{n \in \N}$.
 
-	Infatti mandando $m \to \infty$ nella relazione
+	Infatti mandando $m \to \infty$ in
 	\begin{equation*}
 		\|T_nx - T_m x \|_F \leq \|T_n - T_m\|_{E \to F}\|x\|_E \leq \varepsilon \|x\|_E
 	\end{equation*}
@@ -269,13 +269,13 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 	\end{equation*}
 	da cui la continuità di $T$. Infine, per ogni $n \geq n_\varepsilon$,
 	\begin{equation*}
-		\|T_n x - Tx\|_{E \to F} \leq \varepsilon\|x\| \word{implica} \|T_n - T\|_{E \to F} \leq \varepsilon
+		\|T_n x - Tx\|_{E \to F} \leq \varepsilon\|x\| \implies \|T_n - T\|_{E \to F} \leq \varepsilon
 	\end{equation*}
 	e quindi $T_n \to T$ in $E \to F$.
 \end{proof}
 
 \section{Norme equivalenti}
-Due norme di dicono \defining{equivalenti} quando inducono la stessa topologia. Di fatto, due norme su uno spazio $E$ sono equivalenti se l'identità è un omeomorfismo tra $(E, \|\cdot\|_1)$ ed $(E, \|\cdot\|_2)$. Ma questo significa che esistono $C_1, C_2 > 0$ tali che per ogni $x \in E$,
+Due norme si dicono \defining{equivalenti} se inducono la stessa topologia. Di fatto, due norme su uno spazio $E$ sono equivalenti se l'identità è un omeomorfismo tra $(E, \|\cdot\|_1)$ ed $(E, \|\cdot\|_2)$. Ma questo significa che esistono $C_1, C_2 > 0$ tali che per ogni $x \in E$,
 \begin{equation*}
 	\|x\|_1 \leq C_1 \|x\|_2, \qquad \|x\|_2 \leq C_2 \leq \|x\|_1;
 \end{equation*}
@@ -296,40 +296,40 @@ da cui segue
 \begin{proof}
 	\leavevmode
 	\begin{enumerate}
-		\item Using Cauchy--Schwarz for the last inequality:
-		\begin{eqalign}
-			\|Tx\|_F &= \|T(x^i e_i)\|_F\\
-			&\leq |x^i|\|Te_i\|_F\\
-			&\leq C \|x\|_{\R^n}.
-		\end{eqalign}
-		\item Siccome $E$ ha dimensione finita, esiste un isomorfismo $L:\R^n \to E$ per un qualche $n \in \N$. Per il punto precedente, questo isomorfismo è anche continuo. Segue che $TL$ è lineare e continua, implicando $T = TL \circ L^{-1}$ dev'essere continua.
+		\item Usando Cauchy--Schwarz nell'ultima disuguglianza:
+		\begin{equation*}
+			\|Tx\|_F = \|T(x^i e_i)\|_F \leq |x^i|\|Te_i\|_F \leq C \|x\|_{\R^n}.
+		\end{equation*}
+		\item Siccome $E$ ha dimensione finita, esiste un isomorfismo $L:\R^n \to E$ per un qualche $n \in \N$. Per il punto precedente, questo isomorfismo è anche continuo. Segue che $TL$ è lineare e continua, implicando $T = TLL^{-1}$ dev'essere continua.
 		\item Siccome l'identità di uno spazio vettoriale è lineare, e visti i punti precedenti, otteniamo la tesi.
 	\end{enumerate}
 \end{proof}
 
 \section{Teorema di Hahn--Banach (Athos)}
+L'analisi funzionale poggia su quattro teoremi `pilastro', che possiamo pensare come i tre (più uno) moschettieri.
+
 \begin{theorem}
 \label{th:hahn_banach}
-	Sia $R$ uno spazio vettoriale su $\R$ e $p : E \to \R$ una applicazione tale che
+	Sia $R$ uno spazio vettoriale su $\R$ e $p : E \to \R$ un'applicazione tale che
 	\begin{enumerate}
 		\item $p(\lambda x) = \lambda p(x)$ per ogni $x \in E$, $\lambda > 0$,
 		\item $p(x+y) \leq p(x) + p(y)$ per ogni $x,y \in E$.
 	\end{enumerate}
-	Sia inoltre $G \subseteq E$ un sottospazio vettoriale tale che
+	Sia inoltre $G \leq E$ un sottospazio vettoriale tale che
 	\begin{enumerate}[resume]
 		\item $g(x) \leq p(x)$ per ogni $x \in G$.
 	\end{enumerate}
-	Allora esiste una applicazione lineare $f : E \to \R$ che estende $g$ ed è dominata da $p$.
+	Allora esiste un'applicazione lineare $f : E \to \R$ che estende $g$ ed è dominata da $p$.
 \end{theorem}
 \begin{proof}
 	Si definisce
 	\begin{equation*}
-		P = \{ h : \mathcal D(h) \subseteq E \to \R \suchthat \text{$\mathcal D(h)$ ss. vettoriale, $h$ estende $g$ ed è dominata da $p$ } \}.
+		P = \{ h : \mathcal D(h) \subseteq E \to \R \suchthat \text{$\mathcal D(h)$ ss.\! vettoriale, $h$ estende $g$ ed è dominata da $p$ } \}.
 	\end{equation*}
 	Si ordini $P$ con la relazione `$h_1$ estende $h_2$'. $P$ è non vuoto perchè contiene $g$, ed ogni catena di $P$ ha un elemento massimale (è semplicemente dato dall'unione insiemistica, che conserva la linearità\footnote{È un colimite diretto}). Dimostrato questo, invochiamo il lemma di Zorn per ottenere $f : D(f) \to \R$.
 
 	Per mostrare che $D(f) = E$, procediamo per assurdo.
-	Supponiamo $x_0 \in E \setminus D(f)$, e definendo $D(\varphi) = D(f) + \R x_0$, poniamo
+	Supponiamo $x_0 \in E \setminus D(f)$, e definendo $D(\varphi) = D(f) + \langle x_0 \rangle$, poniamo
 	\begin{eqalign*}
 		\varphi : D(\varphi) &\longto \R\\
 				x + tx_0 &\longmapsto f(x) + t \alpha
@@ -358,7 +358,7 @@ da cui segue
 \begin{proof}
 	Applichiamo Hahn--Banach con $p = \|g\|_{G'} \|\cdot\|_E$, che è chiaramente omogenea e subadditiva. Otteniamo un'estensione globale $f$ tale che
 	\begin{equation*}
-		|f(x)| \leq |p(x)| = \|g\|_{G'}\|x\|_E, \qquad \forall x \in E.
+		|f(x)| \leq |p(x)| = \|g\|_{G'}\|x\|_E, \qquad \text{per ogni $x \in E$}.
 	\end{equation*}
 	Quindi $\|f\|_{E'} \leq \|g\|_{G'}$.
 	D'altra parte, siccome $f$ estende $g$, sicuramente $\|f\|_{E'} \geq \|g\|_{G'}$.
@@ -373,7 +373,7 @@ da cui segue
 	\end{equation*}
 \end{corollary}
 \begin{proof}
-	Applichiamo il corollario precedente a $g(tx_0) = t\|x_0\|_E$ definita su $\R x_0$. Chiaramente otteniamo $f_0$ di norma unitaria, e siccome $x_0 \in \R x_0$, $f_0(x_0) = g(x_0) = \|x_0\|_E$.
+	Applichiamo il corollario precedente a $g(tx_0) = t\|x_0\|_E$ definita su $\langle x_0 \rangle$. Chiaramente otteniamo $f_0$ di norma unitaria, e siccome $x_0 \in \langle x_0 \rangle$, $f_0(x_0) = g(x_0) = \|x_0\|_E$.
 \end{proof}
 
 \begin{corollary}
@@ -382,7 +382,7 @@ da cui segue
 	\begin{equation*}
 		\|x\|_E = \sup \{ |f(x)| \suchthat f \in E', \|f\|_{E'} \leq 1\} = \|\langle -, x \rangle\|_{E'}
 	\end{equation*}
-	ed il sup è realizzato (quindi un max).
+	ed il sup è realizzato (quindi è un max).
 \end{corollary}
 \begin{proof}
 	Se $x=0$, lo statement è ovvio. Supponiamo allora che $x \neq 0$, e osserviamo che, per ogni $f \in E'$ di norma $\|f\|_{E'} \leq 1$,
@@ -404,7 +404,7 @@ da cui segue
 \begin{proof}
 	Sia $\delta = \dist(x_0,G) >0$. Definiamo
 	\begin{eqalign*}
-		f : G+ \R x_0 &\longto \R\\
+		f : G+ \langle x_0 \rangle &\longto \R\\
 			x + \lambda x_0 &\longmapsto \lambda \delta.
 	\end{eqalign*}
 	Si verifica facilmente che $f$ è lineare, e continua:
@@ -421,16 +421,13 @@ da cui segue
 \begin{corollary}
 \label{cor:boundlin_four}
 	Sia $E$ uno spazio normato, $G \leq E$ sottospazio.
-	Allora le seguenti affermazioni sono equivalenti:
-	\begin{enumerate}
-		\item $G$ è denso in $E$,
-		\item per ogni $f \in E'$ tale che $f\vert_G \equiv 0$, si ha $f\vert_E \equiv 0$.
-	\end{enumerate}
+	Allora $G$ è denso in $E$ se e solo se per ogni $f \in E'$ tale che $f\vert_G \equiv 0$, si ha $f\vert_E \equiv 0$.
 \end{corollary}
 \begin{proof}
+	\leavevmode
 	\begin{description}
-		\item[$(1) \implies (2)$] Ovvio.
-		\item[$(2) \implies (1)$] Se per assurdo $G$ non fosse denso, esisterebbe un punto $x_0$ a distanza positiva da $\closure G$. Per il lemma precedente, ciò ci darebbe una funzione nulla su $G$ ma non al di fuori, in contraddizione con l'ipotesi.
+		\item[$(\Longrightarrow)$] Ovvio.
+		\item[$(\implied)$] Se per assurdo $G$ non fosse denso, esisterebbe un punto $x_0$ a distanza positiva da $\closure G$. Per il lemma precedente, ciò ci darebbe una funzione nulla su $G$ ma non al di fuori, in contraddizione con l'ipotesi.
 	\end{description}
 \end{proof}
 
@@ -452,9 +449,9 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 \end{remark}
 \begin{proof}
 	Dimostriamo l'affermazione `duale': ponendo $O_n = X_n^C$, tutti gli $O_n$ sono aperti densi, e vogliamo mostrare che pure la loro intersezione è densa.
-	Sia dunque $B(x,r)$ una palla arbitraria\footnote{Consideriamo le palle aperte.}. Dimostreremo che se la sua intersezione con $G = \bigcap_{n \in \N} O_n$ è non vuota.
+	Sia dunque $B(x,r)$ una palla arbitraria\footnote{Consideriamo le palle aperte.}. Dimostreremo che la sua intersezione con $G = \bigcap_{n \in \N} O_n$ è non vuota.
 
-	Per ipotesi, $O_1$ è denso, dunque esiste $x_1 \in B(x,r) \cap O_1$. Sia inoltre $\bar B(x_1, r/2^1)$ una palla \emph{chiuse} contenuta in $B(x, r) \cap O_1$ (ciò è possibile poichè quest'ultimo è un aperto non vuoto).
+	Per ipotesi, $O_1$ è denso, dunque esiste $x_1 \in B(x,r) \cap O_1$. Sia inoltre $\bar B(x_1, r/2^1)$ una palla \emph{chiusa} contenuta in $B(x, r) \cap O_1$ (ciò è possibile poichè quest'ultimo è un aperto non vuoto).
 	Se ora consideriamo $B(x_1, r/2)$ ed $O_2$, ed effettuiamo una scelta analoga alla precedente, troviamo un altro punto $x_2$ ed una palla chiusa $\bar B(x_2, r/2^2)$. È chiaro quindi che possiamo procedere iterativamente e costruire una successione $\{x_n\}_{n \in \N}$ di punti di $X$.
 
 	Notiamo che $\{x_n\}_{n \in \N}$ è di Cauchy: infatti per ogni $m > n$ si ha
