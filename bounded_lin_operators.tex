@@ -469,7 +469,7 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 	\end{equation*}
 	Allora esiste $\bar n \in \N$ tale che $f_{\bar n \equiv 0}$.
 
-	\noindent\textbf{Svolgimento}. L'ipotesi è tale per cui
+	\textbf{Svolgimento}. L'ipotesi è tale per cui
 	\begin{equation*}
 		\bigcup_{n \in \N} \ker f_n = E
 	\end{equation*}
@@ -564,7 +564,7 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 	\end{equation*}
 	Provare che $(E, \|\cdot\|_E)$ non è completo.
 
-	\noindent\textbf{Svolgimento}. La successione $p_n = x^n/n$ è di Cauchy, ma il suo limite non è un polinomio. Ma usiamo Banach--Steinhaus, considerando la successione $T_n : E \to \R$ delle derivazioni $n$-esime. La successione è definitivamente limitata puntualmente, perchè ogni polinomio viene ucciso da una derivazione sufficientemente alta, ma $T_n x^n = n \to \infty$, per cui non abbiamo uniforme limitatezza.
+	\textbf{Svolgimento}. La successione $p_n = x^n/n$ è di Cauchy, ma il suo limite non è un polinomio. Ma usiamo Banach--Steinhaus, considerando la successione $T_n : E \to \R$ delle derivazioni $n$-esime. La successione è definitivamente limitata puntualmente, perchè ogni polinomio viene ucciso da una derivazione sufficientemente alta, ma $T_n x^n = n \to \infty$, per cui non abbiamo uniforme limitatezza.
 
 	Una ulteriore maniera di confutare la completezza di $\R[x]$ è applicando l'Esercizio~\ref{ex:ptwise_eventually_null_seq}
 \end{exercise}
@@ -684,7 +684,7 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 \begin{exercise}
 	Sia $(x_n)_{n \in \N}$ una successione di numeri reali, provare che se $\sum_{n=1}^\infty x_n y_n$ converge per ogni $(y_n)_{n \in \N} \in \ell^2$, allora $(x_n)_{n \in \N} \in \ell^2$, e viceversa.
 
-	\noindent\textbf{Svolgimento}. Per ogni $n \in \N$ fissato, consideriamo gli operatori $T_n : \ell^2 \to \R$ e $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
+	\textbf{Svolgimento}. Per ogni $n \in \N$ fissato, consideriamo gli operatori $T_n : \ell^2 \to \R$ e $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
 	\begin{equation*}
 		|T_ny| = \left| \sum_{k=1}^n x_k y_k \right| \leq \left( \sum_{k=1}^n |x_k|^2\right)^{1/2} \left( \sum_{k=1}^n |y_k|^2 \right)^{1/2}
 	\end{equation*}
@@ -713,7 +713,7 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 	\end{eqalign*}
 	Si dimostri che $\Phi$ è un'isometria suriettiva (in quanto isometria, è sempre iniettiva).
 
-	\noindent\textbf{Svolgimento}. La buona definizione di $\Phi$ è oggetto della disuguglianza di H\"older. Il fatto che $\Phi$ sia isometria è lasciato come esercizio.
+	\textbf{Svolgimento}. La buona definizione di $\Phi$ è oggetto della disuguglianza di H\"older. Il fatto che $\Phi$ sia isometria è lasciato come esercizio.
 
 	Fissato ora $y \in \ell^p$, scriviamolo così: $y=(y_k)_{k \in \N} = \sum_{k=1}^\infty y_k e_k$, dove $(e_k)_h = \delta_{hk}$ (warning: questo funziona solo per $p < \infty$). Sia ora $F \in {\ell^p}'$. Si ha, per continuità di $F$:
 	\begin{equation*}
@@ -773,7 +773,7 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 		\end{equation*}
 	\end{enumerate}
 
-	\noindent\textbf{Svolgimento}.
+	\textbf{Svolgimento}.
 	\begin{description}
 		\item[$(1) \implies (2)$] $T\vert^{\im T}$ è bicontinua, dunque $T$ e $T^{-1}$ sono Lipschitz:
 		\begin{eqalign*}
@@ -927,7 +927,7 @@ Gli operatori a grafico chiuso generalizzano gli operatori continui, come esplor
 	\end{equation*}
 	cioè l'inclusione di $L^p(\Omega)$ in $L^q(\Omega)$ è continua.
 
-	\noindent\textbf{Svolgimento}. Sia $I$ tale inclusione, che è ovviamente ben definitia e lineare. Per il teorema del grafico chiuso, se dimostriamo che $G(I)$ è chiuso allora possiamo concludere che $I$ sia continuo.
+	\textbf{Svolgimento}. Sia $I$ tale inclusione, che è ovviamente ben definitia e lineare. Per il teorema del grafico chiuso, se dimostriamo che $G(I)$ è chiuso allora possiamo concludere che $I$ sia continuo.
 	Si prenda $\{(f_n, f_n)\}_{n \in \N} \subseteq G(I)$ convergente a $(f,g) \in L^p(\Omega) \times L^q(\Omega)$. Dalla convergenza $f_n \conv f$, deduciamo che esiste una sottosuccessione $\{f_{n_h}\}_{h \in \N}$ che converge puntualmente quasi ovunque. Ma siccome $f_n \conv g$, allora esiste una sottosuccessione di $f_h$ che converge quasi ovunque a $g$, e dunque $f = g$ quasi ovunque, per cui $(f,g) \in G(I)$.
 \end{exercise}
 
@@ -983,6 +983,7 @@ In generale, se io ho due insiemi chiusi la loro somma non è chiusa!
 \end{proof}
 
 \begin{definition}
+\label{def:projector}
 	Sia $E$ uno spazio vettore, $G \leq E$ sottospazio.
 	Un \defining{proiettore lineare di $E$ du $G$} è una funzione lineare $p:E \to G$ che restringe all'identità su $G$.
 \end{definition}

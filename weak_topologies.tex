@@ -254,7 +254,7 @@ Nonostante in dimensione finita la topologia debole sia uguale a quella usuale, 
 		\item Dedurre che $E$, dotato della topologia debole, non è metrizzabile.
 	\end{enumerate}
 
-	\noindent\textbf{Svolgimento}.
+	\textbf{Svolgimento}.
 	\begin{enumerate}
 		\item L'integrale rispetta la convergenza uniforme, quindi se $x_n \conv x$ in $E$ allora anche $x^2_n \conv x^2$ e dunque $Tx_n \conv Tx$.
 		\item Se $T$ fosse debolmente continua, allora $T^{-1}(-1,1)$ sarebbe debolmente aperta. Si osservi che la funzione nulla è contenuta in $T^{-1}(1,1)$, poichè il suo integrale è nullo. Ora, se $T^{-1}(-1,1)$ fosse aperto, allora conterrebbe un intera retta passante per $0$, diretta diciamo da un vettore $v \in E$ non nullo. D'altra parte questo vorrebbe dire che $T(0+sv) = s^2 \int_0^1 v(t)\,dt \in (-1,1)$ per ogni $s \in \R$, assurdo.
@@ -289,7 +289,7 @@ Ricordiamo che in questa topologia, $x_n \conv x$ se e solo se $x \leq \liminf_n
 		\sup_n \|x^{(n)}\|_{\ell^p} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \quad \text{per ogni $h \in \N$}.
 	\end{equation*}
 
-	\noindent\textbf{Svolgimento}.
+	\textbf{Svolgimento}.
 	\begin{description}
 		\item[$(\Longrightarrow)$] Dal Lemma~\ref{lemma:weaktop_five}, la debole convergenza dà uniforme limitatezza. Inoltre
 		\begin{equation*}
@@ -363,7 +363,7 @@ Riassumendo:
 	\end{equation*}
 	Discuterne la convergenza debole e forte.
 
-	\noindent\textbf{Svolgimento}. Si osservi che $\|x^{(n)}\|_{\ell^p} = \|x\|_{\ell^p} \neq 0$, per ogni $n \in \N$. Consideriamo prima il caso $p \neq 1$: fissato $h \in \N$, $x^{(n)}_h \conv[n] 0$ ed inoltre le norme delle $x^{(n)}$ sono uniformemente limitate, dunque $x^{(n)} \weakconv 0$.
+	\textbf{Svolgimento}. Si osservi che $\|x^{(n)}\|_{\ell^p} = \|x\|_{\ell^p} \neq 0$, per ogni $n \in \N$. Consideriamo prima il caso $p \neq 1$: fissato $h \in \N$, $x^{(n)}_h \conv[n] 0$ ed inoltre le norme delle $x^{(n)}$ sono uniformemente limitate, dunque $x^{(n)} \weakconv 0$.
 	Nel caso $p = 1$ invece, il limite candidato è $0$. Se $x^(n) \weakconv 0$, allora anche $x^{(n)} \conv 0$, ma ciò vorrebbe dire che $\|x^{(n)}\| \conv 0$, assurdo.
 \end{exercise}
 
@@ -381,7 +381,7 @@ Riassumendo:
 \begin{exercise}
 	Dimostrare che $(E, \sigma(E,E'))$ è uno spazio vettoriale topologico.
 
-	\noindent\textbf{Svolgimento}.
+	\textbf{Svolgimento}.
 	Consideriamo $(x_1,x_2) \in E \times E$, e fissiamo un intorno di base di $x_1 + x_2$:
 	\begin{equation*}
 		U = \{x \in E \suchthat |f_i(x-(x_1+x_2))| < \varepsilon, \ \text{per ogni $i \in F$}\}, \quad \text{$F$ finito, $f_i \in E'$ per ogni $i \in F$.}
@@ -476,7 +476,7 @@ Diremo che $C \subseteq E'$ è debolmente$*$ chiuso se il suo complementare è a
 \begin{exercise}
 	Provare che $x^{(n)} \weakconv^* x$ in $\ell^\infty$ se e soltanto se $x^{(n)}_h \conv x_h$ per ogni $h \in \N$ e $\sup_n\|x^{(n)}\|_\infty < \infty$.
 
-	\noindent\textbf{Svolgimento}.
+	\textbf{Svolgimento}.
 	\begin{description}
 		\item[$({\Longrightarrow})$] Già dimostrata (e segue dal lemma precedente).
 		\item[$(\implied)$] Sia $y \in \ell^1$.

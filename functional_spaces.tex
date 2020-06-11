@@ -134,23 +134,23 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 		Osserviamo che~\eqref{eq:riesz_star} vale ancora se al posto di $g$ uso $g' \ind_{\Omega_n}$ per $g' \in L^\infty$ perchè in quel caso $g' \ind_{\Omega_n} \in L^p$ per ogni $p$ e $\theta$ è limitata dal basso da una costante, quindi $g' \ind_{\Omega_n}/\theta \in L^2$. Dunque~\eqref{eq:riesz_star} si riscrive come
 		\begin{equation}
 		\label{eq:riesz_starstar}
-			\langle \varphi, g \chi_{\Omega_n} \rangle = \int_\Omega g \chi_{\Omega_n} u\,d\mu, \qquad \text{per ogni $g \in L^\infty$}.
+			\langle \varphi, g \ind_{\Omega_n} \rangle = \int_\Omega g \ind_{\Omega_n} u\,d\mu, \qquad \text{per ogni $g \in L^\infty$}.
 		\end{equation}
-		Fissiamo ora $C > \|\varphi\|$ e sia $A = \{\|u\| > C\}$. Proviamo che $\mu(A) = 0$. Posto $g := \chi_A \sgn u$, dalla~\eqref{eq:riesz_starstar} segue
+		Fissiamo ora $C > \|\varphi\|$ e sia $A = \{\|u\| > C\}$. Proviamo che $\mu(A) = 0$. Posto $g := \ind_A \sgn u$, dalla~\eqref{eq:riesz_starstar} segue
 		\begin{equation*}
-			\langle \varphi, \chi_A \chi_{\Omega_n} \sgn u \rangle = \int_{A \cap \Omega_n} |u|\,d\mu \geq C \mu(A \cap \Omega_n).
+			\langle \varphi, \ind_A \ind_{\Omega_n} \sgn u \rangle = \int_{A \cap \Omega_n} |u|\,d\mu \geq C \mu(A \cap \Omega_n).
 		\end{equation*}
 		D'altra parte,
 		\begin{equation*}
-			\langle \varphi, \chi_A \chi_{\Omega_n} \sgn u \rangle \leq \|\varphi\| \|\chi_A \chi_{\Omega_n} \sgn u\|_1 = \|\varphi\| \mu(A \cap \Omega_n)
+			\langle \varphi, \ind_A \ind_{\Omega_n} \sgn u \rangle \leq \|\varphi\| \|\ind_A \ind_{\Omega_n} \sgn u\|_1 = \|\varphi\| \mu(A \cap \Omega_n)
 		\end{equation*}
 		Per cui si ha
 		\begin{equation*}
-			C \mu(A \cap \Omega_n) \leq \langle \varphi, \chi_A \chi_{\Omega_n} \sgn u \rangle \leq \|\varphi\| \mu(A \cap \Omega_n).
+			C \mu(A \cap \Omega_n) \leq \langle \varphi, \ind_A \ind_{\Omega_n} \sgn u \rangle \leq \|\varphi\| \mu(A \cap \Omega_n).
 		\end{equation*}
 		Dunque o $\mu(A \cap \Omega_n) = 0$, oppure
 		\begin{equation*}
-			C \leq \langle \varphi, \chi_A \chi_{\Omega_n} \sgn u \rangle \leq \|\varphi\|,
+			C \leq \langle \varphi, \ind_A \ind_{\Omega_n} \sgn u \rangle \leq \|\varphi\|,
 		\end{equation*}
 		contraddicendo l'ipotesi che $C > \|\varphi\|$. Siccome $\mu(A \cap \Omega_n) = 0$ per ogni $n \in \N$, $\|u\| < C$ quasi certamente, da cui concludiamo che $\|u\|_\infty \leq \|\varphi\|$, come dovevasi dimostrare.
 
@@ -163,9 +163,9 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 		\end{equation*}
 		Chiaramente: $g_n \conv g$, e $g_n \leq g$, dunque $g_n \convin{L^1} g$. Inoltre $g_n \in \L^\infty$, quindi possiamo usare la~\eqref{eq:riesz_starstar} per dire
 		\begin{equation*}
-			\langle \varphi, g_n \chi_{\Omega_n} \rangle = \int_\Omega g_n \chi_{\Omega_n} u \,d\mu,
+			\langle \varphi, g_n \ind_{\Omega_n} \rangle = \int_\Omega g_n \ind_{\Omega_n} u \,d\mu,
 		\end{equation*}
-		Si ha comunque $g_n \chi_n \convin{L^1} g$, perchè gli $\Omega_n$ invadono $\Omega$. Da ciò deduciamo che $\langle \varphi, g_n \chi_{\Omega_n} \rangle \conv \langle \varphi, g \rangle$ per continuità, e $\int_\Omega  g_n \chi_{\Omega_n} u \,d\mu \conv \int_\Omega g u \,d\mu$ siccome $u \in L^\infty$. Ma questo è il teorema di Riesz cercato:
+		Si ha comunque $g_n \ind_n \convin{L^1} g$, perchè gli $\Omega_n$ invadono $\Omega$. Da ciò deduciamo che $\langle \varphi, g_n \ind_{\Omega_n} \rangle \conv \langle \varphi, g \rangle$ per continuità, e $\int_\Omega  g_n \ind_{\Omega_n} u \,d\mu \conv \int_\Omega g u \,d\mu$ siccome $u \in L^\infty$. Ma questo è il teorema di Riesz cercato:
 		\begin{equation*}
 			\langle \varphi, g \rangle = \int_\Omega gu\,d\mu.
 		\end{equation*}
@@ -190,7 +190,7 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 
 	Nel primo caso, si considera la successione:
 	\begin{equation*}
-		u_n = \frac1{\mu(\Omega_n)} \chi_{\Omega_n}, \qquad n \in \N.
+		u_n = \frac1{\mu(\Omega_n)} \ind_{\Omega_n}, \qquad n \in \N.
 	\end{equation*}
 	Se $L^1$ fosse riflessivo, questa successione (che è limitata) converge debolmente ad $u \in L^1$ (a meno di passare ad una sottosuccessione). Ciò implica che
 	\begin{equation*}
@@ -198,13 +198,13 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 	\end{equation*}
 	Allora fissato $j \in \N$, si ha in particolare:
 	\begin{equation*}
-		\int_\Omega u_n \chi_{\Omega_j} \,d\mu \conv[n] \int_\Omega u \chi_{\Omega_j}\,d\mu.
+		\int_\Omega u_n \ind_{\Omega_j} \,d\mu \conv[n] \int_\Omega u \ind_{\Omega_j}\,d\mu.
 	\end{equation*}
-	Siccome gli $\Omega_n$ sono decrescenti, per $n \geq j$ si ha $\Omega_j \supseteq \Omega_n$, dunque $u_n \chi_{\Omega_j} = \frac1{\mu(\Omega_n)} \chi_{\Omega_n}$, che integrato su tutto $\Omega$ fa $1$. Dunque
+	Siccome gli $\Omega_n$ sono decrescenti, per $n \geq j$ si ha $\Omega_j \supseteq \Omega_n$, dunque $u_n \ind_{\Omega_j} = \frac1{\mu(\Omega_n)} \ind_{\Omega_n}$, che integrato su tutto $\Omega$ fa $1$. Dunque
 	\begin{equation*}
-		\int_\Omega u \chi_{\Omega_j} \,d\mu = 1.
+		\int_\Omega u \ind_{\Omega_j} \,d\mu = 1.
 	\end{equation*}
-	Ma siccome questo vale per ogni $j \in \N$, e $\chi_{\Omega_j} \conv[j] 0$, contraddizione.
+	Ma siccome questo vale per ogni $j \in \N$, e $\ind_{\Omega_j} \conv[j] 0$, contraddizione.
 
 	Nel secondo caso, possiamo, senza perdita di generalità, assumere che $\Omega$ sia l'unione disgiunta di una quantità numerabile di punti $\{a_n\}_{n \in \N}$. In tal caso, $L^1 = \ell^1$, e proviamo che $\ell^1$ non è riflessivo. Infatti se così fosse, la successione degli elementi naturali $\{e_n\}_{n \in \N}$ avrebbe una sottosuccessione debolmente convergente ad $u \in \ell^1$. Siccome $\vec 1 =(1,1, \ldots) \in \ell^\infty$, si ha che $e_n \cdot \vec 1 \conv u \cdot \vec 1$, ma ciò significa che
 	\begin{equation*}
@@ -238,17 +238,17 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 \begin{proof}
 	Nel caso $1 \leq p < \infty$, basta dimostrare che $L^p(\R^n)$ è separabile, essendo che $L^p(\Omega) \leq L^p(\R^n)$ (immergo estendendo le funzioni di $\Omega$ con zero). Usando il fatto che $\Czero_c(\R^n)$ è denso in $L^p(\R^n)$, è possibile vedere che tutte le combinazioni lineari a coefficienti razionali di funzioni caratteristiche del tipo
 	\begin{equation*}
-		\chi_{\prod_{i=1}^N (a_i,b_i)}, \quad a_i \leq b_i \in \Q,
+		\ind_{\prod_{i=1}^N (a_i,b_i)}, \quad a_i \leq b_i \in \Q,
 	\end{equation*}
 	sono dense in $L^p$.
 
-	Nel caso $p=\infty$, consideriamo la famiglia $\{W_i\}_{i \in I}$ di tutte le palle aperte contenute in $\Omega$. Per ogni $i \neq j$, si ha $W_i \Delta W_j \neq \varnothing$, da cui $\|\chi_{W_i} - \chi_{W_j}\|_\infty \geq 1$. Consideriamo allora la famiglia
+	Nel caso $p=\infty$, consideriamo la famiglia $\{W_i\}_{i \in I}$ di tutte le palle aperte contenute in $\Omega$. Per ogni $i \neq j$, si ha $W_i \Delta W_j \neq \varnothing$, da cui $\|\ind_{W_i} - \ind_{W_j}\|_\infty \geq 1$. Consideriamo allora la famiglia
 	\begin{equation*}
-		\{ B_{L^\infty(\Omega)}(\chi_{W_i}, 1/2) \suchthat i \in I\}.
+		\{ B_{L^\infty(\Omega)}(\ind_{W_i}, 1/2) \suchthat i \in I\}.
 	\end{equation*}
-	Affermiamo che tale famiglia è fatta da aperti disgiunti e non vuoti. Banalmente le palle in oggetto sono aperte e non vuote. Per verificare la disgiunzione, supponiamo per assurdo che, per certi $i \neq j$, esista $f \in B_{L^\infty(\Omega)}(\chi_{W_i}, 1/2) \cap B_{L^\infty(\Omega)}(\chi_{W_j}, 1/2)$. Allora
+	Affermiamo che tale famiglia è fatta da aperti disgiunti e non vuoti. Banalmente le palle in oggetto sono aperte e non vuote. Per verificare la disgiunzione, supponiamo per assurdo che, per certi $i \neq j$, esista $f \in B_{L^\infty(\Omega)}(\ind_{W_i}, 1/2) \cap B_{L^\infty(\Omega)}(\ind_{W_j}, 1/2)$. Allora
 	\begin{equation*}
-			\| \chi_{W_i} - \chi_{W_j} \| \leq \|\chi_{W_i} - f\|_\infty + \|f-\chi_{W_j}\|_\infty < \frac12 + \frac12 = 1,
+			\| \ind_{W_i} - \ind_{W_j} \| \leq \|\ind_{W_i} - f\|_\infty + \|f-\ind_{W_j}\|_\infty < \frac12 + \frac12 = 1,
 	\end{equation*}
 	assurdo. Perciò Lemma~\ref{lemma:lemmino} segue la tesi.
 \end{proof}

@@ -1,0 +1,692 @@
+\chapter{Spazi di Hilbert}
+Indichiamo con $\conj{x}$ il complesso coniugato di $x \in \C$.
+
+\begin{definition}
+	Sia $\K = \R$ o $\C$, e sia $E$ uno spazio vettoriale su $\K$. $E$ si dice \defining{pre-Hilbertiano} o spazio con prodotto scalare se esiste una funzione
+	\begin{equation*}
+		\text{\underline{prodotto scalare}} \qquad (\cdot,\cdot) : E \times E \to \K
+	\end{equation*}
+	che soddisfa le seguenti proprietà:
+	\begin{description}
+		\item[Definita positività]
+		\begin{equation*}
+			\text{$(x,x) \geq 0$, $(x,x) = 0$ se e solo se $x=0$}, \quad \text{per ogni $x \in E$};
+		\end{equation*}
+		\item[Coniugato simmetrico]
+		\begin{equation*}
+			\text{$(x,y) = \conj{(y,x)}$}, \quad \text{per ogni $x,y \in E$};
+		\end{equation*}
+		\item[Linearità nel primo argomento]
+		\begin{equation*}
+			\text{$(\alpha x+ \beta x', y) = \alpha (x,y) + \beta (x',y)$}, \quad \text{per ogni $x,x',y \in E$ e $\alpha,\beta \in \K$.}
+		\end{equation*}
+	\end{description}
+	Si dice che $x,y \in E$ sono ortogonali se $(x,y) = 0$, e scriviamo $x \perp y$.
+\end{definition}
+
+\begin{remark}
+	Dagli assiomi segue anche la proprietà:
+	\begin{description}
+		\item[Antilinearità nel secondo argomento]
+		\begin{equation*}
+			\text{$(x, \alpha y + \beta y') = \conj\alpha (x,y) + \conj\beta (x,y')$}, \quad \text{per ogni $x,y,y' \in E$ e $\alpha,\beta \in \K$}.
+		\end{equation*}
+	\end{description}
+\end{remark}
+
+Il prodotto scalare definisce una norma:
+\begin{equation*}
+	\|x\|_E = \sqrt{(x,x)}, \quad \text{per ogni $x \in E$}
+\end{equation*}
+per cui valgono le seguenti identità:
+
+\begin{lemma}[Teorema di Carnot]
+	\begin{equation}
+		\label{eq:carnot}
+			\|x-y\|^2 = \|x\|^2 + \|y\|^2 - 2 \Re{x,y}.
+		\end{equation}
+\end{lemma}
+
+\begin{lemma}[Teorema di Pitagora]
+	Se $x,y \in E$ sono ortogonali, allora
+	\begin{equation*}
+		\|x+y\|^2 = \|x\|^2+\|y\|^2.
+	\end{equation*}
+\end{lemma}
+
+\begin{lemma}[Identità del parallelogrammo]
+\label{lemma:par_identity}
+	Sia $(E, (\cdot,\cdot))$ uno spazio con prodotto scalare, e siano $x,y \in E$.
+	Allora
+	\begin{equation*}
+		\|x+y\|^2 + \|x-y\|^2 = 2\|x\|^2 + 2\|y\|^2.
+	\end{equation*}
+\end{lemma}
+
+\begin{corollary}
+	Per ogni $x,y \in E$, $y \neq 0$, si ha
+	\begin{equation*}
+		x - \frac{(x,y)y}{\|y\|^2} \perp y
+	\end{equation*}
+	e quindi
+	\begin{equation}
+	\label{eq:fourier_coeff}
+		\left\|x - \frac{(x,y)y}{\|y\|^2}\right\| = \|x\|^2 - \frac{|(x,y)|^2}{\|y\|^2}
+	\end{equation}
+\end{corollary}
+
+\begin{lemma}[Cauchy--Schwarz(--Bunyakovsky)]
+	Per ogni $x,y \in E$, si ha che
+	\begin{equation*}
+		|(x,y)| \leq \|x\| \|y\|
+	\end{equation*}
+	e l'uguaglianza vale se e solo se $x$ e $y$ sono proporzionali.
+\end{lemma}
+\begin{proof}
+	Se $y=0$, la disuguaglianza è ovvia. Allora mettiamoci nel caso $y \neq 0$. Dalla~\eqref{eq:fourier_coeff} segue che
+	\begin{equation*}
+		\|x\|^2 - \frac{|(x,y)|^2}{\|y\|^2} \geq 0
+	\end{equation*}
+	che equivale alla tesi. Inoltre si osserva che se vale l'uguaglianza, ambo i membri di~\eqref{eq:fourier_coeff} si annullano, in particolare $x-(x,y)y/\|y\|^2 = 0$, da cui la tesi.
+\end{proof}
+
+\begin{lemma}
+	 $(E, \|\cdot\|_E)$ è normato.
+\end{lemma}
+\begin{proof}
+	In sostanza dobbiamo mostrare che la disuguaglianza triangolare sussiste:
+	\begin{eqalign*}
+		\|x+y\|^2 &= \|x\|^2 + 2 \Re{x,y} + \|y\|^2\\
+		&\leq \|x\|^2+ 2\|x\|\|y\| + \|y\|^2\\
+		&= (\|x\|+\|y\|)^2
+	\end{eqalign*}
+\end{proof}
+
+\begin{lemma}
+	Sia $(E, (\cdot,\cdot))$ uno spazio con prodotto scalare.
+	Allora $(\cdot,\cdot)$ è continua, in particolare
+	\begin{enumerate}
+		\item se $\{x_n\}_{n \in \N}$ è una successione convergente in $E$, si ha
+		\begin{equation*}
+			\lim_n (x_n, y) = (\lim_n x_n, y), \quad \text{per ogni $y \in E$},
+		\end{equation*}
+		\item se $\sum_{n=1}^\infty x_n$ è una serie convergente in $E$, si ha
+		\begin{equation*}
+			\sum_{n=1}^\infty (x_n, y) = (\sum_{n=1}^\infty x_n, y), \quad \text{per ogni $y \in E$}.
+		\end{equation*}
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	La disuguaglianza di Cauchy--Schwarz testimonia che $(\cdot, \cdot)$ è un'operatore limitato, ergo continuo.
+\end{proof}
+
+\begin{definition}
+	Uno spazio con prodotto scalare si dice \defining{di Hilbert} se è completo rispetto alla norma indotta dal prodotto scalare.
+\end{definition}
+
+\begin{example}
+	\leavevmode
+	\begin{enumerate}
+		\item $\R^n$ con il modulo euclideo è hilbertiano.
+		\item $\C^n$ con il modulo hermitiano è hilbertiano.
+		\item $\ell^2(\C) = \{ (x_n)_{n \in \N} \suchthat x_n \in \C, \sum_{n=1}^\infty |x_n|^2 < \infty\}$ con il prodotto $x \cdot y = \sum_{n=1}^\infty x_n \conj{y_n}$.
+		\item $L^2(a,b)$ con il prodotto scalare $(f,g) = \int_a^b f(t)\conj{g(t)}\,dt$ è hilbertiano.
+		\item $L^2(\Omega, \M, \mu)$ con il prodotto scalare $(f,g) = \int_\Omega f(t)\conj{g(t)}\,dt$ è hilbertiano.
+		\item Controesempio:
+		\begin{equation*}
+			\mathcal R[a,b] = \{f :[a,b] \to \C \suchthat \text{$f$ è Riemann-integrabile} \}
+		\end{equation*}
+		con il prodotto scalare $(f,g) = \int_a^b f(t)\conj{g(t)}\,dt$ è pre-hilbertiano ma non hilbertiano.
+		Infatti la funzione $f = 1/(x-1)^{1/4}$ è $L^2(a,b)$, dunque ammette una successione di approssimanti $\{f_n\}_{n \in \N} \subseteq \Cinfty_c(a,b)$ che convergono a $f$ in $L^2$. Questa è quindi una successione di Cauchy che non converge in $\mathcal R[a,b]$, in quanto $f \notin \mathcal R[a,b]$ essendo illimitata in $a$.
+		Un'altra maniera di vedere che $\mathcal R[a,b]$ non è completo è prendendo la funzione indicatrice di un insieme $C \subset (a,b)$ chiuso, vuoto all'interno, e di misura positiva\footnote{Insieme di Smith--Volterra--Cantor.}. Allora non è Riemann-integrabile perchè ha un insieme non negligibile di discontinuità isolate, ma come nel precedente esempio ammette una successione di Cauchy di approssimanti in $L^2$.
+	\end{enumerate}
+\end{example}
+
+\begin{remark}
+	Il motivo sostanziale per cui si studiano gli spazi $L^p$ è proprio questo: gli spazi di funzioni Riemann-integrabili mancano di completezza. Essa è la regina dell'analisi funzionale, a cui tutti devono rendere omaggio (anche, e soprattutto, i tre moschettieri).
+\end{remark}
+
+\begin{theorem}[Jordan--Norman]
+	Sia $E$ uno spazio vettoriale normato da $\|\cdot\|_E$.
+	Allora questa norma deriva da un prodotto scalare $(\cdot,\cdot)$ se e solo se $\|\cdot\|_E$ soddisfa l'identità del parallelogrammo (Lemma~\ref{lemma:par_identity}).
+\end{theorem}
+\begin{proof}
+	Omissis. Si può dimostrare a partire dal seguente fatto:
+
+	\begin{lemma}[Polarizzazione]
+		Se per $(E, \|\cdot\|_E)$ vale l'identità del parallelogrammo, allora
+		\begin{equation*}
+			(x,y) := \frac14 (\|x+y\|^2 - \|x-y\|^2 + i(\|x+iy\|^2 - \|x - iy\|^2)), \quad x,y \in E;
+		\end{equation*}
+		è un prodotto scalare la cui norma associata è proprio $\|\cdot\|_E$.
+	\end{lemma}
+\end{proof}
+
+\begin{exercise}
+	Provare che in ogni spazio normato $(E, \|\cdot\|)$ vale
+	\begin{equation*}
+		\|x\|^2+\|y\|^2 \leq \|x+y\|^2 + \|x-y\|^2 \leq 4(\|x\|^2 + \|y\|^2), \quad \text{per ogni $x,y \in E$}.
+	\end{equation*}
+
+	\textbf{Svolgimento}.
+	Scriviamo $x$ come
+	\begin{equation*}
+		\frac{x+y}2 + \frac{x-y}2
+	\end{equation*}
+	da cui
+	\begin{eqalign*}
+		\|x\|^2 &= \frac{\|x+y\|^2}4 + \frac{\|x-y\|^2}4 + \frac{\|x+y\|\|x-y\|}2\\
+		&\leq \frac{\|x+y\|^2}4 + \frac{\|x-y\|^2}4 + \underbrace{\frac{\|x+y\|^2}4 + \frac{\|x-y\|^2}4}_{\text{AM-GM}}\\
+		&= \frac{\|x+y\|^2}2 + \frac{\|x-y\|^2}2.
+	\end{eqalign*}
+	Analogamente,
+	\begin{equation*}
+		\|y\|^2 \leq \frac{\|x+y\|^2}2 + \frac{\|x-y\|^2}2,
+	\end{equation*}
+	da cui, sommando, si ottiene la seconda disuguaglianza. La seconda segue dalla prima, ponendo $x=x+y$ e $y=x-y$.
+\end{exercise}
+
+\begin{exercise}
+	Soa $(\Omega, \M, \mu)$ spazio di misura. Supponiamo che esistano $B_1, B_2 \in \M$, $B_1 \subseteq B_2$, tali che $0 < \mu(B_1) < \mu(b_2) < \infty$.
+	Allora, per $1 \leq p \leq \infty$, $p \neq 2$, $L^p(\Omega)$ non è di Hilbert.
+
+	\textbf{Svolgimento}.
+	Siccome $L^p$ è normato, è sufficiente far vedere che l'identità del parallelogrammo non sussiste se $p \neq 2$. Si prenda infatti $f = \ind_{B_1}$ e $g=\ind_{B_2 \setminus B_1}$.
+	Studiamo le quantità rilevanti: (nel caso $p \neq \infty$):
+	\begin{eqalign*}
+		\|f+g\|_p^2 + \|f-g\|_p^2 &= 2\mu(B_2)^{2/p}\\
+		2\|f\|_p^2 + 2\|g\|_p^2 &= 2 \mu(B_1)^{1/p} + 2 (\mu(B_2) - \mu(B_1))^{2/p}
+	\end{eqalign*}
+	Dunque dobbiamo verificare che
+	\begin{equation*}
+		\mu(B_2)^{2/p} \neq \mu(B_1)^{1/p} + (\mu(B_2) - \mu(B_1))^{2/p}
+	\end{equation*}
+	Ma ciò è equivalente a
+	\begin{equation}
+		(x+y)^r \neq x^r + y^r
+	\end{equation}
+	che non è verificata a meno che $r=1$, cioè $p=2$
+\end{exercise}
+
+\begin{theorem}
+\label{th:hilb_reflexiv}
+	Uno spazio di Hilbert è uniformemente convesso, dunque riflessivo.
+\end{theorem}
+\begin{proof}
+	Siano $\varepsilon > 0$, $x,y \in H$ e $\|x\|, \|y\| \leq 1$ tali che $\|x-y\| < \varepsilon$. Per provare l'uniforme convessità, cerchiamo $\delta >0$ tale che $\|(x+y)/2\| < 1-\delta$.
+	Per l'identità del parallelogrammo, abbiamo
+	\begin{equation*}
+		\left\|\frac{x+y}2\right\|^2+\left\|\frac{x-y}2\right\|^2 = \frac{\|x\|^2}2 + \frac{2\|y\|^2}2
+	\end{equation*}
+	da cui
+	\begin{equation*}
+		\left\|\frac{x+y}2\right\|^2 = \frac{\|x\|^2}2 + \frac{2\|y\|^2}2 - \left\|\frac{x-y}2\right\|^2 \leq 1 - \underbrace{\frac{\varepsilon^2}4}_\delta.
+	\end{equation*}
+\end{proof}
+
+\begin{theorem}[della proiezione]
+\label{th:hilb_projection}
+	Sia $H$ uno spazio di Hilbert, sia $K$ convesso, chiuso e non vuoto in $H$.
+	Allora per ogni $x \in H$ esiste unico il punto $y \in K$ tale che $\|x-y\| = d(x,K)$, chiamato \defining{proiezione di $x$ su $K$}. La mappa $x \mapsto y$ definisce un proiettore su $K$.
+\end{theorem}
+\begin{proof}
+	Sia $d := d(x,K)$. Siccome $d$ è il risultato di un estremo inferiore, possiamo creare una successione minimizzante andando a prendere, per ciascun $n \in \N$, un $y_n \in K$ tale che $\|x-y_n\| < d+\frac1n$. Affermiamo che questa successione è di Cauchy:
+	\begin{eqalign}
+	\label{eq:proj_proof}
+		\|y_n - y_m\|^2 &= \|y_n - x + x - y_m\|^2\\
+		&= \|y_n-x - (y_m - x)\|^2\\
+		&= -\|y_n+y_m - 2x\|^2 + 2 \|y_n-x\|^2 + 2\|y_m-x\|^2 \comment{id. del parallelogrammo}\\
+		&= -4\left\|\frac{y_n+y_m}2 - x\right\|^2 + 2 \|y_n-x\|^2 + 2\|y_m-x\|^2\\
+		&= \underbrace{-4d^2}_{\frac12 (y_n+y_m) \in K} + 2\left( d + \frac1n\right)^2 + 2\left( d + \frac1m\right)^2\\
+		&= \cancel{-4d^2} + \cancel{2d^2} + \frac{4d}{n} + \cancel{2d^2} + \frac{4d}m + o\left(\frac1n, \frac1m\right)\\
+		&\conv[n,m] 0.
+	\end{eqalign}
+	Allora, per chiusura di $K$, $y_n \conv y \in K$ tale che $\|x-y\|=d$.
+
+	Per dimostrare che $y$ è unico, supponiamo che $y' \in K$ sia anch'esso minimizzante, e ripercorriamo la disuguaglianza~\eqref{eq:proj_proof} ponendo $y_n = y$ e $y_m = y'$. Si ottiene allora:
+	\begin{equation*}
+		\|y-y'\|^2 \leq -4d^2 + 2d^2 + 2d^2 = 0.
+	\end{equation*}
+\end{proof}
+
+\begin{corollary}
+\label{cor:minimum}
+	Se $H$ è uno spazio di Hilbert e $\varnothing \neq K \subseteq H$ è convesso e chiuso allora esiste unico l'elemento $y \in K$ di minima norma.
+\end{corollary}
+
+\begin{remark}
+	In generale, il Corollario~\ref{cor:minimum} è falso in uno spazio di Banach. Per esempio si prenda $(\Czero[0,1], \|\cdot\|_\infty)$ spazio di Banach, e
+	\begin{equation*}
+		K = \{ f \in \Czero[0,1] \suchthat {\textstyle \int_0^{1/2} f(x)\,\dx - \int_{1/2}^1 f(x)\,\dx = 1} \}.
+	\end{equation*}
+	$K$ è convesso per linearità dell'integrale, ed è chiuso perchè insieme di livello di un operatore continuo. Da considerazioni geometriche, $\inf_{f \in K} \|f\|_\infty \geq 1$. Si intuisce, inoltre, che tale inf sia proprio pari a $1$: una successione di approssimanti lisce alla funzione $\ind_{[0,1/2]} - \ind_{[1/2, 1]}$ è minimizzante. D'altro canto il limite non è continuo.
+\end{remark}
+
+\begin{lemma}
+\label{lemma:hilb_proj}
+	Sia $H$ spazio di Hilbert, $K \subseteq H$ convesso e chuso, $x \in H$.
+	La proiezione di $y \in K$ di $x$ su $K$ è caratterizzata dalla seguente condizione:
+	\begin{equation*}
+		\begin{cases}
+			\Re{x-y, z-y} \leq 0, \quad \text{per ogni $z \in K$},\\
+			y \in K
+		\end{cases}
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	\begin{description}
+		\item[$(\Longrightarrow)$] Sia $y \in K$ il punto di minima distanza. Se $z \in K$, allora $y + t(z-y) \in K$ per ogni $t \in [0,1]$ (per convessità). Si ha, per minimalità di $y$:
+		\begin{eqalign*}
+			\cancel{\|x-y\|^2} &\leq \|x - (y + t(z-y))\|^2\\
+			&= \cancel{\|x-y\|^2} - 2\Re{x-y, t(z-y)} + \|t(z-y)\|^2\\[1ex]
+			2\Re{x-y, t(z-y)} &\leq t^2 \|z-y\|^2\\[1ex]
+			\Re{x-y, z-y} &\leq t \|z-y\|^2
+		\end{eqalign*}
+		Mandando $t \to 0$, otteniamo la disuguaglianza cercata.
+
+		\item[$(\implied)$] Dobbiamo verificare che se $y$ soddisfa la condizione in ipotesi, allora $y$ minimizza la distanza da $x$, cioè per ogni $z \in K$ si ha $\|x-z\| \geq \|x-y\|$. Siccome $y \in K$, è sufficiente dimostrare ciò per mostrare che $y$ realizza effettivamente il minimo.
+		\begin{equation*}
+			\|x-z\|^2  = \|x-y+y-z\|^2 = \|x-y\|^2 + 2\Re{x-y,\underbrace{y-z}_{-(z-y)}} + \|y-z\|^2 \geq \|x-y\|^2.
+		\end{equation*}
+	\end{description}
+\end{proof}
+
+\begin{lemma}
+\label{lemma:hilb_seven}
+	Sia $H$ spazio di Hilbert, $K \subseteq H$ convesso e chuso.
+	La funzione $P_k : H \to K$ definito da
+	\begin{equation*}
+		P_kx = \text{`proiezione di $x$ su $K$'}
+	\end{equation*}
+	è una contrazione nel senso metrico, e dunque in particolare $P_k$ è Lipschitz-continua.
+\end{lemma}
+\begin{proof}
+	Poniamo $y_1 = P_kx_1$ e $y_2 = P_k x_2$. Sappiamo che, per ogni $z \in K$:
+	\begin{equation*}
+		\Re{x_1 -y_1, z-y_1} \leq 0, \qquad \Re{x_2 -y_2, z-y_2} \leq 0
+	\end{equation*}
+	In particolare, queste valgono per $z=y_2$ e $z=y_1$, rispettivamente. Sommando le disuguaglianze in questi due casi, otteniamo (ha cambiato i segni ad entrambe le entrate della seconda):
+	\begin{equation*}
+		\Re{x_1-y_1-x_2+y_2, y_2-y_1} \leq 0
+	\end{equation*}
+	Per linearità:
+	\begin{equation*}
+		\Re{y_2-y_1, y_2-y_1} \leq \Re{x_2-x_1, y_2-y_1}
+	\end{equation*}
+	Da cui
+	\begin{equation*}
+		\|y_2-y_1\|^2 \leq \Re{x_2-x_1, y_2-y_1} \leq |(x_2-x_1, y_2-y_1)| \underset{C-S}\leq \|x_2-x_1\|\|y_2-y_1\|.
+	\end{equation*}
+	Semplificando un fattore $\|y_2-y_1\|$, si ottiene la condizione cercata.
+\end{proof}
+
+\begin{theorem}
+\label{th:hilb_projector_subspace}
+	Sia $H$ spazio di Hilbert, $V \leq H$ chiuso.
+	Allora la proiezione di un punto $x \in H$ su $V$ si caratterizza come
+	\begin{equation*}
+		\begin{cases}
+			(x-y,z) = 0, \quad \text{per ogni $z \in V$},\\
+			y \in V
+		\end{cases}
+	\end{equation*}
+	Inoltre, $P_V$ è \emph{lineare} e continua, di norma unitaria, ed è un proiettore (Definizione~\ref{def:projector}).
+\end{theorem}
+\begin{proof}
+	Dal Lemma~\ref{lemma:hilb_proj} sappiamo già che $y \in V$ e $\Re{x-y,z-y} \leq 0$ per ogni $z \in V$. Siccome $V$ è uno spazio vettoriale, possiamo scrivere ogni $z \in V$ come $z = y + \tilde z$, per un altro $\tilde z \in V$. Inoltre $\tilde z \in V$ se e solo se $-\tilde x \in V$. In sostanza, otteniamo:
+	\begin{equation*}
+		\Re{x-y, \tilde z} \geq 0, \qquad \text{per ogni $\tilde z \in V$}.
+	\end{equation*}
+	Rimane da mostrare che $\Im{x-y,\tilde x} = 0$. Ma è questa è la parte reale di $i \tilde z$, dunque concludiamo che $(x-y, \tilde z) = 0$.
+
+	Mostriamo che $P_V$ è lineare. Supponiamo che $P_Vx_1 = y_1$ e $P_V x_2 = y_2$. Si ha
+	\begin{eqalign*}
+		(x_1-y_1, z) = 0, \qquad \text{per ogni $z \in V$}.
+		(x_2-y_2, z) = 0, \qquad \text{per ogni $z \in V$}.
+	\end{eqalign*}
+	e allora per ogni $\alpha, \beta \in \K$:
+	\begin{equation*}
+		(\alpha x_1 + \beta x_2 - \alpha y_1 - \beta y_2, z) = \alpha (x_1 -y_1, z) + \beta (x_2-y_2, z) = 0, \qquad \text{per ogni $z \in V$}.
+	\end{equation*}
+	È banale poi che $P_V^2 =P_V$. Infine, per lipschitzianità
+	\begin{equation*}
+		\|P_V x - P_V 0 \| \leq \|x -0\|
+	\end{equation*}
+	da cui $\|P_V\| \leq 1$.
+\end{proof}
+\begin{corollary}
+	Sia $H$ spazio di Hilbert, $V \leq H$ sottospazio chiuso.
+	Allora $V$ ammette un supplementare topologico.
+\end{corollary}
+
+\begin{remark}
+	Notare che non c'è restrizione sulla dimensione di $V$.
+\end{remark}
+
+\begin{remark}
+	Se $V$ è un sottospazio a dimensione finita di $H$ hilbertiano, sia $u_1, \ldots, u_n$ una base ortonormale di $V$. Allora il proiettore si scrive in maniera molto semplice:
+	\begin{equation*}
+		P_V x = \sum_{i=1}^n (x-i, u_i)\,u_i
+	\end{equation*}
+	Infatti
+	\begin{enumerate}
+		\item $P_V x \in V$, quindi si scrive come combinazione lineare degli $u_i$,
+		\item $(x-P_V x, z) = 0$ per ogni $z \in V$, quindi in particolare $(x-P_V x, u_h) = 0$ per ogni $1 \leq h \leq n$, da cui:
+		\begin{equation*}
+			(x- {\textstyle \sum_{i=1^n}} (x,u_i)\,u_i, u_h) = (x, u_h) - \sum_{i=1}^n (x,u_i)(u_i, u_h) = (x,u_h) - (x, u_h) = 0.
+		\end{equation*}
+	\end{enumerate}
+	Se non avessimo normalità della base, allora
+	\begin{equation*}
+		P_V x = \sum_{i=1}^n \frac{(x-i, u_i)}{(u_i, u_i)}\,u_i
+	\end{equation*}
+\end{remark}
+
+\begin{exercise}
+	Sia
+	\begin{equation*}
+		K = \{f \in L^2(0,1) \suchthat f(x) = 0 \ae\ \text{su $(1/2,1)$}, \text{$f$ reale}, f\geq 3 \ae\ \text{su $(0,1/2)$}\}.
+	\end{equation*}
+	Provare che $K$ è chiuso e convesso e determinare $P_K$.
+
+	\noindent\textbf{Svolgimento}.
+	Chiusura e convessità banali. Si intuisce che $P_k f = \max\{\Re f, 3\}\ind_{(0,1/2)}$. Andiamo a verificare che
+	\begin{equation*}
+		\Re{f-P_K f, g - P_K f} \leq 0, \qquad \text{per ogni $g \in K$}
+	\end{equation*}
+	ossia che
+	\begin{equation*}
+		\Re{\int_0^1 (f- \max\{\Re f, 3\}\ind_{(0,1/2)}) \conj{(g- \max\{\Re f, 3\}\ind_{(0,1/2)})}\,\dx} \leq 0, \qquad \text{per ogni $g \in K$}.
+	\end{equation*}
+	\begin{eqalign*}
+		\int_0^{1/2} & (\Re f - \max \{\Re f, 3\})(g - \max\{\Re f, 3\})\,\dx\\
+		&= \cancel{\int_{\{x \in (0,1/2) \suchthat \Re f \geq 3\}} \text{(idem)}} + \int_{\{x \in (0,1/2) \suchthat \Re f < 3\}} \text{(idem)}\\
+		&= \int_{\{x \in (0,1/2) \suchthat \Re f < 3\}} \underbrace{(\Re f - 3)}_{< 0}\underbrace{(g-3)}_{> 0}\,\dx\\
+		&\leq 0.
+	\end{eqalign*}
+\end{exercise}
+
+\begin{definition}
+	Sia $E$ spazio con prodotto scalare, $S \subseteq E$. Il \defining{complemento ortogonale} di $S$:
+	\begin{equation*}
+		S^\perp = \{ x \in E \suchthat (x,s) = 0, \text{per ogni $s \in S$} \}.
+	\end{equation*}
+\end{definition}
+
+\begin{lemma}
+	Sia $E$ spazio con prodotto scalare, allora:
+	\begin{enumerate}
+		\item $S^\perp$ è un sottospazio chiuso di $H$,
+		\item se $S \subseteq R \subseteq H$, $R^\perp \subseteq S^\perp$,
+		\item $S^\perp = \closure{S}^\perp = \langle S \rangle ^\perp = \closure{\langle S \rangle}^\perp$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Ovviamente è un sottospazio. È chiuso siccome $(\cdot, \cdot)$ è continuo e $S^\perp$ è intersezione di insiemi di livello di $(\cdot, \cdot)$.
+		\item Ovvio.
+		\item Per il punto $(2)$, $S \subseteq \closure S$ implica $\closure{S}^\perp \subseteq S^\perp$. Viceversa, se $x \in S^\perp$ e $\bar s \in \closure S$ è il limite di $\{s_n\}_{n \in \N} \subseteq S$, allora $(s_n, x) \conv (\bar s,x)$ e siccome $(s_n,x) = 0$ per ogni $n \in \N$, anche $(s,x) = 0$, cioè $x \in \closure S^\perp$.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+	Sia $H = L^2(0,1)$,
+	\begin{eqalign*}
+		S &= \{f \in H \suchthat f(x) = 0 \ae\ \text{in $(0,1/2)$} \},\\
+		S^\perp &= \{f \in H \suchthat f(x) = 0 \ae\ \text{in $(1/2,1)$} \}.
+	\end{eqalign*}
+	Ovviamente il secondo membro è contenuto in $S^\perp$. D'altra parte, supponiamo che $f \in S^\perp$, cioè che
+	\begin{equation*}
+		\int_0^1 f (f \ind_{(1/2,1)})\,\dx = 0 \implies \int_{1/2}^1 f^2\,\dx = 0 \implies f = 0 \ae\ \text{su $(1/2,1)$}.
+	\end{equation*}
+\end{example}
+
+\begin{example}
+	Sia $H=L^2(-1,1)$, consideriamo $S=\{f \in H \suchthat \text{$f$ dispari}\}$. Ci aspettiamo che
+	\begin{equation*}
+		S^\perp = \{f \in H \suchthat \text{$f$ pari}\}.
+	\end{equation*}
+	Se $f$ è pari infatti, $\int_{-1}^1 fg \,\dx = 0$, per ogni $g$ dispari. D'altro canto, supponiamo $f \in S^\perp$. Ricordiamo che ogni $f \in H$ si può scrivere come $f_p + f_d$, dove $f_p$ è pari ed $f_d$ è dispari, definendo
+	\begin{equation*}
+		f_p(x) = \frac{f(x) + f(-x)}2, \quad f_d(x) = \frac{f(x) - f(-x)}2, \qquad \text{per ogni $x \in (-1,1)$}.
+	\end{equation*}
+	Dunque
+	\begin{equation*}
+		\int_{-1}^1 f g\,\dx = \int_{-1}^1 \cancel{f_pg} + f_dg\,\dx = 0, \text{per ogni $g \in S$}.
+	\end{equation*}
+	Dunque $f_d \in S \cap S^\perp$, e pertanto $f_d = 0$, da cui concludiamo la parità di $f$.
+\end{example}
+
+\begin{theorem}[delle proiezioni]
+	Sia $H$ spazio di Hilbert, $V \leq H$ sottospazio chiuso, allora $H = V \oplus V^\perp$.
+\end{theorem}
+\begin{proof}
+	Banale. Dal Teorema~\ref{th:hilb_projector_subspace} sappiamo che $P_V$ è un proiettore e $V$ ammette supplementare topologico. D'altro canto abbiamo provato che $z \perp x-P_V x$ per ogni $z \in V$, da cui $P_V x \perp x - P_V x$ per cui $P_V x \in V^\perp$, e siccome $x = (x-P_V x)+ P_V x$, $H = V + V^\perp$ e $V^\perp \cap V = \{0\}$, abbiamo concluso.
+\end{proof}
+
+\section{Serie di Fourier}
+\begin{lemma}[Uguaglianza di Bessel]
+	Sia $E$ uno spazio con prodotto scalare, ed $u_1, \ldots, u_n$ una $n$-pla di vettori ortonormali.
+	Allora per ogni $x \in E$ abbiamo
+	\begin{equation*}
+		\left\|x - \sum_{i=1}^n (x_i,u_i)u_i \right\|^2 = \|x\|^2 - \sum_{n=1}^n |(x_i,u_i)|^2.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Si ha
+	\begin{equation*}
+		x = \underbrace{x- \sum_{i=1}^n (x_i, u_i)u_i}_{\perp \langle u_1, \ldots, u_n \rangle} + \sum_{i=1}^n (x_i, u_i)u_i
+	\end{equation*}
+	Perciò, per il teorema di Pitagora:
+	\begin{equation*}
+		\|x\|^2 = \left\|x - \sum_{i=1}^n (x_i, u_i)u_i \right\|^2 + \left\| \sum_{i=1}^n (x_i,u_i)u_i\right\| = \left\| x. \sum_{i=1}^n (x_i,u_i)u_i \right\| + \sum_{i=1}^n |(x_i,u_i)|^2.
+	\end{equation*}
+\end{proof}
+
+\begin{theorem}[Disuguglianza di Bessel]
+	Sia $E$ spazio con prodotto scalare, sia $\{u_n\}_{n \in \N}$ un insieme ortonormale.
+	Allora per ogni $x \in E$ vale
+	\begin{equation*}
+		\sum_{n=1}^\infty |(x,u_n)|^2 \leq \|x\|^2.
+	\end{equation*}
+	In particolare $\lim_n (x,u_n) = 0$.
+\end{theorem}
+\begin{proof}
+	Per ogni $n \in \N$ ed $x \in E$, abbiamo mostrato che
+	\begin{equation*}
+		\left\|x - \sum_{i=1}^n (x_i,u_i)u_i \right\|^2 = \|x\|^2 - \sum_{n=1}^n |(x_i,u_i)|^2 \geq 0
+	\end{equation*}
+	cioè che
+	\begin{equation*}
+		\sum_{n=1}^n |(x_i,u_i)|^2 \leq \|x\|^2.
+	\end{equation*}
+	Passando al limite, otteniamo la disuguaglianza cercata.
+\end{proof}
+
+\begin{lemma}
+\label{lemma:hilb_ten}
+	Sia $H$ uno spazio di Hilbert, $\{u_n\}_{n \in \N}$ insieme ortonormale. Sia $\{a_n\}_{n \in \N}$ in $\K$.
+	Allora
+	\begin{enumerate}
+		\item $\sum_{n=1}^\infty a_n u_n$ converge se e solo se $\sum_{n=1}^\infty |a_n|^2$ converge.
+		\item Se $\sum_{n=1}^\infty a_n u_n = x$, allora $a_m = (x, u_m)$ per ogni $m \in \N$.
+		\item $\sum_{n=1}^\infty a_n u_n = x$ se e solo se $\sum_{n=1}^\infty |a_n|^2 = \|x\|^2$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Per completezza, possiamo caratterizzare le $\sum_{n=1}^\infty a_n u_n$ convergenti con la condizione di Cauchy. Ma vale
+		\begin{equation*}
+			\left\| \sum_{k=n}^m a_k u_k \right\|^2 = \sum_{k=1}^m |a_k|^2
+		\end{equation*}
+		per cui la serie $\sum_{n=1}^\infty a_n u_n$ è di Cauchy se e solo se $\sum_{n=1}^\infty |a_n|^2$ è di Cauchy.
+
+		\item Per continuità del prodotto scalare, comunque preso $m \in \N$:
+		\begin{equation*}
+			(u_m, x) = (u_m, {\textstyle \sum_{n=1}^\infty} a_n u_n) = \sum_{n=1}^\infty (u_m, a_n u_n) = a_m.
+		\end{equation*}
+
+		\item Per l'identità di Bessel:
+		\begin{equation*}
+			\left\|x - \sum_{i=1}^n (x_i,u_i)u_i \right\|^2 = \|x\|^2 - \sum_{n=1}^n |(x_i,u_i)|^2
+		\end{equation*}
+		dunque se il membro di destra è infinitesimo, anche il membro di sinistra lo è  e ci dà, unitamente al punto $(2)$, la tesi.
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Sia $H$ spazio di Hilbert. Una famiglia di vettori $\{u_\alpha\}_{\alpha \in A}$ di $H$ è detta \defining{base hilbertiana} o \defining{sistema ortonormale completo} se
+	\begin{equation*}
+		(u_\alpha, u_\beta) = \delta_{\alpha\beta}, \qquad \closure{\langle u_\alpha, \alpha \in A \rangle} = H.
+	\end{equation*}
+\end{definition}
+
+\begin{theorem}[di Fourier]
+	Sia $H$ spazio di Hilbert, e $\{u_n\}_{n \in \N}$ una successione ortonormale in $H$.
+	Allora sono equivalenti le seguenti affermazioni:
+	\begin{enumerate}
+		\item $\{u_n\}_{n \in \N}$ è una base hilbertiana di $H$,
+		\item per ogni $x \in H$, si ha
+		\begin{equation*}
+			x= \sum_{n=1}^\infty (x,u_n)u_n, \quad \text{\underline{sviluppo in serie di Fourier}},
+		\end{equation*}
+		\item per ogni $x \in H$,
+		\begin{equation*}
+			\|x\|^2 = \sum_{n=1}^\infty |(x,u_n)|^2, \quad \text{\underline{identità di Parseval}}.
+		\end{equation*}
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Poniamo $V = \closure{\langle u_n, n \in \N \rangle}$ e proviamo che $P_V : H \to V$ è dato da
+	\begin{equation*}
+		P_V x := \sum_{n=1}^\infty (x,u_n)u_n, \quad x \in H.
+	\end{equation*}
+	Si noti che tale applicazione è ben definita siccome la serie che compare a destra dell'uguale è convergente (per la disuguaglianza di Bessel). Inoltre $P_V x \in V$, banalmente e $x- P_V x \perp V$ per continuità del prodotto scalare.
+	\begin{description}
+		\item[$(1) \implies (2)$] Per definizione di base hilbertiana, $V=H$, perciò $P_V = 1_H$ e quindi $(2)$ segue in virtù dell'espressione trovata per $P_V$.
+		\item[$(2) \implies (3)$] È il Lemma~\ref{lemma:hilb_ten}(3).
+		\item[$(3) \implies (1)$] Per ogni $x \in H$, $x = x-P_V x + P_Vx$, perciò per Pitagora:
+		\begin{equation*}
+			\|x\|^2 = \|x-P_Vx\|^2 + \|P_Vx\|^2
+		\end{equation*}
+		Ma per ipotesi $\|P_Vx\|=\|x\|$, da cui $\|x-P_Vx\|=0$ e cioè $x \in V$.
+	\end{description}
+\end{proof}
+
+Dunque le basi hilbertiane hanno proprietà molto forti, del tutto paragonabili a quelle delle basi in contesto finito-dimensionale. Resta da capire quando e come trovare queste basi.
+
+\begin{theorem}
+\label{th:hilb_basis}
+	Sia $H$ uno spazio di Hilbert di dimensione non nulla.
+	Allora esiste una base hilbertiana.
+\end{theorem}
+\begin{proof}[Dimostrazione con la bomba atomica]
+	Sia $P = \{S \subseteq H \suchthat \text{$S$ è un insieme ortonormale} \}$. Ordiniamo $P$ con la relazione di inclusione. $P$ è banalmente induttivo, e non vuoto. Dunque esiste un elemento massimale non banale $\tilde S \in P$, e questa affermiamo essere una base hilbertiana. Infatti. $\langle \tilde S \rangle = H$. Infatti $H = \closure {\langle \tilde S \rangle} \oplus \langle \tilde S \rangle^\perp$, dunque per massimalità di $\tilde S$, $\langle \tilde S \rangle^\perp = 0$.
+\end{proof}
+
+\begin{remark}
+	In generale la base hilbertiana non è numerabile!
+\end{remark}
+
+\begin{lemma}[Gram--Schmidt]
+	Sia $H$ uno spazio con prodotto scalare, $u_1, \ldots, u_n \in H$ linearmente indipendenti. Siano $w_1, \ldots, w_n$ definiti per ricorrenza come segue:
+	\begin{eqalign*}
+		w_i = \begin{dcases}
+			\frac{u_1}{\|u_1\|}, & i=1\\
+			\frac{v_i}{\|v_i\|}, \ \text{ove}\ v_i = u_i - \sum_{\ell=1}^{i-1} (u_i, w_\ell)w_\ell & i \leq 2 \leq n.
+		\end{dcases}
+	\end{eqalign*}
+	Allora $\langle w_1, \ldots, w_n \rangle = \langle u_1, \ldots, u_n \rangle$ e $w_1, \ldots, w_n$ sono ortonormali.
+\end{lemma}
+\begin{proof}
+	Induzione su $n$.
+\end{proof}
+
+\begin{theorem}
+	Uno spazio di Hilbert ha una base hilbertiana numerabile se e solo se è separabile.
+\end{theorem}
+\begin{proof}
+	\leavevmode
+	\begin{description}
+		\item[$(\Longrightarrow)$] Facile: si prendano le combinazioni lineari a coefficienti razionali degli elementi della base.
+		\item[$(\implied)$] Sia $X=\{x_n\}_{n \in \N}$ denso in $H$. Estraiamo una sottosuccessione da tale insieme definendo:
+		\begin{equation*}
+			x_{n_k} = \text{il primo elemento di $X$ che sia linearmente indipendente da $x_{n_1}, \ldots, x_{n_{k-1}}$}.
+		\end{equation*}
+		Passando la successione $\{x_{n_k}\}_{k \in \N}$ per il processo di Gram--Schmidt, otteniamo la base hilbertiana cercata.
+	\end{description}
+\end{proof}
+
+\begin{definition}
+	Una base di Schauder è un insieme numerabile di vettori ortonormali le cui combinazioni lineari infinite esauriscono lo spazio.
+\end{definition}
+
+Problema della base: è vero che ogni spazio di Banach separabile ammette una base di Schauder numerabile?
+Per Enflo \cite{enflo1973counterexample} dimostrò che ciò non è vero, costruendo un controesempio.
+
+Cosa fare se la base $\{u_\alpha\}_{\alpha \in A}$ non è numerabile? Possiamo dare un senso a a `somme transfinite non numerabili'? Nel caso di una famiglia più che numerabile di reali positivi, si è soliti porre:%\footnote{Questo è in realtà è l'integrale di $u_- : A \to \R^+$ definito sulla $\sigma$-algebra generata dai sottoinsiemi finiti di $A$ e misura ??}:
+\begin{equation*}
+	\sum_{\alpha \in A} u_\alpha := \sup \{ {\textstyle \sum_{\alpha \in F}} u_\alpha \suchthat F \subset A, \text{$F$ finito} \}
+\end{equation*}
+Una conseguenza di questa definizione è che se $\sum_{\alpha \in A} x_\alpha \neq \infty$, allora l'insieme dei termini non nulli della sommatoria è numerabile. Infatti:
+\begin{equation*}
+	\{\alpha \in A \suchthat x_\alpha \neq 0 \} = \bigcup_{n \in \N} \underbrace{\{ \alpha \in A \suchthat x_\alpha > 1/n \}}_{\text{nec. finito}}
+\end{equation*}
+Se la famiglia avesse poi segno misto, si pone
+\begin{equation*}
+	\sum_{\alpha \in A} x_\alpha := \sum_{\alpha \in A} x_\alpha^+ - \sum_{\alpha \in A} x_\alpha^-
+\end{equation*}
+ove il membro di destra ha significato. Analogamente, nel caso complesso,
+\begin{equation*}
+	\sum_{\alpha \in A} x_\alpha := \sum_{\alpha \in A} \Re{x_\alpha} + i \sum_{\alpha \in A} \Im{x_\alpha}.
+\end{equation*}
+
+Sia ora $\{u_\alpha\}_{\alpha \in A}$ un insieme ortonormale in uno spazio di Hilbert. Sia $F \subset A$ un insieme finito. La disuguaglianza di Bessel ci dà:
+\begin{equation*}
+	\sum_{\alpha \in F}|(x,u_\alpha)|^2 \leq \|x\|^2, \qquad \text{per ogni $x \in H$}.
+\end{equation*}
+Ma questo bound è uniforme rispetto ad $F$, pertanto
+\begin{equation*}
+	\sum_{\alpha \in A} (x, u_\alpha) = \sup \{ {\textstyle \sum_{\alpha \in F}} (x,u_\alpha) \suchthat F \subset A, \text{$F$ finito} \} \leq \|x\|^2
+\end{equation*}
+e quindi, come visto sopra, esiste una sottofamiglia numerabile $A_x \subset A$ di indici tali per cui
+\begin{equation*}
+	\sum_{\alpha \in A} |(x,u_\alpha)|^2 = \sum_{\alpha \in A_x} |(x,u_\alpha)|^2.
+\end{equation*}
+
+\begin{theorem}[di Fourier \emph{bis}]
+\label{th:fourier_bis}
+	Sia $H$ spazio di HIlbert, $\{u_\alpha\}_{\alpha \in A}$ insieme ortonormale.
+	Allora sono equivalenti le seguenti affermazioni:
+	\begin{enumerate}
+		\item $\{u_\alpha\}_{\alpha \in A}$ è una base hilbertiana
+		\item per ogni $x \in H$, si ha
+		\begin{equation*}
+			x= \sum_{\alpha \in A} (x,u_\alpha)u_\alpha, \quad \text{\underline{sviluppo in serie di Fourier}},
+		\end{equation*}
+		\item per ogni $x \in H$,
+		\begin{equation*}
+			\|x\|^2 = \sum_{\alpha \in A} |(x,u_\alpha)|^2, \quad \text{\underline{identità di Parseval}}.
+		\end{equation*}
+	\end{enumerate}
+\end{theorem}
+
+Per ogni insieme $A$, si può definire uno spazio $\ell^2$ analogo a quelli già visti:
+\begin{equation*}
+	\ell^2(A) = \{(x_\alpha)_{\alpha \in A} \suchthat x_\alpha \in \C, \sum_{\alpha \in A}|x_\alpha|^2 \lneq \infty \}
+\end{equation*}
+con norma e prodotto scalare analoghi.
+
+\begin{theorem}[Riesz--Fisher]
+	Ogni spazio di Hilbert è isometrico ad uno spazio $\ell^2(A)$ per un certo insieme $A$.
+\end{theorem}
+\begin{proof}
+	Sappiamo che esiste una base hilbertiana (Teorema~\ref{th:hilb_basis}), sia essa $\{u_\alpha\}_{\alpha \in A}$. Ora basta osservare che il Teorema~\ref{th:fourier_bis} ci sta dicendo esattamente che la mappa
+	\begin{eqalign*}
+		\varphi : H &\longto \ell^2(A)\\
+				x &\longmapsto \{(x,u_\alpha)\}_{\alpha \in A}
+	\end{eqalign*}
+	è un'isometria suriettiva.
+\end{proof}
