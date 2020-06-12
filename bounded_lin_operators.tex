@@ -202,11 +202,11 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 	Sia $E=\Czero_c[0,1]$ lo spazio delle funzioni reali su $[0,1]$ continue e a supporto compatto, normato con la norma uniforme. Sia
 	\begin{eqalign}
 		T: E &\longto \R\\
-		x &\longmapsto Tx := \int_0^1 x(t)\,dt
+		x &\longmapsto Tx := \int_0^1 x(t)\,\dt
 	\end{eqalign}
 	Essa è evidentemente lineare, ed è anche continua:
 	$$
-		|Tx\| \leq \int_0^1 |x(t)|\,dt \leq \|x\|_\infty.
+		|Tx\| \leq \int_0^1 |x(t)|\,\dt \leq \|x\|_\infty.
 	$$
 	Si a $\|T\| \leq 1$, e affermiamo che vale l'uguaglianza. Definiamo la successione
 
@@ -235,7 +235,7 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 
 	Chiaramente $\|x_n\|_\infty = 1$ e
 	$$
-		|Tx_n| = \left| \int_0^1 |x_n(t)|\,dt \right| \conv[n] 1
+		|Tx_n| = \left| \int_0^1 |x_n(t)|\,\dt \right| \conv[n] 1
 	$$
 	perciò $\|T\|=1$. Non esiste $x \in E$ tale che $\|x\|_\infty < 1$ e $|Tx| =1$ perchè $\supp x \subsetneq [\alpha, \beta]$.
 \end{example}
@@ -809,7 +809,7 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 \begin{remark}
 	L'ipotesi di completezza per il teorema della mappa aperta è fondamentale. Ad esempio, l'identità tra $\Czero[0,1]$ con $\|\cdot\|_\infty$ e $\|\cdot\|_{L^1}$ è lineare e continua, ma non bicontinua. Infatti
 	\begin{equation*}
-		\|I(u)\|_{L^1} = \int_0^1 |u(t)|\,dt \leq \|u\|_\infty,
+		\|I(u)\|_{L^1} = \int_0^1 |u(t)|\,\dt \leq \|u\|_\infty,
 	\end{equation*}
 	mentre nell'altro senso non funziona. Una successione che converge nel dominio ma non nel codominio è una qualsiasi successione con patologia in altezza (e.g. $u_n(x) = [-n^3(x-1/n^2)]_+$).
 \end{remark}
@@ -820,7 +820,7 @@ Il completamento di $\Czero[0,1]$ è $L^1[0,1]$, il che spiega perchè l'integra
 	Sia $E = \Czero[0,1]$ con $\|\cdots\|_\infty$ e $F = \{ u \in \Cone[0,1] \suchthat u(0) = 0\}$ con $\|\cdot\_\infty$.
 	La funzione $T:E \to F$ definita come
 	\begin{equation*}
-		Tu (x) = \int_0^x u(t)\,dt
+		Tu (x) = \int_0^x u(t)\,\dt
 	\end{equation*}
 	è ben definita (cioè $Tu$ è sempre continua e svanisce in $0$), inoltre è lineare, continua, iniettiva e suriettiva. Il suo inverso $T^{-1} : F \to E$ è dato dalla derivazione, che sappiamo non essere continuo.
 \end{example}

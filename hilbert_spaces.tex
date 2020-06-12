@@ -130,13 +130,13 @@ per cui valgono le seguenti identità:
 		\item $\R^n$ con il modulo euclideo è hilbertiano.
 		\item $\C^n$ con il modulo hermitiano è hilbertiano.
 		\item $\ell^2(\C) = \{ (x_n)_{n \in \N} \suchthat x_n \in \C, \sum_{n=1}^\infty |x_n|^2 < \infty\}$ con il prodotto $x \cdot y = \sum_{n=1}^\infty x_n \conj{y_n}$.
-		\item $L^2(a,b)$ con il prodotto scalare $(f,g) = \int_a^b f(t)\conj{g(t)}\,dt$ è hilbertiano.
-		\item $L^2(\Omega, \M, \mu)$ con il prodotto scalare $(f,g) = \int_\Omega f(t)\conj{g(t)}\,dt$ è hilbertiano.
+		\item $L^2(a,b)$ con il prodotto scalare $(f,g) = \int_a^b f(t)\conj{g(t)}\,\dt$ è hilbertiano.
+		\item $L^2(\Omega, \M, \mu)$ con il prodotto scalare $(f,g) = \int_\Omega f(t)\conj{g(t)}\,\dt$ è hilbertiano.
 		\item Controesempio:
 		\begin{equation*}
 			\mathcal R[a,b] = \{f :[a,b] \to \C \suchthat \text{$f$ è Riemann-integrabile} \}
 		\end{equation*}
-		con il prodotto scalare $(f,g) = \int_a^b f(t)\conj{g(t)}\,dt$ è pre-hilbertiano ma non hilbertiano.
+		con il prodotto scalare $(f,g) = \int_a^b f(t)\conj{g(t)}\,\dt$ è pre-hilbertiano ma non hilbertiano.
 		Infatti la funzione $f = 1/(x-1)^{1/4}$ è $L^2(a,b)$, dunque ammette una successione di approssimanti $\{f_n\}_{n \in \N} \subseteq \Cinfty_c(a,b)$ che convergono a $f$ in $L^2$. Questa è quindi una successione di Cauchy che non converge in $\mathcal R[a,b]$, in quanto $f \notin \mathcal R[a,b]$ essendo illimitata in $a$.
 		Un'altra maniera di vedere che $\mathcal R[a,b]$ non è completo è prendendo la funzione indicatrice di un insieme $C \subset (a,b)$ chiuso, vuoto all'interno, e di misura positiva\footnote{Insieme di Smith--Volterra--Cantor.}. Allora non è Riemann-integrabile perchè ha un insieme non negligibile di discontinuità isolate, ma come nel precedente esempio ammette una successione di Cauchy di approssimanti in $L^2$.
 	\end{enumerate}
@@ -274,6 +274,7 @@ per cui valgono le seguenti identità:
 	\end{equation*}
 \end{lemma}
 \begin{proof}
+	\leavevmode
 	\begin{description}
 		\item[$(\Longrightarrow)$] Sia $y \in K$ il punto di minima distanza. Se $z \in K$, allora $y + t(z-y) \in K$ per ogni $t \in [0,1]$ (per convessità). Si ha, per minimalità di $y$:
 		\begin{eqalign*}
@@ -414,6 +415,7 @@ per cui valgono le seguenti identità:
 \end{definition}
 
 \begin{lemma}
+\label{lemma:hilb_ort_comp}
 	Sia $E$ spazio con prodotto scalare, allora:
 	\begin{enumerate}
 		\item $S^\perp$ è un sottospazio chiuso di $H$,
@@ -459,6 +461,7 @@ per cui valgono le seguenti identità:
 \end{example}
 
 \begin{theorem}[delle proiezioni]
+\label{th:hilb_ort_decomp}
 	Sia $H$ spazio di Hilbert, $V \leq H$ sottospazio chiuso, allora $H = V \oplus V^\perp$.
 \end{theorem}
 \begin{proof}
@@ -675,7 +678,7 @@ e quindi, come visto sopra, esiste una sottofamiglia numerabile $A_x \subset A$ 
 
 Per ogni insieme $A$, si può definire uno spazio $\ell^2$ analogo a quelli già visti:
 \begin{equation*}
-	\ell^2(A) = \{(x_\alpha)_{\alpha \in A} \suchthat x_\alpha \in \C, \sum_{\alpha \in A}|x_\alpha|^2 \lneq \infty \}
+	\ell^2(A) = \{(x_\alpha)_{\alpha \in A} \suchthat x_\alpha \in \C, {\textstyle \sum_{\alpha \in A}} |x_\alpha|^2 \lneq \infty \}
 \end{equation*}
 con norma e prodotto scalare analoghi.
 
@@ -690,3 +693,107 @@ con norma e prodotto scalare analoghi.
 	\end{eqalign*}
 	è un'isometria suriettiva.
 \end{proof}
+
+\section{Esempi di base ortonormali}
+Nella pratica, le basi ortonormali nascono spesso come autovettori di operatori differenziali.
+
+\begin{theorem}[Weierstrass]
+	I polinomi sono densi in $\Czero[a,b]$.
+\end{theorem}
+\begin{proof}
+	Vedere \cite{rudin1991functional}.
+\end{proof}
+
+Mettiamoci ora in $\Czero[-1,1]$. Siccome $\Czero[-1,1]$ è denso in $L^2[-1,1]$, allora i polinomi sono densi in $L^2[-1,1]$. Applicando la procedura di Gram--Schmidt alla famiglia dei monomi si ottiene allora una base hilbertiana, i cui componenti sono chiamati \defining{polinomi di Legendre}.
+
+\begin{theorem}[Formula di Rodrigues]
+	A meno di costanti moltiplicative, i polinomi di Legendre sono dati dalla formula seguente:
+	\begin{equation*}
+		P_n(x) = \der{^n}{x^n} (x^2-1)^n.
+	\end{equation*}
+	Per la precisione, i polinomi di Legendre nromalizzati dalla condizione $P_n(1) =1$ sono
+	\begin{equation*}
+		P_n(x) = \frac1{2^n n!} \der{^n}{x^n} (x^2-1)^n.
+	\end{equation*}
+\end{theorem}
+\begin{proof}
+	Per definizione, $P_0(x) = 1$, che soddisfa la formula data per $n=0$. Inoltre $\deg P_n = n$.
+	Allora per concludere basta dimostrare che
+	\begin{equation*}
+		(P_n, P_m) = 0, \qquad \text{per ogni $n \neq m \in \N$}.
+	\end{equation*}
+	Supponiamo che $n \geq m+1$. Allora ci avvaliamo dell'integrazione per parti $m+1$ volte:
+	\begin{eqalign*}
+		\int_{-1}^1 \der{^n}{x^n} (x^2-1)^n\, \der{^m}{x^m} (x^2-1)^m \,dx &= (-1)^{m+1} \int_{-1}^1 \der{^{n-m-1}}{x^{n-m-1}} (x^2-1)^n\, \der{^{2m+1}}{x^{2m+1}} (x^2-1)^m \,dx.
+	\end{eqalign*}
+	Notiamo che non ci sono termini di bordo: essendo $n \geq m+1$, la derivata $n-m-1$ (e tutte quelle intermedie) contengono un fattore $x^2-1$, che si annulla in $\pm 1$.
+	Ora, per terminare, è sufficiente notare che il secondo fattore dell'integranda è una derivata $2m+1$ di un polinomio di grado $m$, dunque nulla.
+\end{proof}
+
+\begin{theorem}[Stone--Weierstrass]
+	Sia $(X,d)$ metrico compatto. Sia $A \subset \Czero(X)$ una sottoalgebra che separa i punti e non si annulla in alcun punto di $[a,b]$.
+	Allora $A$ è densa in $(\Czero(X), \|\cdot\|_\infty)$.
+\end{theorem}
+\begin{proof}
+	Vedere \cite{rudin1991functional}.
+\end{proof}
+
+\begin{theorem}[Stone--Weierstrass complesso]
+	Sia $(X,d)$ metrico compatto. Sia $A \subset \Czero(X; \C)$ una sotto-$C^*$-algebra che separa i punti, non si annulla in alcun punto di $[a,b]$.
+	Allora $A$ è densa in $(\Czero(X), \|\cdot\|_\infty)$.
+\end{theorem}
+
+\begin{remark}
+	Essere una $C^*$-algebra significa che $A$ contiene i coniugati di tutti i propri elementi.
+\end{remark}
+
+\subsection{Polinomi trigonometrici}
+Un polinomio trigonometrico in $(-\pi,\pi)$ è una funzione del tipo
+\begin{equation*}
+	f(x) = \sum_{n=-N}^N c_n\,\e^{inx}, \quad x \in [-\pi,\pi], c_n \in \C, n \in \N.
+\end{equation*}
+Questi polinomi sono densi nello spazio delle funzioni continue e $2\pi$-periodiche:
+
+\begin{lemma}
+	Sia $f \in \Czero[-\pi,\pi]$ con $f(-\pi) = f(\pi)$.
+	Allora esiste una successione $\{P_n\}_{n \in \N}$ di polinomi trigonometrici tali che $P_n \uniconv[] f$ su $[-\pi,\pi]$.
+\end{lemma}
+\begin{proof}
+	Cercheremo di applicare Stone--Weierstrass.
+	Consideriamo come spazio metrico $X = [-\pi,\pi]$. D'altra parte non possiamo aspettarci che i polinomi trigonometrici separino i punti di $X$, in quanto su $-\pi$ e $\pi$ hanno sempre lo stesso valore.
+	Questo ostacolo si può sorpassare andando ad identificare i punti $-\pi$ e $\pi$ e quindi passando alla più naturale algebra delle funzioni continue su $S^1$. La proiezione $X \to \S^1$ è data da $x \mapsto \e^{ix}$.
+	Su tale spazio, è immediato verificare che i polinomi trigonometrici formano una $C^*$-algebra che separa i punti e non si annulla mai.
+\end{proof}
+
+\begin{theorem}
+\label{th:hilb_thirteen}
+	Le funzioni
+	\begin{equation*}
+		u_n = \frac{\e^{inx}}{\sqrt{2\pi}}, \quad n \in \Z, x \in [-\pi,\pi]
+	\end{equation*}
+	costituiscono una base hilbertiana di $L^2(-\pi, \pi)$. Quindi, per ogni $f in L^2(-\pi,\pi)$, si ha (in $L^2(-\pi,\pi)$):
+	\begin{equation}
+	\label{eq:fourier_series}
+		f(x) = \sum_{n=-\infty}^\infty (f,u_n)\,u_n(x) = \sum_{n=-\infty}^\infty c_n\,\e^{inx}
+	\end{equation}
+	e i coefficienti $\{c_n\}_{n \in \N}$ si ottengono come
+	\begin{equation*}
+		c_n = \frac1{\sqrt{2\pi}} \int_{-\pi}^\pi f(t) \,\e^{-int}\,\dt, \quad n \in \Z.
+	\end{equation*}
+\end{theorem}
+\begin{proof}
+	I polinomi trigonometrici sono densi in $L^2(-\pi,\pi)$, e $\{u_n\}_{n \in \N}$ è una famiglia ortonormale.
+\end{proof}
+
+\begin{remark}
+	Le funzioni
+	\begin{equation*}
+		\frac1{\sqrt{2\pi}}, \quad \frac{\cos nx}{\sqrt{\pi}}, \quad \frac{\sin nx}{\sqrt{\pi}}
+	\end{equation*}
+	sono una base reale hilbertiana di $L^2(-\pi,\pi)$.
+\end{remark}
+
+Il limite di questo teorema è che non ho convergenza puntuale, ma convergenza in $L^2$, che è in generale più debole.
+D'altro canto ogni successione che converge in $L^p$ ammette una sottosuccessione puntualmente convergente quasi ovunque.
+Tuttavia, parlando di serie questo è tecnicamente sconveniente. Ci viene allora in aiuto un altro risultato, il teorema di L. Carleson (1966), che garantisce che la convergenza~\eqref{eq:fourier_series} sia in realtà puntuale quasi ovunque senza dover passare ad una sottosuccessione.
+R. Hunt nel 1968 estende il risultato per la convergenza in $L^p$, $p \neq 1$. In ques'ultimo caso infatti, Kolmogorov aveva già prodotto un controesempio, ossia una funzione $f \in L^1$ per la cui serie di Fourier diverge puntualmente quasi ovunque.

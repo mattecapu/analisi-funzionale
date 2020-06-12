@@ -1,0 +1,208 @@
+\chapter{Operatori compatti e autoauggiunti}
+
+\section{Operatore aggiunto e operatori aggiunti}
+Sia $(E, (\cdot, \cdot))$ uno spazio con prodotto scalare.
+Fissato $y \in H$, consideriamo la funzione $R_y : H \to \C$ definito come
+\begin{equation*}
+	R_y x = (x,y).
+\end{equation*}
+Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque è un'isometria. Dunque la funzione $y \mapsto R_y$ da $E$ a $E'$ è un'isometria \emph{anti}lineare (perchè il secondo argomento del prodotto scalare è antilineare).
+
+\begin{theorem}
+\label{eq:ops_riesz}
+	Sia $(H, (\cdot,\cdot))$ di Hilbert.
+	Allora la mappa $R_-: H \to H'$ definita come $y \mapsto (-, y)$ è un'isometria suriettiva.
+\end{theorem}
+\begin{proof}
+	Sappiamo già che la funzione $R_-$ è un'isometria. Rimane da dimostrare la suriettività.
+	Senza perdita di generalità, prendiamo $T \in H'$ non nullo (in tal caso, infatti, banalmente $T=R_0$).
+	In questo caso, $\ker T \lneq H$, quindi $\dim \im T \geq 1$ e pertanto $T$ è suriettivo poichè $\dim \C = 1$.
+	Per il primo teorema di isomorfismo, $H/\ker T \iso \C$, ossia $\dim(\ker T)^\perp = 1$.
+	Prendiamo allora $z \in (\ker T)^\perp$, di norma unitaria.
+	Sia $x \in (\ker T)^\perp$, abbiamo $Tx = \alpha Tz$ per un certo $\alpha \in \C$, da cui $T(x-\alpha z) = 0$, ossia $x-\alpha z \perp z$, che significa
+	\begin{equation*}
+		(x-\alpha z, z) = (x,z) - \alpha \cancelto{1}{(z,z)} = 0,
+	\end{equation*}
+	cioè $(x,z) = \alpha$. Segue che $Tx = \alpha Tz = (x,z)Tz = (x, \conj{Tz}\, z)$, e quindi $T = R_{\conj{Tz} z}$ (infatti anche se $x \in \ker T$, $R_{\conj{Tz} }(x) = 0$).
+\end{proof}
+
+\begin{remark}
+	Il teorema utilizza la completezza di $H$ quando si assume che ${H = \ker T \oplus (\ker T)^\perp}$. Questo è vero solo se $H$ è di Hilbert: il Teorema~\ref{th:hilb_ort_decomp} si rifà al Teorema~\ref{th:hilb_projector_subspace}, che a sua volta segue dal Lemma~\ref{lemma:hilb_proj}, che è dimostrato dal teorema della proiezione (Teorema~\ref{th:hilb_projection}) il quale usa in maniera essenziale la completezza.
+\end{remark}
+
+\begin{corollary}
+	Sia $\{x_n\}_{n \in \N}$ una successione in uno spazio di Hilbert $H$.
+	Allora $x_n \weakconv x$ se e solo se $(x_n, y) \conv (x,y)$ per ogni $y \in H$.
+\end{corollary}
+
+\begin{corollary}
+	Sia $\{u_n\}_{n \in \N}$ una successione ortonormale in uno spazio di Hilbert $H$.
+	Allora $u_n \weakconv 0$, anche se $u_n \not\conv 0$.
+\end{corollary}
+\begin{proof}
+	Per Bessel,
+	\begin{equation*}
+		\lim_n (x, u_n) = 0, \qquad \text{per ogni $x \in H$}.
+	\end{equation*}
+	Dunque la tesi segue dal precedente. Infine la convergenza forte non sussiste in quanto $\|u_n\| = 1$ per ogni $n \in \N$.
+\end{proof}
+
+\begin{definition}
+	Sia $H$ uno spazio di Hilbert, e sia $T:H \to H$ lineare e continuo.
+	Un operatore $T^* : H \to H$ si dice \defining{aggiunto} di $T$ se
+	\begin{equation*}
+		(Tx, y) = (x T^* y), \qquad \text{per ogni $x,y \in H$}.
+	\end{equation*}
+\end{definition}
+
+\begin{definition}
+	Si dice \defining{autoauggiunto} un operatore che coincide col proprio aggiunto.
+\end{definition}
+
+\begin{lemma}
+	Ogni operatore $T:H \to H$ ammette aggiunto, lineare e continuo e si ha $\|T^*\|=\|T\|$.
+\end{lemma}
+\begin{proof}
+	Sia $f_y : H \to \C$ definita come $x \mapsto (Tx, y)$. Essa è banalmente lineare e continua. Dal teorema di rappresentazione di Riesz, esiste $y^* \in H$ tale che $f_y(x) = (Tx,y) =(x, y^*)$. Dunque poniamo $T^* y = y^*$. La linearità di questo operatore è evidente, ed inoltre è limitato:
+	\begin{equation*}
+		\|T^* y\| = \|y^*\| = \|f_y\| \leq \|T\|\|y\|.
+	\end{equation*}
+	In particolare abbiamo dimostrato che $\|T^*\| \leq \|T\|$. Per vedere l'altra disuguaglianza, si noti che $(T^{**} = T$, infatti
+	\begin{equation*}
+		(T^*x, y) = \conj{(y, T^*x)} = \conj{(Ty, x)} = (x, Ty)
+	\end{equation*}
+	Dunque $\|T^*\| \leq \|T^{**}\| = \|T\|$.
+\end{proof}
+
+\begin{exercise}
+	Se $T,S:H \to H$ e $\alpha \in \C$, allora:
+	\begin{enumerate}
+		\item $1^* = 1$,
+		\item $0^* = 0^*$,
+		\item $(S+T)^* = S^* + T^*$,
+		\item $(\alpha T)^* = \conj\alpha T^*$,
+		\item $(ST)^* = T^*S^*$.
+	\end{enumerate}
+\end{exercise}
+
+\begin{example}
+	Nel caso finito, se rappresentiamo un operatore $T: \C^n \to \C^n$ con una matrice $A$, allora $T^*$ è rappresentato da $A^\dagger$, ossia $\conj{A^T}$:
+	\begin{equation*}
+		(Tx,y) = \conj{y}^T A x = x^T A^T \conj{y} = (x, \conj{A^T y}), \qquad \text{per ogni $x,y \in \C^n$}.
+	\end{equation*}
+\end{example}
+
+\begin{example}[Operatori integrali di Fredholm e Volterra]
+	Sia $H = L^2(a,b)$, con $a < b$, e sia $K \in L^2((a,b) \times (a,b))$. Si definisce
+	\begin{eqalign*}
+		T :L^2(a,b) &\longto L^2(a,b)\\
+			f &\longmapsto \int_a^b K(s,t)\,f(t)\,\dt.
+	\end{eqalign*}
+	Si ha
+	\begin{eqalign*}
+		T^* :L^2(a,b) &\longto L^2(a,b)\\
+			f &\longmapsto \int_a^b \conj{K(t,s)}\,f(t)\,\dt.
+	\end{eqalign*}
+	Essi sono ben definiti, in quanto:
+	\begin{eqalign*}
+		|Tf(t)| \leq \int_a^b |K(s,t)|\,|f(t)|\,\dt
+		\underset{\text{C-S}}= \left(\int_a^b |K(s,t)|^2\,\dt \right)^{1/2}\!\left( \int_a^b |f(t)|^2\,\dt \right)^{1/2}\\[1ex]
+		\left(\int_a^b |Tf(t)|^2\,\dt \right)^{1/2} \leq \left( \int_a^b\int_a^b |K(t,s)|^2\,\mathrm{d}s\,\dt\right)^{1/2}\,\left( \int_a^b |f(t)|^2\,\dt \right)^{1/2}
+	\end{eqalign*}
+	Per cui:
+	\begin{equation*}
+		\|Tf\|_{L^2} \leq \|K\|_{L^2} \|f\|_{L^2}.
+	\end{equation*}
+	Verifichiamo ora che $T^*$ sia l'aggiunto di $T$:
+	\begin{eqalign*}
+		(Tf,g)_{L^2} &= \int_a^b \int_a^b K(t,s)\,f(s)\,\mathrm{d}s\, \conj{g(t)}\,\dt\\
+		&\underset{Fub.}= \int_a^b \int_a^b K(t,s) \,\conj{g(t)}\,\dt\,f(s)\,\mathrm{d}s\\
+		&= \int_a^b f(s)\, \conj{\int_a^b \conj{K(t,s)} \,g(t)\,\dt}\,\mathrm{d}s\\
+		&= (f, {\textstyle \int_a^b} \conj{K(t,s)}\,g(t)\,\dt).
+	\end{eqalign*}
+\end{example}
+
+\begin{remark}
+	Il nucleo $K$ si può considerare come `matrice infinita'. Se questa matrice è triangolare inferiore, ossia se $K(t,s) = 0$ per ogni $s>t$, allora $T$ si chiama \defining{operatore di Volterra}.
+\end{remark}
+
+\begin{lemma}
+	Sia $H$ di Hilbert, sia $T : H \to H$ lineare e continuo.
+	Allora
+	\begin{equation*}
+		\ker T = (\im T^*)^\perp, \qquad (\ker T)^\perp = \closure{\im T^*}.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Sia $x \in \ker T$, allora $(x, T^*y) = (Tx, y)=0$, quindi $x \in (\im T^*)^\perp$.
+	D'altra parte, se $x \in (\im T^*)^\perp$ allora $0 = (x, T^*y) = (Tx,y)$ per ogni $y \in H$, cioè $Tx = 0$.
+	Infine, dalla prima segue che $(\ker T)^\perp = (\im T^*)^{\perp\perp} = \closure{\im T^*}$.
+\end{proof}
+
+\begin{remark}
+	Nel precedente, $\closure{-}$ indica la chiusura. Questo perchè dal Lemma~\ref{lemma:hilb_ort_comp} segue che se $S \leq H$, allora $S^{\perp\perp} = \closure{S}$.
+\end{remark}
+
+\begin{theorem}
+	Sia $H$ spazio di Hilbert \emph{complesso}, $T:H \to H$ lineare e continuo.
+	Allora $T$ è autoauggiunto se e solo se $(Tx, x) \in \R$ per ogni $x \in H$.
+\end{theorem}
+\begin{remark}
+	Questo fatto deriva da ragioni spettarli (si pensi al caso finito-dimensionale).
+\end{remark}
+\begin{proof}
+	\leavevmode
+	\begin{description}
+		\item[$(\Longrightarrow)$] Si fissi $x \in H$. Siccome $(Tx,x) = (x,Tx) = \conj{(Tx,x)}$, segue che tale numero debba essere reale.
+		\item[$(\implied)$] Per le forme sesquilineari su spazi complessi vale la seguente formula `di polarizzazione':
+		\begin{equation*}
+			4 (Tx,y) = (T(x+y),x+y) - (T(x-y), x-y) + i\left[ (T(x+iy),x+iy) - (T(x-iy), x-iy) \right].
+		\end{equation*}
+		Ora, siccome $(Tx,x) \in \R$ per ogni $x \in H$, possiamo scambiare gli argomenti senza dover coniugare. Se facciamo ciò nella formula appena scritta, è evidente che otteniamo $4(x,Ty)$, perciò abbiamo provato che $T$ è autoauggiunto.
+	\end{description}
+\end{proof}
+
+Un altro approccio per gestire la compattezza negli spazi infinito-dimensionale è usare la seguente nozione di operatore:
+
+\begin{definition}
+	Siano $E$, $F$ spazi normati e $T:E \to F$ una funzione.
+	Diciamo che $T$ è un \defining{operatore compatto} se è lineare, e per ogni successione $\{x_n\}_{n \in \N}$ limitata in $E$ esiste una sottosuccessione la cui immagine secondo $T$ converge in $F$. Equivalentemente, per ogni $A \subseteq E$ limitato, si ha $T(A)$ è relativamente compatto.
+\end{definition}
+
+\begin{example}[\emph{L'identità è il nemico numero uno della compattezza.}]
+	Se $\dim E = \infty$, allora $1_E : E \to E$ \underline{non} è compatta! Infatti sappiamo che $\closure{B}_E(0,1)$ non è compatta (Teorema~\ref{th:unit_ball_not_compact}).
+\end{example}
+
+\begin{exercise}
+	Sia $T:E \to F$ lineare compatto. Allora $T$ è continuo.
+
+	\textbf{Svolgimento}. $T$ manda insiemi limitati in insiemi limitati (compatto $\implies$ limitato anche in dimensione infinita). Quindi $T$ è limitato, ergo continuo.
+\end{exercise}
+
+\begin{exercise}
+	Provare che la composizione di operatori compatti è compatta.
+\end{exercise}
+
+\begin{exercise}
+	Sia $T:E \to F$, $\dim E = \infty$, $T$ lineare, continuo e con inversa continua.
+	Allora $T$ non è compatto.
+
+	\textbf{Svolgimento}. Dall'esercizio precedente sappiamo che la composizione di compatti è compatta. Ma $TT^{-1} = 1_F$, che non è compatto.
+\end{exercise}
+
+\begin{theorem}
+	Siano $E$, $F$ spazi normati.
+	\begin{enumerate}
+		\item Se $T:E \to F$ è compatto, e $x_n \weakconv x$ in $E$, allora $Tx_n \conv Tx$ in $F$, ossia gli operatori compatti mandano successioni debolmente convergenti in successioni fortemente convergenti.
+		\item Se $E$ è riflessivo e $T:E \to F$ manda successioni debolmente convergenti in successioni fortemente convergenti, allora $T$ è compatto.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\leavevmode
+	\begin{enumerate}
+		\item Per dimostrare che $Tx_n \conv Tx$ basta dimostrare che da ogni sottosuccessione di $\{Tx_n\}_{n \in \N}$ si può estrarre un'altra sottosuccessione convergente a $Tx$.
+		Sia $\{x_{n_h}\}_{h \in \N}$ una sottosuccessione di $\{x_n\}_{n \in \N}$. Per compattezza, esiste una sottosuccessione di $\{Tx_{n_h}\}_{h \in \N}$ che converge a $y \in F$. Rimane da mostrare che $y =Tx$. Si osservi che per $\varphi \in F'$, $\varphi(Tx_{n_{h_k}}) \conv \varphi(y)$, cioè $\varphi T \in E'$ preserva la convergenza. Ma siccome $\{x_n\}_{n \in \N}$ converge debolmente, $\varphi T(x_{n_{h_k}}) \conv \varphi T(x)$. Segue che $\varphi T(x) = \varphi(y)$ per ogni $\varphi \in F'$, quindi $Tx=y$.
+
+		\item Sia $\{x_n\}_{n \in \N}$ successione limitata in $E$. Essendo $E$ riflessivo, esiste una sua estratta che converge debolmente, per cui $Tx_{n_h} \conv Tx$ per il punto precedente.
+	\end{enumerate}
+\end{proof}

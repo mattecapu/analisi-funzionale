@@ -246,7 +246,7 @@ Nonostante in dimensione finita la topologia debole sia uguale a quella usuale, 
 \end{remark}
 
 \begin{exercise}
-	Sia $E=\Czero[0,1]$, dotato della norma $\|\cdot\|_\infty$, con l'operatore $Tx = \int_0^1 x^2(t)\,dt$. Provare che
+	Sia $E=\Czero[0,1]$, dotato della norma $\|\cdot\|_\infty$, con l'operatore $Tx = \int_0^1 x^2(t)\,\dt$. Provare che
 	\begin{enumerate}
 		\item $T$ è fortemente continua,
 		\item $T$ non è debolmente continua,
@@ -257,7 +257,7 @@ Nonostante in dimensione finita la topologia debole sia uguale a quella usuale, 
 	\textbf{Svolgimento}.
 	\begin{enumerate}
 		\item L'integrale rispetta la convergenza uniforme, quindi se $x_n \conv x$ in $E$ allora anche $x^2_n \conv x^2$ e dunque $Tx_n \conv Tx$.
-		\item Se $T$ fosse debolmente continua, allora $T^{-1}(-1,1)$ sarebbe debolmente aperta. Si osservi che la funzione nulla è contenuta in $T^{-1}(1,1)$, poichè il suo integrale è nullo. Ora, se $T^{-1}(-1,1)$ fosse aperto, allora conterrebbe un intera retta passante per $0$, diretta diciamo da un vettore $v \in E$ non nullo. D'altra parte questo vorrebbe dire che $T(0+sv) = s^2 \int_0^1 v(t)\,dt \in (-1,1)$ per ogni $s \in \R$, assurdo.
+		\item Se $T$ fosse debolmente continua, allora $T^{-1}(-1,1)$ sarebbe debolmente aperta. Si osservi che la funzione nulla è contenuta in $T^{-1}(1,1)$, poichè il suo integrale è nullo. Ora, se $T^{-1}(-1,1)$ fosse aperto, allora conterrebbe un intera retta passante per $0$, diretta diciamo da un vettore $v \in E$ non nullo. D'altra parte questo vorrebbe dire che $T(0+sv) = s^2 \int_0^1 v(t)\,\dt \in (-1,1)$ per ogni $s \in \R$, assurdo.
 		\item Siccome le valutazioni $v_s : E \to \R$ ($v_s(x) = x(s)$) sono nel duale $E'$, la convergenza debole delle $x_n$ ci permette di concludere la convergenza $v_s(x_n) \conv v_s(x)$, cioè che $x_n \conv x$ puntualmente. Inoltre, il fatto che $x_n \weakconv x$ implica che $\|x_n\|_\infty \leq M$ uniformemente in $n \in \N$.  Allora $Tx_n \conv Tx$ per convergenza dominata.
 		\item Se fosse metrizzabile, la continuità per successioni sarebbe equivalente alla continuità per aperti, in conflitto con il punto precedente.
 	\end{enumerate}
