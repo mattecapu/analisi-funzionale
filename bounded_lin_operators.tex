@@ -86,7 +86,7 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 \begin{lemma}
 	Siano $E$, $F$ spazi normati e $T:E \to F$ un operatore limitato. Allora:
 	\begin{eqalign*}
-		&\inf\{C > 0 \suchthat \forall x \in E,\; \|Tx\|_F \leq C\|X\|_E \}\\&\overset{(1)}= \sup_{x \neq 0} \frac{\|Tx\|_F}{\|x\|_E}\\
+		&\inf\{C > 0 \suchthat \forall x \in E,\; \|Tx\|_F \leq C\|x\|_E \}\\&\overset{(1)}= \sup_{x \neq 0} \frac{\|Tx\|_F}{\|x\|_E}\\
 		&\overset{(2)}= \sup_{\|x\|_E=1} \|Tx\|_F\\
 		&\overset{(3)}= \sup_{\|x\|_E \leq 1} \|Tx\|_F.
 	\end{eqalign*}
@@ -378,17 +378,17 @@ L'analisi funzionale poggia su quattro teoremi `pilastro', che possiamo pensare 
 \end{proof}
 
 \begin{corollary}
-\label{cor:eval_norm}
-	Per ogni $x \in E$ si ha
-	\begin{equation*}
-		\|x\|_E = \sup \{ |f(x)| \suchthat f \in E', \|f\|_{E'} \leq 1\} = \|\langle -, x \rangle\|_{E'}
-	\end{equation*}
-	ed il sup è realizzato (quindi è un max).
-\end{corollary}
+	\label{cor:eval_norm}
+		Per ogni $x \in E$, detto $J_x : E' \to \R$ l'operatore di valutazione su $x$, si ha
+		\begin{equation*}
+			\|x\|_E = \sup_{\|f\|_{E'} \leq 1} |f(x)| = \|J_x\|_{E''}
+		\end{equation*}
+		ed il sup è realizzato (quindi è un max).
+	\end{corollary}
 \begin{proof}
 	Se $x=0$, lo statement è ovvio. Supponiamo allora che $x \neq 0$, e osserviamo che, per ogni $f \in E'$ di norma $\|f\|_{E'} \leq 1$,
 	\begin{equation*}
-		|f(x)| \leq \|f\|_{E'}\|x\|_E \leq \|x\|_E,
+		\|J_x\|_{E''} = |f(x)| \leq \|f\|_{E'}\|x\|_E \leq \|x\|_E,
 	\end{equation*}
 	per cui anche il sup di della quantità di sinistra è controllato dall'alto da $\|x\|_E$. D'altra parte, sappiamo dal corollario precedente che esiste una funzione $f_0$ tale che $f_0(x) = \|x\|_E$, e che dunque realizza il sup.
 \end{proof}
@@ -609,7 +609,7 @@ Vediamo ora un corollario importante a Banach--Steinhaus:
 \end{corollary}
 \begin{proof}
 	Applichiamo Banach--Steinhaus a $G'$, che è completo dal momento che $\R$ lo è.
-	Consideriamo gli operatori $\{T_b : G' \to \R\}_{b \in B}$, dati dalle valutazioni. Da ipotesi, tale famiglia è puntualmente limitata, e Banach--Steinhaus ci dà uniforme limitazione. D'altra parte, $\|T_b\|_{E'} = \|b\|_E$ (Corollario~\ref{cor:eval_norm}), da cui la tesi.
+	Consideriamo gli operatori $\{J_b : G' \to \R\}_{b \in B}$, dati dalle valutazioni. Da ipotesi, tale famiglia è puntualmente limitata, e Banach--Steinhaus ci dà uniforme limitazione. D'altra parte, $\|J_b\|_{E'} = \|b\|_E$ (Corollario~\ref{cor:eval_norm}), da cui la tesi.
 \end{proof}
 
 \begin{corollary}
@@ -706,6 +706,7 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 \end{exercise}
 
 \begin{exercise}
+\label{ex:ellp_iso_ellq}
 	Sia $1 \leq p < \infty$, $q$ coniugato di $p$, e
 	\begin{eqalign*}
 		\Phi : \ell^q &\longto {\ell^p}'\\
