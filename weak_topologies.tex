@@ -74,7 +74,7 @@ Nel caso della topologia iniziale indotta da una famiglia $\{\varphi_i : X \to Y
 	\begin{enumerate}
 		\item Supponiamo che $x_n \conv[n] x$ in $X$. Per continuità, le $\varphi_i$ conservano la convergenza. D'altra parte, supponiamo che ogni $\{\varphi_i(x_n)\}_{n \in \N}$ converga a $\varphi_i(x)$. Fissiamo un intorno di base di $x$, cioè un intorno aperto dato dall'intersezione di un numero finito di controimmagini della $\varphi_i$:
 		\begin{equation*}
-			x \in U=\bigcap_{i \in H} \varphi_i^{-1}(A_i), \qquad \text{$H \subseteq I$ finito e per ogni $i \in H$, $A_i$ aperto e $\varphi_i(x_0) \in A_i$}.
+			x \in U=\bigcap_{i \in H} \varphi_i^{-1}(A_i), \ \text{$H \subseteq I$ finito. p.o. $i \in H$, $A_i$ aperto, $\varphi_i(x_0) \in A_i$}.
 		\end{equation*}
 		Fissato $i \in H$, per ipotesi di convergenza, tutti i punti $\varphi_i(x_n)$ da un certo $n_i \in \N$ in poi cadranno in $A_i$, perciò $x_n \in \varphi_i^{-1}(A_i)$. Preso $\bar n = \max \{n_i \suchthat i \in H\}$, deduciamo che da $\bar n$ n avanti tutti i punti $x_n$ giacciono in $U$, ossia $x_n \conv[n] x$.
 		\item Chiaramente se $\psi$ è continua si ha che $\varphi_i \psi$ è continua per ogni $i \in I$. D'altra parte, supponiamo che $\varphi_i \psi$ sia continua per ogni $i \in I$. Fissiamo $A \in X$ di base, cioè
@@ -129,7 +129,7 @@ Nel nostro caso specifico però, possiamo prendere gli aperti su $\R$ come inter
 \begin{proof}
 	Prendiamo un qualsiasi intorno di base di un punto $x_0$:
 	\begin{equation*}
-		U = \{ x \in E \suchthat |f_i(x-x_0)| < \varepsilon, \text{per ogni $1 \leq i \leq n$} \}, \qquad n \in \N,\ \varepsilon > 0,\ f_i, \ldots, f_n \in E'.
+		U = \{ x \in E \suchthat |f_i(x-x_0)| < \varepsilon, \text{per ogni $1 \leq i \leq n$} \}, \ n \in \N,\ \varepsilon > 0,\ f_i, \ldots, f_n \in E'.
 	\end{equation*}
 	Sia $F: E \to \R^n$ la mappa $x \mapsto (f_1(x), \ldots, f_n(x))$. Siccome $\dim E = \infty$, $F$ non è iniettiva (altrimenti $\dim E \leq n$). Dunque $\ker F \neq 0$, ossia esiste un vettore non nullo $y_0 \in E$ che annulla tutte le $f_i$ simultaneamente. Allora consideriamo la retta $x_0 + t y_0$, parametrizzata da $t \in \R$. Si verifica che per ogni $t \in \R$:
 	\begin{equation*}
@@ -303,7 +303,8 @@ Ricordiamo che in questa topologia, $x_n \conv x$ se e solo se $x \leq \liminf_n
 		\end{equation*}
 		Posto $M = \sup_n \|x^{(n)}\|$, abbiamo
 		\begin{eqalign*}
-			\left| \sum_{h=1}^\infty x^{(n)}_h z_h - \sum_{h=1}^\infty x_h z_h \right| &\leq \sum_{h=1}^\infty |x^{(n)}_h-x_h||z_h|\\
+			&\left| \sum_{h=1}^\infty x^{(n)}_h z_h - \sum_{h=1}^\infty x_h z_h \right|\\
+			&\leq \sum_{h=1}^\infty |x^{(n)}_h-x_h||z_h|\\
 			&\leq \sum_{h=1}^N |x^{(n)}-x_h||z_h| + \sum_{h=N+1}^\infty |x^{(n)}-x_h||z_h|\\
 			&\leq \left( \sum_{h=1}^N |x^{(n)}_h-x_h|^p \right)^{1/p}\! \left( \sum_{h=1}^N |z_h|^q \right)^{1/q}\! +\\
 			&\qquad + \left( \sum_{h=N+1}^\infty |x^{(n)}_h-x_h|^p \right)^{1/p}\! \left( \sum_{h=N+1}^\infty |z_h|^q \right)^{1/q}\\
@@ -352,6 +353,7 @@ Riassumendo:
 		$(c, \|\cdot\|_\infty)$ & $\sup_n \|x^{(n)}\|_{\infty} < \infty \ \text{e}\ \lim_n x^{(n)}_h = x_h \ \forall h \in \N \ \text{e}\ \lim_n\lim_h x^{(n)}_h = \lim_h x_h$
 	\end{tabular}
 \end{center}
+\vspace{1ex}
 
 \begin{exercise}
 	Sia $x \in \ell^p$ non nullo, $1 \leq p < \infty$. Consideriamo la successione::
@@ -384,7 +386,7 @@ Riassumendo:
 	\textbf{Svolgimento}.
 	Consideriamo $(x_1,x_2) \in E \times E$, e fissiamo un intorno di base di $x_1 + x_2$:
 	\begin{equation*}
-		U = \{x \in E \suchthat |f_i(x-(x_1+x_2))| < \varepsilon, \ \text{per ogni $i \in F$}\}, \quad \text{$F$ finito, $f_i \in E'$ per ogni $i \in F$.}
+		U = \{x \in E \suchthat |f_i(x-(x_1+x_2))| < \varepsilon, \ \text{p.o. $i \in F$}\}, \ \text{$F$ finito, $f_i \in E'$ per ogni $i \in F$.}
 	\end{equation*}
 	Se troviamo un intorno di $(x_1,x_2)$ mandato in $U$, ho dimostrato la continuità. Fissiamo $F$ e le $f_i$, e definiamo
 	\begin{eqalign*}
@@ -423,7 +425,7 @@ Ricordiamo che dato uno spazio normato, la funzione
 	\begin{enumerate}
 		\item Fissato $f_0 \in E'$, una base di intorni aperti di $f_0$ rispetto alla topologia debole$^*$ è data da
 		\begin{equation*}
-			\{f \in E' \suchthat |(f-f_0)(x_i)| < \varepsilon, \text{per ogni $i \in F$}\}, \quad \text{$F$ finito, $x_i \in E$ per ogni $i \in F$.}
+			\{f \in E' \suchthat |(f-f_0)(x_i)| < \varepsilon, \text{p.o. $i \in F$}\}, \quad \text{$F$ finito, $x_i \in E$ per ogni $i \in F$.}
 		\end{equation*}
 		\item La topologia debole$^*$ è di Hausdorff.
 	\end{enumerate}
@@ -462,9 +464,10 @@ Diremo che $C \subseteq E'$ è debolmente$*$ chiuso se il suo complementare è a
 		\item Banale, per inclusione delle topologie.
 		\item Caso particolare del Corollario~\ref{cor:banach_steinhaus_liminf}, in cui invece di dire `convergenza puntuale' diciamo `convergenza debole$^*$'.
 		\item Per disuguaglianza triangolare,
-		\begin{equation*}
-			|f_n(x_n) - f(x)| \leq |f_n(x_n) - f_n(x)| + |f_n(x) - f(x)| \leq \|f_n\|_{E'}\|x_n - x\|_E + |f_n(x) - f(x)|.
-		\end{equation*}
+		\begin{eqalign*}
+			|f_n(x_n) - f(x)| &\leq |f_n(x_n) - f_n(x)| + |f_n(x) - f(x)|\\
+			&\leq \|f_n\|_{E'}\|x_n - x\|_E + |f_n(x) - f(x)|.
+		\end{eqalign*}
 		Il primo termine converge a zero per ipotesi sulla successione $\{x_n\}_{n \in \N}$, e siccome dal punto precedente sappiamo che $\|f_n\|_{E'}$ è uniformemente limitato, mentre il secondo per ipotesi sulla successione $\{f_n\}_{n \in \N}$.
 	\end{enumerate}
 \end{proof}
@@ -482,7 +485,7 @@ Diremo che $C \subseteq E'$ è debolmente$*$ chiuso se il suo complementare è a
 		\item[$(\implied)$] Sia $y \in \ell^1$.
 		\begin{eqalign*}
 			\left| \sum_{h=1}^\infty x^{(n)}_h y_h - \sum_{h=1}^\infty x_h y_h \right| &\leq \sum_{h=1}^N |x^{(n)}_h - x_h||y_h| + \sum_{h=N+1}^\infty |x^{(n)}_h - x_h||y_h|\\
-			&\leq (\max_{h=1,\ldots,N}|x^{(n)}_h - x_h|)\|y\|_{\ell^1} + \underbrace{M}_{2\sup_n \|x^{(n)\|_{\ell^\infty}}} \sum_{h=N+1}^\infty |y_h|.
+			&\leq (\max_{h=1,\ldots,N}|x^{(n)}_h - x_h|)\|y\|_{\ell^1} + \!\!\! \underbrace{M}_{2\sup_n \|x^{(n)}\|_{\ell^\infty}} \sum_{h=N+1}^\infty |y_h|.
 		\end{eqalign*}
 		Scelgo $N$ grande in modo che $\sum_{h=N+1}^\infty |y_h| < \varepsilon$ fissato (posso farlo perche $y \in \ell^1$ significa proprio che tale serie è convergente, quindi ha code definitivamente nulle). A questo punto mandando $n \to \infty$, anche il primo termine svanisce in quanto abbiamo assunto $x^{(n)}_h \to x_h$ per ogni $h \in \N$.
 	\end{description}

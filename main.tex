@@ -1,6 +1,6 @@
-\documentclass[italian]{notes}
+\documentclass[italian, printmode]{./notes}
 
-\usepackage{mama}
+\usepackage{./mama}
 
 \title{Analisi Funzionale}
 \author{Matteo Capucci (sul corso del prof. Lamberti)}
@@ -17,6 +17,8 @@
 \newcommand{\dx}{\mathrm{d}x}
 \newcommand{\dt}{\mathrm{d}t}
 \newcommand{\ds}{\mathrm{d}s}
+
+\renewcommand{\interior}[1]{\operatorname{int}\left(#1\right)}
 
 \newcommand{\weakconv}{\rightharpoonup}
 \renewcommand{\conv}[1][]{\underset{{#1}}{\rightarrow}}

@@ -286,9 +286,11 @@ per cui valgono le seguenti identità:
 		Mandando $t \to 0$, otteniamo la disuguaglianza cercata.
 
 		\item[$(\implied)$] Dobbiamo verificare che se $y$ soddisfa la condizione in ipotesi, allora $y$ minimizza la distanza da $x$, cioè per ogni $z \in K$ si ha $\|x-z\| \geq \|x-y\|$. Siccome $y \in K$, è sufficiente dimostrare ciò per mostrare che $y$ realizza effettivamente il minimo.
-		\begin{equation*}
-			\|x-z\|^2  = \|x-y+y-z\|^2 = \|x-y\|^2 + 2\Re{x-y,\underbrace{y-z}_{-(z-y)}} + \|y-z\|^2 \geq \|x-y\|^2.
-		\end{equation*}
+		\begin{eqalign*}
+			\|x-z\|^2  &= \|x-y+y-z\|^2\\
+			&= \|x-y\|^2 + 2\Re{x-y,\underbrace{y-z}_{-(z-y)}} + \|y-z\|^2\\
+			&\geq \|x-y\|^2.
+		\end{eqalign*}
 	\end{description}
 \end{proof}
 
@@ -390,15 +392,20 @@ per cui valgono le seguenti identità:
 	\end{equation*}
 	Provare che $K$ è chiuso e convesso e determinare $P_K$.
 
-	\noindent\textbf{Svolgimento}.
-	Chiusura e convessità banali. Si intuisce che $P_k f = \max\{\Re f, 3\}\ind_{(0,1/2)}$. Andiamo a verificare che
+	\textbf{Svolgimento}.
+	Chiusura e convessità banali. Si intuisce che
+	\begin{equation*}
+		P_k f = \max\{\Re f, 3\}\ind_{(0,1/2)}.
+	\end{equation*}
+	Andiamo a verificare che
 	\begin{equation*}
 		\Re{f-P_K f, g - P_K f} \leq 0, \qquad \text{per ogni $g \in K$}
 	\end{equation*}
-	ossia che
+	ossia che, per ogni $g \in K$,
 	\begin{equation*}
-		\Re{\int_0^1 (f- \max\{\Re f, 3\}\ind_{(0,1/2)}) \conj{(g- \max\{\Re f, 3\}\ind_{(0,1/2)})}\,\dx} \leq 0, \qquad \text{per ogni $g \in K$}.
+		\Re{\int_0^1 (f- \max\{\Re f, 3\}\ind_{(0,1/2)}) \conj{(g- \max\{\Re f, 3\}\ind_{(0,1/2)})}\,\dx} \leq 0,
 	\end{equation*}
+	da cui
 	\begin{eqalign*}
 		\int_0^{1/2} & (\Re f - \max \{\Re f, 3\})(g - \max\{\Re f, 3\})\,\dx\\
 		&= \cancel{\int_{\{x \in (0,1/2) \suchthat \Re f \geq 3\}} \text{(idem)}} + \int_{\{x \in (0,1/2) \suchthat \Re f < 3\}} \text{(idem)}\\
@@ -406,6 +413,7 @@ per cui valgono le seguenti identità:
 		&\leq 0.
 	\end{eqalign*}
 \end{exercise}
+\vspace{1ex}
 
 \begin{definition}
 	Sia $E$ spazio con prodotto scalare, $S \subseteq E$. Il \defining{complemento ortogonale} di $S$:
@@ -487,7 +495,7 @@ per cui valgono le seguenti identità:
 	\end{equation*}
 \end{proof}
 
-\begin{theorem}[Disuguglianza di Bessel]
+\begin{theorem}[disuguaglianza di Bessel]
 	Sia $E$ spazio con prodotto scalare, sia $\{u_n\}_{n \in \N}$ un insieme ortonormale.
 	Allora per ogni $x \in E$ vale
 	\begin{equation*}
@@ -586,7 +594,7 @@ Dunque le basi hilbertiane hanno proprietà molto forti, del tutto paragonabili 
 	Allora esiste una base hilbertiana.
 \end{theorem}
 \begin{proof}[Dimostrazione con la bomba atomica]
-	Sia $P = \{S \subseteq H \suchthat \text{$S$ è un insieme ortonormale} \}$. Ordiniamo $P$ con la relazione di inclusione. $P$ è banalmente induttivo, e non vuoto. Dunque esiste un elemento massimale non banale $\tilde S \in P$, e questa affermiamo essere una base hilbertiana. Infatti. $\langle \tilde S \rangle = H$. Infatti $H = \closure {\langle \tilde S \rangle} \oplus \langle \tilde S \rangle^\perp$, dunque per massimalità di $\tilde S$, $\langle \tilde S \rangle^\perp = 0$.
+	Sia $P$ la famiglia dei sottoinsiemi ortonormali di $H$. Ordiniamo $P$ con la relazione di inclusione. $P$ è banalmente induttivo, e non vuoto. Dunque esiste un elemento massimale non banale $\tilde S \in P$, e questa affermiamo essere una base hilbertiana. Infatti. $\langle \tilde S \rangle = H$. Infatti $H = \closure {\langle \tilde S \rangle} \oplus \langle \tilde S \rangle^\perp$, dunque per massimalità di $\tilde S$, $\langle \tilde S \rangle^\perp = 0$.
 \end{proof}
 
 \begin{remark}
@@ -594,7 +602,7 @@ Dunque le basi hilbertiane hanno proprietà molto forti, del tutto paragonabili 
 \end{remark}
 
 \begin{lemma}[Gram--Schmidt]
-	Sia $H$ uno spazio con prodotto scalare, $u_1, \ldots, u_n \in H$ linearmente indipendenti. Siano $w_1, \ldots, w_n$ definiti per ricorrenza come segue:
+	Sia $E$ uno spazio con prodotto scalare, $u_1, \ldots, u_n \in H$ linearmente indipendenti. Siano $w_1, \ldots, w_n$ definiti per ricorrenza come segue:
 	\begin{eqalign*}
 		w_i = \begin{dcases}
 			\frac{u_1}{\|u_1\|}, & i=1\\
@@ -616,7 +624,7 @@ Dunque le basi hilbertiane hanno proprietà molto forti, del tutto paragonabili 
 		\item[$(\Longrightarrow)$] Facile: si prendano le combinazioni lineari a coefficienti razionali degli elementi della base.
 		\item[$(\implied)$] Sia $X=\{x_n\}_{n \in \N}$ denso in $H$. Estraiamo una sottosuccessione da tale insieme definendo:
 		\begin{equation*}
-			x_{n_k} = \text{il primo elemento di $X$ che sia linearmente indipendente da $x_{n_1}, \ldots, x_{n_{k-1}}$}.
+			x_{n_k} = \text{il primo elemento di $X$ linearmente indipendente da $x_{n_1}, \ldots, x_{n_{k-1}}$}.
 		\end{equation*}
 		Passando la successione $\{x_{n_k}\}_{k \in \N}$ per il processo di Gram--Schmidt, otteniamo la base hilbertiana cercata.
 	\end{description}
@@ -724,7 +732,8 @@ Mettiamoci ora in $\Czero[-1,1]$. Siccome $\Czero[-1,1]$ è denso in $L^2[-1,1]$
 	\end{equation*}
 	Supponiamo che $n \geq m+1$. Allora ci avvaliamo dell'integrazione per parti $m+1$ volte:
 	\begin{eqalign*}
-		\int_{-1}^1 \der{^n}{x^n} (x^2-1)^n\, \der{^m}{x^m} (x^2-1)^m \,dx &= (-1)^{m+1} \int_{-1}^1 \der{^{n-m-1}}{x^{n-m-1}} (x^2-1)^n\, \der{^{2m+1}}{x^{2m+1}} (x^2-1)^m \,dx.
+		&\int_{-1}^1 \der{^n}{x^n} (x^2-1)^n\, \der{^m}{x^m} (x^2-1)^m \,dx =\\
+		&=(-1)^{m+1} \int_{-1}^1 \der{^{n-m-1}}{x^{n-m-1}} (x^2-1)^n\, \der{^{2m+1}}{x^{2m+1}} (x^2-1)^m \,dx.
 	\end{eqalign*}
 	Notiamo che non ci sono termini di bordo: essendo $n \geq m+1$, la derivata $n-m-1$ (e tutte quelle intermedie) contengono un fattore $x^2-1$, che si annulla in $\pm 1$.
 	Ora, per terminare, è sufficiente notare che il secondo fattore dell'integranda è una derivata $2m+1$ di un polinomio di grado $m$, dunque nulla.

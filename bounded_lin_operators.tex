@@ -23,7 +23,7 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 
 \begin{lemma}
 \label{lemma:reverse_triang_ineq}
-	In uno spazio normato, vale la disuguglianza
+	In uno spazio normato, vale la disuguaglianza
 	\begin{equation}
 		\|x-y\| \geq \|x\|-\|y\|
 	\end{equation}
@@ -85,9 +85,11 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 
 \begin{lemma}
 	Siano $E$, $F$ spazi normati e $T:E \to F$ un operatore limitato. Allora:
-	$$
-		\inf\{C > 0 \suchthat \forall x \in E,\; \|Tx\|_F \leq C\|X\|_E \} \overset{(1)}= \sup_{x \neq 0} \frac{\|Tx\|_F}{\|x\|_E} \overset{(2)}= \sup_{\|x\|_E=1} \|Tx\|_F \overset{(3)}= \sup_{\|x\|_E \leq 1} \|Tx\|_F.
-	$$
+	\begin{eqalign*}
+		&\inf\{C > 0 \suchthat \forall x \in E,\; \|Tx\|_F \leq C\|X\|_E \}\\&\overset{(1)}= \sup_{x \neq 0} \frac{\|Tx\|_F}{\|x\|_E}\\
+		&\overset{(2)}= \sup_{\|x\|_E=1} \|Tx\|_F\\
+		&\overset{(3)}= \sup_{\|x\|_E \leq 1} \|Tx\|_F.
+	\end{eqalign*}
 \end{lemma}
 \begin{proof}
 	\leavevmode
@@ -208,7 +210,8 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 	$$
 		|Tx\| \leq \int_0^1 |x(t)|\,\dt \leq \|x\|_\infty.
 	$$
-	Si a $\|T\| \leq 1$, e affermiamo che vale l'uguaglianza. Definiamo la successione
+	Si ha $\|T\| \leq 1$, e affermiamo che vale l'uguaglianza.
+	Definiamo la successione
 
 	\begin{minipage}[c]{\textwidth}
 		\begin{minipage}[c]{.48\textwidth}
@@ -226,7 +229,7 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 			\begin{figure}[H]
 				\centering
 				\begin{tikzpicture}
-					\node (image) at (0,0){\includegraphics[width=.8\textwidth]{figures/comp_supp_seq.pdf}};
+					\node (image) at (0,0){\includegraphics[width=.75\textwidth]{figures/comp_supp_seq.pdf}};
 				\end{tikzpicture}
 			\end{figure}
 		\end{minipage}
@@ -249,27 +252,24 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 		\|T_n - T_m\|_{E \to F} < \varepsilon, \qquad \text{per ogni $n , m \geq n_\varepsilon$}.
 	\end{equation*}
 	Per definizione di $\|\cdot\|_{E \to F}$, ciò comporta che
-	\begin{equation*}
+	\begin{equation}
+	\label{eq:cauchy_estimate}
 		\forall x \in E, \quad \|T_nx - T_mx\|_F \leq \|T_n - T_m\|_{E \to F}\|x\|_E < \varepsilon\|x\|_E.
-	\end{equation*}
+	\end{equation}
 	Per cui la successione $\{T_nx\}_{n \in \N}$ è di Cauchy in $F$ (si usi, dato $\varepsilon > 0$, l'$n_{\varepsilon/\|x\|_E}$ di $\{T_n\}_{n \in \N}$).
 	Siccome $F$ è Banach, questo significa che $T_n x$ converge ad un certo elemento di $F$, che indichiamo con $Tx$: la corrispondenza $x \mapsto Tx$ definisce un operatore lineare, che affermiamo essere anche continuo e limite di $\{T_n\}_{n \in \N}$.
 
-	Infatti mandando $m \to \infty$ in
-	\begin{equation*}
-		\|T_nx - T_m x \|_F \leq \|T_n - T_m\|_{E \to F}\|x\|_E \leq \varepsilon \|x\|_E
-	\end{equation*}
-	si ottiene
+	Infatti mandando $m \to \infty$ in~\eqref{eq:cauchy_estimate} si ottiene
 	\begin{equation*}
 		\|T_n x - T x\|_F \leq \|T_n - T\|_{E \to F}\|x\|_E \leq \varepsilon \|x\|_E.
 	\end{equation*}
 	Riarrangiando,
 	\begin{equation*}
-		\|Tx\|_{E \to F} \leq (\varepsilon + \|T_n\|_{E \to F})\|x\|_E
+		\|Tx\|_F \leq (\varepsilon + \|T_n\|_{E \to F})\|x\|_E
 	\end{equation*}
 	da cui la continuità di $T$. Infine, per ogni $n \geq n_\varepsilon$,
 	\begin{equation*}
-		\|T_n x - Tx\|_{E \to F} \leq \varepsilon\|x\| \implies \|T_n - T\|_{E \to F} \leq \varepsilon
+		\|T_n x - Tx\|_F \leq \varepsilon\|x\| \implies \|T_n - T\|_{E \to F} \leq \varepsilon
 	\end{equation*}
 	e quindi $T_n \to T$ in $E \to F$.
 \end{proof}
@@ -277,7 +277,7 @@ Si osservi che non esiste $x \in E$ non nullo tale che $\|Tx\|_F = \|x\|_E$.
 \section{Norme equivalenti}
 Due norme si dicono \defining{equivalenti} se inducono la stessa topologia. Di fatto, due norme su uno spazio $E$ sono equivalenti se l'identità è un omeomorfismo tra $(E, \|\cdot\|_1)$ ed $(E, \|\cdot\|_2)$. Ma questo significa che esistono $C_1, C_2 > 0$ tali che per ogni $x \in E$,
 \begin{equation*}
-	\|x\|_1 \leq C_1 \|x\|_2, \qquad \|x\|_2 \leq C_2 \leq \|x\|_1;
+	\|x\|_1 \leq C_1 \|x\|_2, \qquad \|x\|_2 \leq C_2 \|x\|_1;
 \end{equation*}
 da cui segue
 \begin{equation*}
@@ -296,12 +296,13 @@ da cui segue
 \begin{proof}
 	\leavevmode
 	\begin{enumerate}
-		\item Usando Cauchy--Schwarz nell'ultima disuguglianza:
+		\item Usando Cauchy--Schwarz nell'ultima disuguaglianza:
 		\begin{equation*}
 			\|Tx\|_F = \|T(x^i e_i)\|_F \leq |x^i|\|Te_i\|_F \leq C \|x\|_{\R^n}.
 		\end{equation*}
-		\item Siccome $E$ ha dimensione finita, esiste un isomorfismo $L:\R^n \to E$ per un qualche $n \in \N$. Per il punto precedente, questo isomorfismo è anche continuo. Segue che $TL$ è lineare e continua, implicando $T = TLL^{-1}$ dev'essere continua.
-		\item Siccome l'identità di uno spazio vettoriale è lineare, e visti i punti precedenti, otteniamo la tesi.
+		\item Siccome $E$ ha dimensione finita, esiste un isomorfismo $L:\R^n \to E$ per un qualche $n \in \N$. Per il punto precedente, questo isomorfismo è anche continuo.
+		Di nuovo per il punto precedente, anche $TL$ è lineare e continua, per cui $T = TLL^{-1}$ dev'essere continua.
+		\item Segue dai punti precedenti, siccome l'identità di uno spazio vettoriale è lineare.
 	\end{enumerate}
 \end{proof}
 
@@ -310,12 +311,12 @@ L'analisi funzionale poggia su quattro teoremi `pilastro', che possiamo pensare 
 
 \begin{theorem}
 \label{th:hahn_banach}
-	Sia $R$ uno spazio vettoriale su $\R$ e $p : E \to \R$ un'applicazione tale che
+	Sia $E$ uno spazio vettoriale su $\R$ e $p : E \to \R$ un'applicazione tale che
 	\begin{enumerate}
 		\item $p(\lambda x) = \lambda p(x)$ per ogni $x \in E$, $\lambda > 0$,
 		\item $p(x+y) \leq p(x) + p(y)$ per ogni $x,y \in E$.
 	\end{enumerate}
-	Sia inoltre $G \leq E$ un sottospazio vettoriale tale che
+	Sia inoltre $G \leq E$ un sottospazio vettoriale, e $g:G \to \R$ un'applicazione lineare tale che
 	\begin{enumerate}[resume]
 		\item $g(x) \leq p(x)$ per ogni $x \in G$.
 	\end{enumerate}
@@ -339,9 +340,9 @@ L'analisi funzionale poggia su quattro teoremi `pilastro', che possiamo pensare 
 	\begin{equation*}
 		f(x) + t\alpha = \varphi(x+tx_0) \leq p(x+tx_0), \qquad \text{per ogni $x \in D(f)$, $t \in \R$}.
 	\end{equation*}
-	Per linearità di $f$, è sufficiente verificare la disuguglianza per $|t|=1$ (oltre che per il caso banale $t=0$). Infatti si ha (quando $t > 0$)
+	Per linearità di $f$, è sufficiente verificare la disuguaglianza per $|t|=1$ (oltre che per il caso banale $t=0$). Infatti si ha (quando $t > 0$)
 	\begin{equation*}
-		f(x) + t\alpha = t\left(f\left(\frac{x}{t} + \alpha\right)\right) \leq t p\left(\frac{x}{t} + x_0\right) = p(x + tx_0).
+		f(x) + t\alpha = t\left(\varphi\left(\frac{x}{t} + x_0\right)\right) \leq t p\left(\frac{x}{t} + x_0\right) = p(x + tx_0).
 	\end{equation*}
 	e analogamente nel caso negativo. Allora scegliamo
 	\begin{equation*}
@@ -398,7 +399,7 @@ L'analisi funzionale poggia su quattro teoremi `pilastro', che possiamo pensare 
 
 \begin{lemma}
 \label{lemma:zero_outside_G}
-	Sia $E$ uno spazio normato, $G \leq E$ sottospazio. Sia $x_0 \in E \setminus G$.%, tale che $\dist(x_0,G) \neq 0$.
+	Sia $E$ uno spazio normato, $G \leq E$ sottospazio. Sia $x_0 \in E \setminus G$ un punto a distanza strettamente positiva da $G$.
 	Allora esiste $f \in E'$ tale che $f(x_0) \neq 0$ e $f\vert_G \equiv 0$.
 \end{lemma}
 \begin{proof}
@@ -451,19 +452,22 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 	Dimostriamo l'affermazione `duale': ponendo $O_n = X_n^C$, tutti gli $O_n$ sono aperti densi, e vogliamo mostrare che pure la loro intersezione è densa.
 	Sia dunque $B(x,r)$ una palla arbitraria\footnote{Consideriamo le palle aperte.}. Dimostreremo che la sua intersezione con $G = \bigcap_{n \in \N} O_n$ è non vuota.
 
-	Per ipotesi, $O_1$ è denso, dunque esiste $x_1 \in B(x,r) \cap O_1$. Sia inoltre $\bar B(x_1, r/2^1)$ una palla \emph{chiusa} contenuta in $B(x, r) \cap O_1$ (ciò è possibile poichè quest'ultimo è un aperto non vuoto).
-	Se ora consideriamo $B(x_1, r/2)$ ed $O_2$, ed effettuiamo una scelta analoga alla precedente, troviamo un altro punto $x_2$ ed una palla chiusa $\bar B(x_2, r/2^2)$. È chiaro quindi che possiamo procedere iterativamente e costruire una successione $\{x_n\}_{n \in \N}$ di punti di $X$.
+	Si ponga $O_0 = X$, $x_0 = x$, $r_0 = 0$ e si definisca la successione di palle aperte:
+	\begin{equation*}
+		B(x_{n+1}, r_{n+1}) \subseteq B(x_n, r_n) \cap O_{n+1}, \quad r_{n+1} \leq \frac{r_n}2 \leq \frac{r}{2^{n+1}}
+	\end{equation*}
+	Ciò è possibile in quanto ciascun $O_n$ è denso, e $B(x_n, r_n) \cap O_{n+1}$ è aperto poichè intersezione di aperti.
 
 	Notiamo che $\{x_n\}_{n \in \N}$ è di Cauchy: infatti per ogni $m > n$ si ha
 	\begin{eqalign*}
-		d(x_m, x_n) \leq d(x_m, x_{m-1}) + \cdots + d(x_{n+1}, x_n) \leq \frac{r}{2^n}.
+		d(x_n, x_{n+1}) \leq \frac{r}{2^n}.
 	\end{eqalign*}
-	Dalla completezza di $X$ deduciamo allora che $x_n \conv x_\infty \in X$. Banalmente, $x_\infty \in B(x,r) \cap G$, e la dimostrazione è conclusa.
+	Dalla completezza di $X$ deduciamo allora che $x_n \conv x_\infty \in X$. Infine, $x_\infty \in \bigcap_{n \in \N} B(x_n,r_n) \subseteq \bigcap_{n \in \N} (B(x,r) \cap O_n) \subseteq B(x,r) \cap G$, e la dimostrazione è conclusa.
 \end{proof}
 
 \begin{exercise}
 \label{ex:ptwise_eventually_null_seq}
-	Sia $E$ spazio di Banach, $f_n$, $n \in \N$ successione in $E'$. Supponiamo che per ogni $x \in E$, esista $n_x \in \N$ tale che
+	Sia $E$ spazio di Banach, $\{f_n\}_{n \in \N}$ successione in $E'$. Supponiamo che per ogni $x \in E$, esista $n_x \in \N$ tale che
 	\begin{equation*}
 		f_{n_x}(x) = 0.
 	\end{equation*}
@@ -531,23 +535,18 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 \begin{counterexample}
 	Per avere un principio di uniforme limitatezza come il precedente, è cruciale la linearità: sia $T_n:\R \to \R$ una funzione come in figura.
 
-	\begin{figure}[H]
-		\centering
-		\begin{tikzpicture}
-			\node (image) at (0,0){\includegraphics[width=.5\textwidth]{figures/comp_supp_seq.pdf}};
-		\end{tikzpicture}
-	\end{figure}
+	(...)
 
 	È chiaro che $\sup_n |T_n x| < \infty$, siccome ogni punto è definitivamente nel luogo degli zeri di $T_n$. Tuttavia $\sup_n \sup_x |T_n x| = + \infty$.
 \end{counterexample}
 
 \begin{counterexample}
 	Anche l'ipotesi di completezza su $E$ è necessaria. Sicuramente, in tal caso non potremmo appoggiarci al lemma di Baire nella dimostrazione, ma comunque non esiste un'altra maniera di dimostrare il teorema.
-	Si consideri $E = \Czero_c(0,1)$ con la norma $\|\cdot\|_\infty$. Esso non è completo (esercizio). Si consideri la famiglia di operatori $T_n : E \to \R$ definita come $T_nf = n f(1/n)$. Essi sono lineari e continui, e puntualmente limitata siccome $\lim_n T_n f = 0$ siccome $f$ è supportata in $(0,1)$. Si ha
+	Si consideri $E = \Czero_c(0,1)$ con la norma $\|\cdot\|_\infty$. Esso non è completo (esercizio). Si consideri la famiglia di operatori $T_n : E \to \R$ definita come $T_nf = n f(1/n)$. Essi sono lineari, continui, e puntualmente limitati siccome $\lim_n T_n f = 0$ se $f$ è supportata in $(0,1)$ ($1/n$ è definitivamente fuori dal supporto di $f$). Si ha
 	\begin{equation*}
 		\sup_{f \in E, f \neq 0} \frac{|T_n f|}{\|f\|_\infty} \leq \sup_{f \in E, f \neq 0} \frac{n|f(1/n)|}{\|f\|_\infty} \leq \sup_{f \in E, f \neq 0} \frac{n\|f\|_\infty}{\|f\|_\infty} = n.
 	\end{equation*}
-	Per vedere che $\|T_n\|_{E'} = n$, osseviamo che la $f_n \in E$ in figura realizza proprio tale norma:
+	Per vedere che $\|T_n\|_{E'} = n$, osserviamo che una funzione come in figura realizza proprio tale norma:
 
 	\begin{figure}[H]
 		\centering
@@ -560,12 +559,13 @@ Sia $(X,d)$ metrico e $A \subseteq X$.
 \begin{exercise}
 	Sia $E = \R[x]$ normato da
 	\begin{equation*}
-		\left\|\sum_{k=0}^n a_k\,x^k\right|_E = \max_{k = 0, \ldots, n} |a_k|.
+		\left\|\sum_{k=0}^n a_k\,x^k\right\|_E = \max_{k = 0, \ldots, n} |a_k|.
 	\end{equation*}
 	Provare che $(E, \|\cdot\|_E)$ non è completo.
 
-	\textbf{Svolgimento}. La successione $p_n = x^n/n$ è di Cauchy, ma il suo limite non è un polinomio. Ma usiamo Banach--Steinhaus, considerando la successione $T_n : E \to \R$ delle derivazioni $n$-esime. La successione è definitivamente limitata puntualmente, perchè ogni polinomio viene ucciso da una derivazione sufficientemente alta, ma $T_n x^n = n \to \infty$, per cui non abbiamo uniforme limitatezza.
-
+	\textbf{Svolgimento}. La successione $p_n = x^n/n$ è di Cauchy, ma il suo limite non è un polinomio.
+	Per provarlo, usiamo Banach--Steinhaus, considerando la successione $T_n : E \to \R$ delle derivazioni $n$-esime.
+	La successione è definitivamente limitata puntualmente, perchè ogni polinomio viene ucciso da una derivazione sufficientemente alta, ma $T_n x^n = n \to \infty$, per cui non abbiamo uniforme limitatezza.
 	Una ulteriore maniera di confutare la completezza di $\R[x]$ è applicando l'Esercizio~\ref{ex:ptwise_eventually_null_seq}
 \end{exercise}
 
@@ -580,9 +580,9 @@ Vediamo ora un corollario importante a Banach--Steinhaus:
 	\end{equation*}
 \end{corollary}
 \begin{proof}
-	Siccome $\{T_n\}_{n \in \N}$ è puntualmente convergente, è anche puntualmente limitata. Dal teorema di Banach--Steinhaus segue allora che è anche uniformemente limitata. Passando quest'ultima al limite $n \to \infty$, si ha
+	Siccome $\{T_n\}_{n \in \N}$ è puntualmente convergente, è anche puntualmente limitata. Dal teorema di Banach--Steinhaus segue allora che è anche uniformemente limitata. Passando quest'ultima proprietà al limite $n \to \infty$, si ha
 	\begin{equation*}
-		\|T_x\|_F \leq C\|x\|_E, \qquad \text{per ogni $x \in E$}
+		\|Tx\|_F \leq C\|x\|_E, \qquad \text{per ogni $x \in E$}
 	\end{equation*}
 	che testimonia che $T$ è continuo, oltre che lineare.
 
@@ -594,13 +594,13 @@ Vediamo ora un corollario importante a Banach--Steinhaus:
 	\begin{eqalign*}
 		\|T x\|_F &= \lim_n \|T_n x\|_F\\
 		&= \liminf_n \|T_n x\|_F\\
-		&= \liminf \|T_n\|_{E \to F} \|x\|_E
+		&\leq \left(\liminf_n \|T_n\|_{E \to F}\right) \|x\|_E
 	\end{eqalign*}
 	che dimostra la tesi.
 \end{proof}
 
 \begin{remark}
-	Usiamo il $\liminf$ perchè non sappiamo se $\|T_n\|_{E \to F}$ abbia limite, mentre il limite inferiore esiste sempre. Anche il limite superiore funziona, ma ovviamente avrebbe dato una stima peggiore.
+	Usiamo il $\liminf$ perchè non sappiamo se $\|T_n\|_{E \to F}$ abbia limite (l'ultimissima disuguaglianza non sarebbe verificata, in pratica, non essendo ben definito il membro di destra), mentre il limite inferiore esiste sempre. Anche il limite superiore ha questa proprietà, ma ovviamente avrebbe dato una stima peggiore.
 \end{remark}
 
 \begin{corollary}
@@ -609,7 +609,7 @@ Vediamo ora un corollario importante a Banach--Steinhaus:
 \end{corollary}
 \begin{proof}
 	Applichiamo Banach--Steinhaus a $G'$, che è completo dal momento che $\R$ lo è.
-	Consideriamo gli operatori $\{T_b : G' \to \R\}_{b \in B}$, data dalla valutazione. Da ipotesi, tale famiglia è puntualmente limitata, e Banach--Steinhaus ci dà uniforme limitazione. D'altra parte, $\|T_b\|_{E'} = \|b\|_E$ (Corollario~\ref{cor:eval_norm}), da cui la tesi.
+	Consideriamo gli operatori $\{T_b : G' \to \R\}_{b \in B}$, dati dalle valutazioni. Da ipotesi, tale famiglia è puntualmente limitata, e Banach--Steinhaus ci dà uniforme limitazione. D'altra parte, $\|T_b\|_{E'} = \|b\|_E$ (Corollario~\ref{cor:eval_norm}), da cui la tesi.
 \end{proof}
 
 \begin{corollary}
@@ -628,7 +628,7 @@ Vediamo ora un corollario importante a Banach--Steinhaus:
 Una successione di numeri reali o complessi sarà indicata con $(x_n)_{n \in \N}$.
 Se $1 \leq p < \infty$, definiamo
 \begin{equation*}
-	\ell^p = \{ (x_n)_{n \in \N} \suchthat \sum_{n=1}^\infty |x_n|^p < \infty \}
+	\ell^p = \{ (x_n)_{n \in \N} \suchthat {\textstyle \sum_{n=1}^\infty} |x_n|^p < \infty \}
 \end{equation*}
 Per $x \in \ell^p$, si definisce anche la norma $p$:
 \begin{equation*}
@@ -636,7 +636,7 @@ Per $x \in \ell^p$, si definisce anche la norma $p$:
 \end{equation*}
 Nel caso $p=\infty$, si definisce
 \begin{equation*}
-	\ell^\infty = \{(x_n)_{n \in \N} \suchthat \sup_{n \in \N} |x_n| < \infty\}
+	\ell^\infty = \{(x_n)_{n \in \N} \suchthat {\textstyle \sup_{n \in \N}} |x_n| < \infty\}
 \end{equation*}
 con norma $\infty$ data da
 \begin{equation*}
@@ -659,7 +659,7 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 	d(n,m) = |\arctan n - \arctan m|, \qquad n, m \in \bar\N.
 \end{equation*}
 
-\begin{theorem}[Disuguglianza di Jensen]
+\begin{theorem}[Disuguaglianza di Jensen]
 	Siano $p<q \in [1, \infty]$.
 	Allora
 	\begin{equation*}
@@ -671,10 +671,10 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 	\end{equation*}
 \end{theorem}
 \begin{remark}
-	La prima inclusione ce la dà il presente teorema. La seconda è espressione della condizione necessaria di Cauchy di convergenza delle serie. La terza è ovvia. La quarta è espressione del teorema di limitatezza delle successioni convergenti.
+	La prima inclusione è data dal presente teorema. La seconda è espressione della condizione necessaria di Cauchy di convergenza delle serie. La terza è ovvia. La quarta è espressione del teorema di limitatezza delle successioni convergenti.
 \end{remark}
 \begin{proof}[Dimostrazione nel caso $q \neq \infty$]
-	Sia $x \in \ell^p$, e senza perdita di generalità supponiamo $\|x\|_{\ell^p} = 1$, da cui deduciamo $|x_n| \leq 1$ per ogni $n \in \N$. Sicuramente allora, $|x_n|^q \leq |x_n|^p$, da cui la disuguglianza.
+	Sia $x \in \ell^p$, e senza perdita di generalità supponiamo $\|x\|_{\ell^p} = 1$, da cui deduciamo $|x_n| \leq 1$ per ogni $n \in \N$. Sicuramente allora, $|x_n|^q \leq |x_n|^p$, da cui la disuguaglianza.
 \end{proof}
 
 \begin{exercise}
@@ -684,9 +684,9 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 \begin{exercise}
 	Sia $(x_n)_{n \in \N}$ una successione di numeri reali, provare che se $\sum_{n=1}^\infty x_n y_n$ converge per ogni $(y_n)_{n \in \N} \in \ell^2$, allora $(x_n)_{n \in \N} \in \ell^2$, e viceversa.
 
-	\textbf{Svolgimento}. Per ogni $n \in \N$ fissato, consideriamo gli operatori $T_n : \ell^2 \to \R$ e $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
+	\textbf{Svolgimento}. Per ogni $n \in \N$ fissato, consideriamo gli operatori $T_n : \ell^2 \to \R$ definita come $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
 	\begin{equation*}
-		|T_ny| = \left| \sum_{k=1}^n x_k y_k \right| \leq \left( \sum_{k=1}^n |x_k|^2\right)^{1/2} \left( \sum_{k=1}^n |y_k|^2 \right)^{1/2}
+		|T_ny| = \left| \sum_{k=1}^n x_k y_k \right| \underset{C-S}\leq \left( \sum_{k=1}^n |x_k|^2\right)^{1/2}\! \left( \sum_{k=1}^n |y_k|^2 \right)^{1/2}
 	\end{equation*}
 	dove l'uguaglianza vale se e solo se $y$ e $x$ sono proporzionali. Dunque la norma ${\ell^2}'$ di $T_n$ è sicuramente inferiore o uguale di $\left( \sum_{k=1}^n |x_k|^2\right)^{1/2} = \|x\|_{\ell^2} < \infty$, e siccome questo bound è realizzato da $y=x$, vale l'uguaglianza, quindi $T_n$ è continuo.
 
@@ -697,27 +697,27 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 
 	Viceversa,
 	\begin{equation*}
-		\left| \sum_{n=1}^\infty x_n y_n \right| \overset{C-S}\leq \left( \sum_{n=1}^\infty |x_n|^2\right)^{1/2} \left( \sum_{n=1}^\infty |y_n|^2 \right)^{1/2} < \infty
+		\left| \sum_{n=1}^\infty x_n y_n \right| \underset{C-S}\leq \left( \sum_{n=1}^\infty |x_n|^2\right)^{1/2}\! \left( \sum_{n=1}^\infty |y_n|^2 \right)^{1/2} < \infty
 	\end{equation*}
 \end{exercise}
 
 \begin{exercise}
-	Sia $1 \leq p \leq \infty$ e sia $(x_n)_{n \in \N}$ una successione di numeri reali tale che $\sum_{n=1}^\infty x_ny_n$ converge per ogni $y \in \ell^q$, dove $q$ è il coniugato di $p$. Provare che $x \in \ell^p$. \emph{Suggerimento: usare la disuguglianza di H\"older.}
+	Sia $1 \leq p \leq \infty$ e sia $(x_n)_{n \in \N}$ una successione di numeri reali tale che $\sum_{n=1}^\infty x_ny_n$ converge per ogni $y \in \ell^q$, dove $q$ è il coniugato di $p$. Provare che $x \in \ell^p$. \emph{Suggerimento: usare la disuguaglianza di H\"older.}
 \end{exercise}
 
 \begin{exercise}
 	Sia $1 \leq p < \infty$, $q$ coniugato di $p$, e
 	\begin{eqalign*}
-		\Phi : \ell^1 &\longto {\ell^p}'\\
+		\Phi : \ell^q &\longto {\ell^p}'\\
 			x &\longmapsto (y \mapsto \sum_{k=1}^\infty x_k y_k)
 	\end{eqalign*}
 	Si dimostri che $\Phi$ è un'isometria suriettiva (in quanto isometria, è sempre iniettiva).
 
-	\textbf{Svolgimento}. La buona definizione di $\Phi$ è oggetto della disuguglianza di H\"older. Il fatto che $\Phi$ sia isometria è lasciato come esercizio.
+	\textbf{Svolgimento}. La buona definizione di $\Phi$ è oggetto della disuguaglianza di H\"older. Il fatto che $\Phi$ sia isometria è lasciato come esercizio.
 
 	Fissato ora $y \in \ell^p$, scriviamolo così: $y=(y_k)_{k \in \N} = \sum_{k=1}^\infty y_k e_k$, dove $(e_k)_h = \delta_{hk}$ (warning: questo funziona solo per $p < \infty$). Sia ora $F \in {\ell^p}'$. Si ha, per continuità di $F$:
 	\begin{equation*}
-		F(y) = F(\sum_{k=1}^\infty y_k e_k) = \sum_{k=1}^\infty y_k F(e_k).
+		F(y) = F({\textstyle \sum_{k=1}^\infty} y_k e_k) = \sum_{k=1}^\infty y_k F(e_k).
 	\end{equation*}
 	Dunque $F = \Phi(F(e))$, siccome dall'esercizio precedente la convergenza di $F(y)$ per ogni $y \in \ell^p$ implica $F(e) \in \ell^q$.
 \end{exercise}
@@ -737,13 +737,13 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 
 \begin{remark}
 \label{rmk:suff_cond}
-	Per dimostrare il teorema, è sufficiente dimostrare che esiste una costante $C > 0$ tale che $B_F(0, C) \subseteq T(B_E(0,1))$. Infatti sia $U \subseteq E$ aperto, $y_0 \in T(U)$. Per suriettività, $y_0 = Tx_0$ per un certo $x_0 \in E$. Siccome $U$ è aperto, esiste un $r > 0$ per cui $x_0 + B_E(0, r) = B_E(x_0, r) \subseteq U$, da cui
+	Per dimostrare il teorema, è sufficiente dimostrare che esiste una costante $C > 0$ tale che $B_F(0, C) \subseteq T(B_E(0,1))$. Infatti sia $U \subseteq E$ aperto, $x_0 \in U$ e $y_0 = Tx_0$. Siccome $U$ è aperto, esiste un $r > 0$ per cui $x_0 + B_E(0, r) = B_E(x_0, r) \subseteq U$, da cui
 	\begin{eqalign*}
 		T(U) &\supseteq T(x_0 + B_E(0,r))\\
 			&= Tx_0 + T(B_E(0,r))\\
 			&= y_0 + r T(B_E(0,1))\\
 			&\supseteq y_0 +rB_F(0,C)\\
-			&=  B_F(0, C).
+			&=  B_F(y_0, rC).
 	\end{eqalign*}
 \end{remark}
 
@@ -762,14 +762,14 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 \end{proof}
 
 \begin{exercise}
-	Siano $E$, $F$ spazi di Banach. Sia $T:E \to F$ lineare e continua e iniettiva.
+	Siano $E$, $F$ spazi di Banach. Sia $T:E \to F$ lineare, continua e iniettiva.
 	Allora le seguenti affermazioni sono equivalenti:
 	\begin{enumerate}
-		\item $T^{-1} : \im T \to E$ è continua.
-		\item $\im T$ è chiuso.
-		\item esiste $d > 0$ tale che
+		\item La mappa $T^{-1} : \im T \to E$ è continua.
+		\item L'insieme $\im T$ è chiuso.
+		\item Esiste $D > 0$ tale che
 		\begin{equation*}
-			\|Tx\|_F \geq d\|x\|_E, \qquad \text{per ogni $x \in E$.}
+			\|Tx\|_F \geq D\|x\|_E, \qquad \text{per ogni $x \in E$}.
 		\end{equation*}
 	\end{enumerate}
 
@@ -780,11 +780,11 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 			\|Tx_1 - Tx_2\|_F &\leq C\|x_1 - x_2\|_E, \qquad \text{per ogni $x_1, x_2 \in E$},\\
 			\|T^{-1}y_1 - T^{-1}y_2\|_E &\leq C\|y_1 - y_2\|_F, \qquad \text{per ogni $y_1, y_2 \in \im T$},\\
 		\end{eqalign*}
-		Dacchè le Lipschitz mandano successioni di Cauchy in successioni di Cauchy, dunque $\im T$ è completo, quindi chiuso.
-		\item[$(2) \implies (1)$] Essendo $\im T$ chiuso è Banach, dunque per il teorema della mappa aperta (in realtà per il Corollario~\ref{cor:open_map_cor}) $T^{-1}$ è continua.
-		\item[$(1) \iff (3)$] Sia $y=Tx$, la continuità di $T^{-1}$ si ha se e soltanto se esiste $d > 0$ tale che
+		Dacchè le Lipschitz mandano successioni di Cauchy in successioni di Cauchy $\im T$ è completo, quindi chiuso.
+		\item[$(2) \implies (1)$] Essendo $\im T$ chiuso è Banach, dunque per il teorema della mappa aperta (in realtà per il Corollario~\ref{cor:inv_cont}) $T^{-1}$ è continua.
+		\item[$(1) \iff (3)$] Sia $y=Tx$, la continuità di $T^{-1}$ si ha se e soltanto se esiste $D > 0$ tale che
 		\begin{equation*}
-			\|T^{-1}y\|_E \leq d\|y\|_F
+			\|T^{-1}y\|_E \leq D\|y\|_F
 		\end{equation*}
 		cioè l'equazione desiderata.
 	\end{description}
@@ -796,14 +796,14 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 	\begin{equation*}
 		\|x\|_2 \leq C\|x\|_1, \qquad \text{per ogni $x \in E$}.
 	\end{equation*}
-	Allora esiste $d > 0$ tale che
+	Allora esiste $D > 0$ tale che
 	\begin{equation*}
-		\|x\|_1 \leq d \|x\|_2, \qquad \text{per ogni $x \in E$}
+		\|x\|_1 \leq D \|x\|_2, \qquad \text{per ogni $x \in E$}
 	\end{equation*}
 	cioè le norme sono equivalenti.
 \end{corollary}
 \begin{proof}
-	Sia $I : (E, \|\cdot\|_1) \to (E, \|\cdot\|_2)$ la mappa identità. Per ipotesi è continua, allora per il teorema della mappa aperta sappiamo che anche l'inversa è continua, dunque c'è omeomorfismo degli spazi e quindi equivalenza delle norme.
+	Sia $I : (E, \|\cdot\|_1) \to (E, \|\cdot\|_2)$ la mappa identità. La disuguaglianza in ipotesi ammonta ad affermare che $I$ è continua, in quanto limitata. Per il teorema della mappa aperta concludiamo allora che anche l'inversa è continua, dunque c'è omeomorfismo degli spazi e quindi equivalenza delle norme.
 \end{proof}
 
 \begin{remark}
@@ -817,52 +817,59 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 Il completamento di $\Czero[0,1]$ è $L^1[0,1]$, il che spiega perchè l'integrale di Lebesgue sia così importante per la matematica.
 
 \begin{example}
-	Sia $E = \Czero[0,1]$ con $\|\cdots\|_\infty$ e $F = \{ u \in \Cone[0,1] \suchthat u(0) = 0\}$ con $\|\cdot\_\infty$.
+	Sia $E = \Czero[0,1]$ con $\|\cdot\|_\infty$ e $F = \{ u \in \Cone[0,1] \suchthat u(0) = 0\}$ con $\|\cdot\|_\infty$.
 	La funzione $T:E \to F$ definita come
 	\begin{equation*}
 		Tu (x) = \int_0^x u(t)\,\dt
 	\end{equation*}
-	è ben definita (cioè $Tu$ è sempre continua e svanisce in $0$), inoltre è lineare, continua, iniettiva e suriettiva. Il suo inverso $T^{-1} : F \to E$ è dato dalla derivazione, che sappiamo non essere continuo.
+	è ben definita (cioè $Tu$ è sempre continua e svanisce in $0$), inoltre è lineare, continua, iniettiva e suriettiva. Il suo inverso $T^{-1} : F \to E$ è dato dalla derivazione, che sappiamo non essere continua.
 \end{example}
 
-\begin{exercise}
+\begin{corollary}
 	Sia $E$ uno spazio vettoriale dotato di due norme equivalenti.
 	Allora la completezza di $E$ con una delle norme determina la completezza con l'altra.
-\end{exercise}
+\end{corollary}
 
 \begin{remark}
 	Sia $(E, \|\cdot\|_1)$ uno spazio di Banach a dimensione infinita.
-	Allora esiste una norma $\|\cdot\|_2$ tale che $(E, \|\cdot\|_2)$ è ancora di Banach ma $\|\cdot\|_1$ non è equivalente a $\|\cdot\|_2$, cioè  `essere di Banach' non è una proprietà da una struttura.
+	Si può dimostrare che esiste sempre una norma $\|\cdot\|_2$ tale che $(E, \|\cdot\|_2)$ è ancora di Banach ma $\|\cdot\|_1$ non è equivalente a $\|\cdot\|_2$, cioè  `essere di Banach' non è una proprietà ma una struttura.
 \end{remark}
 
 \begin{proof}[Dimostrazione del teorema della mappa aperta]
 	Ricordiamo che è sufficiente provare quanto osservato in~\ref{rmk:suff_cond}. La dimostrazione avviene in due passi.
 
-	\textbf{Passo 1}. Dimostriamo che esiste $C>0$ tale che $B_F(0, 2C) \subseteq \closure{T(B_E(o, 1))}$.
-	Poniamo $X_n = \closure{n T(B_E(0,1))} = T(B_E(0,n))$. L'unione degli $X_n$ copre $\im T = F$, dunque dal lemma di Baire otteniamo un $X_{\bar n}$ di interno non vuoto, quindi otteniamo che
+	\textbf{Passo 1}. Dimostriamo che esiste $C>0$ tale che $B_F(0, 2C) \subseteq \closure{T(B_E(0, 1))}$.
+	Poniamo $X_n = \closure{n T(B_E(0,1))} = \closure{T(B_E(0,n))}$. L'unione degli $X_n$ copre $\im T = F$, dunque dal lemma di Baire otteniamo un $X_{\bar n}$ di interno non vuoto, da cui concludiamo che
 	\begin{equation*}
-		\frac1n \interior{T(B(0,n))} = \interior{\closure{T(B(0,1))}} \neq \varnothing.
+		\frac1{\bar n} \interior{T(B(0,\bar n))} = \interior{\closure{T(B(0,1))}} \neq \varnothing.
 	\end{equation*}
-	Quindi esiste una palla $B_F(y_0, r) \subseteq \closure{T(B(0,1))}$. Per simmetria di $B(0,1)$, deduciamo che $-y_0 \in \closure{T(B(0,1))}$, ossia che $-y_0 + B_F(y_0, r) \subseteq 2\closure{T(B_E(0,1))}$, da cui $B_F(0, r/2) \subseteq \closure{T(B_E(0,1))}$. Per cui settiamo $C = r/4$.
+	Quindi esiste una palla $B_F(y_0, r) \subseteq \closure{T(B_E(0,1))}$. Per simmetria di $B_E(0,1)$, deduciamo che $-y_0 \in \closure{T(B_E(0,1))}$, ossia che $-y_0 + B_F(y_0, r) = B_F(0, r) \subseteq \closure{T(B_E(0,1))}$. Segue che $C=r/2$ è la costante cercata.
 
 	\textbf{Passo 2}. Proviamo la seguente implicazione:
 	\begin{equation*}
-		B_F(0,2c) \subseteq \closure{T(B_E(0,1))} \implies B_F(0, c) \subseteq T(B_E(0,1)).
+		B_F(0,2C) \subseteq \closure{T(B_E(0,1))} \implies B_F(0, C) \subseteq T(B_E(0,1)).
 	\end{equation*}
- 	Sia $y \in B_F(0,c)$. Dimostriamo che esiste $x \in B_E(0,1)$ tale che $Tx = y$. Sappiamo che $B_F(0, C) \subseteq \closure{T(B_E(0,1/2))}$, cioè per ogni $\varepsilon > 0$ esiste $z_1 \in B_E(0,1/2)$ tale che $\|y - Tz_1\|_F < \varepsilon$. Scegliendo $\varepsilon = c/2$, otteniamo che $y-Tz_1 \in B_F(0, c/2) \subseteq \closure{T(B_E(0,1/4))}$.
-
-	Di nuovo, dalla definizione di chiusura abbiamo che comunque preso $\varepsilon > 0$, esiste $\|z_2\| < 1/4$ tale che $\|y - Tz_1 - Tz_2\| < \varepsilon$. Scegliendo $\varepsilon = c/4$, otteniamo $y - Tz_1 - Tz_2 \in B_F(0,c/4) \subseteq \closure{T(B_E(0,1/8))}$.
-
-	È chiaro ora che procedendo in questo modo troviamo una successione $\{z_n\}_{n \in \N}$ di elementi di $E$ tali che $\|z_n\|_E < 2^{-n}$ e $\|y- Tz_1 - \ldots Tz_n\|_F < c/2^n$. Ricordiamo adesso che una caratterizzazione equivalente degli spazi di Banach è la seguente:
-	\begin{center}
-		Uno spazio è Banach se ogni serie convergente in norma ($\sum_{n=1}^\infty \|x_n\|_E < \infty$) è convergente.
-	\end{center}
-	Segue che $\sum_{n=1}^\infty z_n$ converge, siccome $\sum_{n=1}^\infty \|z_n\|_E < \sum_{n=1}^\infty 2^{-n} < 1$ converge come una serie geometrica. Chiamiamo $x$ il punto di convergenza della serie, che ha norma inferiore a $1$. Dalla seconda condizione, otteniamo poi che
+	Sia $y \in B_F(0,C)$. Dimostriamo che esiste $x \in B_E(0,1)$ tale che $Tx = y$. Sappiamo che $B_F(0, C) \subseteq \closure{T(B_E(0,1/2))}$.
+	Siccome le palle $T(B_E(0,1/2^n))$ sono dense nella propria chiusura, possiamo definire la seguente successione:
 	\begin{equation*}
-		\|y - T(\sum_{n=1}^\infty z_n)\|_F = \|y - Tx\|_F = 0
+		B_E(0,1/2^n) \ni z_n \ \text{tale che}\ \|\underbrace{y - {\textstyle \sum_{k=1}^n} Tz_k}_{\in B_F(0, C/2^n)}\|_F < \frac{C}{2^n}
 	\end{equation*}
-	e quindi che $y = Tx$ con $x \in B_E(0,1)$, come desiderato.
+	Ricordiamo adesso che una caratterizzazione equivalente degli spazi di Banach è la seguente:
+	\begin{center}
+		Uno spazio è di Banach se e solo se ogni serie assolutamente convergente\\
+		($\sum_{n=1}^\infty \|x_n\|_E < \infty$) è convergente.
+	\end{center}
+	Segue che $\sum_{n=1}^\infty z_n$ converge, giacchè $\sum_{n=1}^\infty \|z_n\|_E < \sum_{n=1}^\infty 2^{-n} < 1$ converge come una serie geometrica. Chiamiamo $x$ il punto di convergenza della serie, che ha norma inferiore a $1$.
+	Per continuità di $T$ inoltre, $T({\textstyle \sum_{n=1}^\infty} z_n) \conv Tx$, mentre per linearità:
+	\begin{equation*}
+		\|y- {\textstyle \sum_{n=1}^\infty} Tz_n\|_F = \|y- Tx\|_F = 0,
+	\end{equation*}
+	da cui $y = Tx$ con $x \in B_E(0,1)$, come desiderato.
 \end{proof}
+
+\begin{remark}
+	Si osservi che il primo passo della dimostrazione usa la completezza di $F$ (tramite il lemma di Baire), mentre il secondo usa quella di $E$.
+\end{remark}
 
 \section{Teorema del grafico chiuso (D'Artagnan)}
 Premettiamo che dati due spazi $(E, \|\cdot\|_E)$ e $(E, \|\cdot\|_F)$, è definito lo spazio prodotto $E \times F$ normato da
@@ -871,11 +878,12 @@ Premettiamo che dati due spazi $(E, \|\cdot\|_E)$ e $(E, \|\cdot\|_F)$, è defin
 \end{equation*}
 In questa maniera la convergenza in $E \times F$ si può verificare per componenti, e se sia $E$ che $F$ sono di Banach allora anche $E \times F$ lo è.
 
-\begin{exercise}
-	Siano $E \times F$ spazi normati, $T: E \to F$ lineare e continua. Allora il grafico $G(T)$ di $T$ è un sottospazio chiuso di $E \times F$.
-\end{exercise}
+\begin{lemma}
+	Siano $E \times F$ spazi normati, $T: E \to F$ lineare e continua.
+	Allora il grafico $G(T)$ di $T$ è un sottospazio chiuso di $E \times F$.
+\end{lemma}
 \begin{proof}
-	Sia $(x_n, T(x_n)) \in G(T)$ convergente a $(x,y)$. Ma per continuità di $T$, $Tx_n \conv Tx = y$, quindi $G(T)$ è chiuso.
+	Sia $(x_n, T(x_n)) \in G(T)$ convergente a $(x,y)$. Ma per continuità di $T$, $Tx_n$ converge a $Tx = y$, quindi $G(T)$ è chiuso.
 \end{proof}
 
 Questo ci permetterà di ottenere alcuni metateoremi per dedurre la continuità di certi operatori, ad esempio per l'inclusione di spazi, in presenza di certe norme `naturali'.
@@ -888,33 +896,24 @@ Questo ci permetterà di ottenere alcuni metateoremi per dedurre la continuità 
 	\begin{equation*}
 		\|x\|_1 = \|x\|_E + \|Tx\|_F, \qquad \text{per ogni $x \in E$}.
 	\end{equation*}
-	Rispetto a questa norma, che si può definire per qualunque operatore lineare, $T$ è automaticamente continuo.
-
-	Affermiamo che $(E, \|\cdot\|_1)$ sia Banach poichè $G(T)$ è chiuso.
-	Supponiamo allora che $\{x_n\}_{n \in \N}$ sia di Cauchy in $(E, \|\cdot\|_1)$, cioè che si abbia
+	Mostriamo che $(E, \|\cdot\|_1)$ è di Banach.
+	Sia $\{x_n\}_{n \in \N}$ di Cauchy in $(E, \|\cdot\|_1)$, cioè
 	\begin{equation*}
-		\lim_{n,m} \|x_n - x_m\|_1 = 0
+		\lim_{n,m} \|x_n - x_m\|_E = 0, \qquad \lim_{n,m} \|Tx_n - Tx_m\|_F = 0.
 	\end{equation*}
-	che implica
-	\begin{equation*}
-		\lim_{n,m} \|x_n - x_m\|_E = 0, \qquad \lim_{n,m} \|Tx_n - Tx_m\|_F = 0
-	\end{equation*}
-	cioè che $\{(x_n, Tx_n)\}_{n \in \N}$ è di Cauchy in $E \times F$. Siccome $E$ ed $F$ sono di Banach, anche il loro prodotto lo è e dunque $\{(x_n, Tx_n)\}_{n \in \N}$ converge. Per chiusura di $G(T)$, il limite di tale successione è un punto del grafico. Si ha inoltre
+	Allora $\{(x_n, Tx_n)\}_{n \in \N}$ è di Cauchy in $E \times F$. Siccome $E$ ed $F$ sono di Banach, anche il loro prodotto lo è e dunque $\{(x_n, Tx_n)\}_{n \in \N}$ converge ad un punto $(x, y) \in E \times F$. D'altra parte, siccome $G(T)$ è chiuso, $(x,y) = (x,Tx) \in G(T)$.
+	Perciò possiamo concludere che
 	\begin{equation*}
 		\|x_n - x\|_1 = \|x_n - x\|_E + \|Tx_n - Tx\|_F \conv[n] 0
 	\end{equation*}
-	che prova $(E, \|\cdot\|_1)$ completo.
+	e dunque $(E, \|\cdot\|_1)$ è completo.
 
-	Si noti ora che $E$ ha due strutture di Banach e si ha
-	\begin{equation*}
-		\|x\|_E \leq \|x\|_1
-	\end{equation*}
-	dunque per il Corollario~\ref{cor:equiv_norm}, le due norme sono infatti equivalenti. Ma siccome $T$ è banalmente continuo per $\|\cdot\|_1$, questo prova che è continuo anche per $\|\cdot\|_E$.
+	Si noti ora che $E$ ha due strutture di Banach, e si ha banalmente $\|x\|_E \leq \|x\|_1$. Dunque per il Corollario~\ref{cor:equiv_norm}, le due norme sono equivalenti. Ma siccome $T$ è continuo per $\|\cdot\|_1$, questo prova che è continuo anche per $\|\cdot\|_E$.
 \end{proof}
 
 \begin{remark}
 	Il teorema del grafico chiuso non vale senza completezza di $E$ ed $F$.
-	Il controesempio è dato da $E = \Cone[a,b]$ con la norma sup, $\Czero$ con la norma sup, e $T$ dato dalla derivazione. Abbiamo già visto che $T$ è lineare ma non continuo (Esercizio~\ref{ex:unif_deriv}), tuttavia andiamo a mostrare che $G(T)$ è chiuso prendendo una successione $\{(x_n, Tx_n)\}_{n \in \N} \subseteq G(T)$. Siccome $x_n \conv x$ in norma sup significa che si ha convergenza uniforme, e si ha pure $Tx_n = dx_n/dt \conv y$, per un teorema classico sulle successioni di funzioni $y = dx/dt$, testimoniando così la chiusura di $G(T)$.
+	Il controesempio è dato da $E = \Cone[a,b]$ con la norma sup, $\Czero$ con la norma sup, e $T$ dato dalla derivazione. Abbiamo già visto che $T$ è lineare ma non continuo (Esercizio~\ref{ex:unif_deriv}), tuttavia andiamo a mostrare che $G(T)$ è chiuso prendendo una successione $\{(x_n, Tx_n)\}_{n \in \N} \subseteq G(T)$. Siccome $x_n \conv x$ in norma sup significa che si ha convergenza uniforme, e si ha pure $Tx_n = \der{x_n}{t} \conv y$, per un teorema classico sulle successioni di funzioni $y = \der{x}{t}$, testimoniando così la chiusura di $G(T)$.
 \end{remark}
 
 Gli operatori a grafico chiuso generalizzano gli operatori continui, come esplorato da Von Neumann. Questo è utile per poter parlare di operatori differenziali densamente definiti, che appaiono ad esempio in meccanica quantistica.
@@ -928,11 +927,11 @@ Gli operatori a grafico chiuso generalizzano gli operatori continui, come esplor
 	cioè l'inclusione di $L^p(\Omega)$ in $L^q(\Omega)$ è continua.
 
 	\textbf{Svolgimento}. Sia $I$ tale inclusione, che è ovviamente ben definitia e lineare. Per il teorema del grafico chiuso, se dimostriamo che $G(I)$ è chiuso allora possiamo concludere che $I$ sia continuo.
-	Si prenda $\{(f_n, f_n)\}_{n \in \N} \subseteq G(I)$ convergente a $(f,g) \in L^p(\Omega) \times L^q(\Omega)$. Dalla convergenza $f_n \conv f$, deduciamo che esiste una sottosuccessione $\{f_{n_h}\}_{h \in \N}$ che converge puntualmente quasi ovunque. Ma siccome $f_n \conv g$, allora esiste una sottosuccessione di $f_h$ che converge quasi ovunque a $g$, e dunque $f = g$ quasi ovunque, per cui $(f,g) \in G(I)$.
+	Si prenda $\{(f_n, f_n)\}_{n \in \N} \subseteq G(I)$ convergente a $(f,g) \in L^p(\Omega) \times L^q(\Omega)$. Dalla convergenza $f_n \underset{L^p}\conv f$, deduciamo che esiste una sottosuccessione $\{f_{n_h}\}_{h \in \N}$ che converge puntualmente quasi ovunque. Ma siccome $f_n \underset{L^q}\conv g$, allora esiste una sottosuccessione di $f_h$ che converge quasi ovunque a $g$, e dunque $f \equiv g$ quasi ovunque, provando che $(f,g) \in G(I)$.
 \end{exercise}
 
 \begin{remark}
-	La dimostrazione di questo bound non è costruttiva, quindi non abbiamo informazioni sulla costante $C$, i.e.\ il modulo dell'inclusione. Nonostante ciò, ci sono casi in cui abbiamo una stima concreta su $C$, ad esempio quando $\Omega$ ha misura finita e $p > q$, allora $L^p(\Omega) \into L^q(\Omega)$ e
+	La dimostrazione di questo bound non è costruttiva, quindi non abbiamo informazioni sulla costante $C$, i.e.\ la norma dell'inclusione. Nonostante ciò, ci sono casi in cui abbiamo una stima concreta su $C$, ad esempio quando $\Omega$ ha misura finita e $p > q$, allora $L^p(\Omega) \into L^q(\Omega)$ e
 	\begin{equation*}
 		\|f\|_{L^q} \leq |\Omega|^{\frac1q - \frac1p}\|f\|_{L^p}, \qquad \text{per ogni $f \in L^p(\Omega)$}.
 	\end{equation*}
@@ -941,51 +940,57 @@ Gli operatori a grafico chiuso generalizzano gli operatori continui, come esplor
 
 \section{Somme dirette topologiche}
 \begin{lemma}
-	Sia $E$ uno spazio di Banach, siano $G$ ed $L$ sottospazi chiusi tali che $G+L = \{ g + \ell \suchthat g \in G, \ell \in L\}$ è chiuso in $E$.
-	Allora esiste $C > 0$ tale che, per ogni $z \in G+L$, esistono $x \in G$, $y \in L$ tali che
+	Sia $E$ uno spazio di Banach, siano $G$ ed $L$ sottospazi chiusi tali che
 	\begin{equation*}
-		\|x\| \leq c\|z\|, \qquad \|y\| \leq c \|z\|.
+		G+L = \{ x + y \suchthat x \in G, y \in L\}
+	\end{equation*}
+	è chiuso in $E$.
+	Allora esiste $C > 0$ tale che, per ogni $z \in G+L$, esistono $x \in G$, $y \in L$ per cui
+	\begin{equation*}
+		z = x+y, \ \text{e}\ \|x\| \leq C\|z\|, \ \|y\| \leq C\|z\|.
 	\end{equation*}
 \end{lemma}
 \begin{remark}
-	Il lemma ci dice che possiamo trovare delle proiezioni continue controllate dalla stessa costante.
+	Il lemma dice che possiamo trovare delle proiezioni continue controllate dalla stessa costante.
 \end{remark}
 \begin{proof}
-	Consideriamo la mappa somma $G \times L \to G+L$, dove gli spazi sono normati rispettivamente dalla norma canonica del prodotto e dalla norma di $E$. $T$ è lineare e continua, per definizione di norma. Inoltre $T$ è suriettiva. Vale dunque il teorema della mappa aperta, quindi è possibile trovare una palla aperta $B_{G+L}(0, C) \subseteq T(B_{G \times L}(0, 1))$, che in pratica significa che ogni $w \in G+L$ che abbia norma inferiore a $C$ è esprimibile come $\tilde x + \tilde y$, per $\tilde x \in G$ ed $\tilde y \in L$ e $\|\tilde x\|+\|\tilde y\|<1$.
-	Sia $z \in G+L$, $z \neq 0$. Definiamo $w=c/2\|z\| z$. Questo vettore cade nella palla $B_{G+L}(0, C)$, e quindi per la considerazione appena fatta
+	Consideriamo la mappa somma $G \times L \to G+L$, dove gli spazi sono normati rispettivamente dalla norma canonica del prodotto e dalla norma di $E$.
+	$T$ è lineare, e la disuguaglianza di Minkowski della norma ne testimonia la continuità. Inoltre $T$ è suriettiva, per definizione di $G+L$.
+	Vale dunque il teorema della mappa aperta, cioè è possibile trovare una palla aperta $B_{G+L}(0, C) \subseteq T(B_{G \times L}(0, 1))$, che in pratica significa che ogni $w \in G+L$ che abbia norma inferiore a $C$ è esprimibile come $\tilde x + \tilde y$, per $\tilde x \in G$ ed $\tilde y \in L$ e $\|\tilde x\|+\|\tilde y\|<1$.
+	Sia $z \in G+L$, $z \neq 0$. Definiamo $w=C/(2\|z\|) z$. Questo vettore cade nella palla $B_{G+L}(0, C)$, e quindi per la considerazione appena fatta
 	\begin{equation*}
-		\frac{c}{2 \|z\|}z = \tilde x + \tilde y
+		\frac{c}{2 \|z\|}\, z = \tilde x + \tilde y
 	\end{equation*}
-	da cui $x = \frac2c \tilde x \|z\|$ e $y= \frac2c \tilde y \|z\|$, che verificano le disuguglianze in tesi.
+	da cui $x = \frac{2\|z\|}C \tilde x$ e $y= \frac{2\|z\|}C \tilde y$, che verificano le disuguaglianze in tesi.
 \end{proof}
 
 In generale, se io ho due insiemi chiusi la loro somma non è chiusa!
 
-\begin{counterexample}[Non-linearità]
+\begin{counterexample}[La linearità è necessaria]
 	Sia $G = \R \times \{0\}$ e $L = \{(x,1/x) \in \R^2 \suchthat x >0\}$. Entrambi sono chiusi in $\R^2$, ma non $G+L$ che è il semipiano superiore aperto inferiormente (perchè $1/x > 0$ sempre).
 \end{counterexample}
 
-\begin{counterexample}
+\begin{counterexample}[La chiusura è necessaria]
 	Sia $E= \ell^2 \times \ell^2$, $G = \{(x,0) \in E \suchthat x \in \ell^2\}$ e $L=\{(x,Tx) \in E \suchthat x \in \ell^2\}$ per $T: \ell^2 \to \ell^2$ che manda $\{x_n\}_{n \in \N}$ in $\{x_n/n\}_{n \in \N}$. $G$ è chiuso perchè sottospazio, $L$ è continuo perchè $T$ lineare continuo, ma $G+L$ non è chiuso in quanto se così fosse, $M=\{(0, Tx) \suchthat x \in \ell^2\}$ sarebbe chiuso, da cui $N= \im T$ sarebbe chiuso, assurdo, perchè $N$ è denso e $T$ non è suriettivo.
 \end{counterexample}
 
 \begin{definition}
-	Sia $R$ spazio di Banach, $G$, $L$ sottospazi vettoriali tali che $E=G \oplus L$. La somma $G \oplus L$ è \defining{topologica} se inoltre $G$ ed $L$ sono chiusi, e si chiama $G$ il \defining{supplementare topologico} di $L$ e viceversa.
+	Sia $E$ spazio di Banach, $G$, $L$ sottospazi vettoriali tali che $E=G \oplus L$. La somma $G \oplus L$ è \defining{topologica} se inoltre $G$ ed $L$ sono chiusi, e si chiama $G$ il \defining{supplementare topologico} di $L$ e viceversa.
 \end{definition}
 
 \begin{theorem}
 \label{th:top_sum}
-	Sia $R$ spazio di Banach, $G$, $L$ sottospazi vettoriali tali che $E=G \oplus L$.
+	Sia $E$ spazio di Banach, $G$, $L$ sottospazi vettoriali tali che $E=G \oplus L$.
 	Allora tale somma è topologica se e solo se le due proiezioni naturali $p_G : E \to G$, $p_L : E \to L$ sono continue.
 \end{theorem}
 \begin{proof}
-	La direzione diretta è il lemma precedente. D'altra parte, $\ker p_G = G$ e $\ker p_L = L$, e i nuclei di operatori continui sono topologicamente chiusi.
+	La direzione diretta è il lemma precedente. D'altra parte, $\ker p_G = G$ e $\ker p_L = L$, e i nuclei di operatori continui sono chiusi.
 \end{proof}
 
 \begin{definition}
 \label{def:projector}
 	Sia $E$ uno spazio vettore, $G \leq E$ sottospazio.
-	Un \defining{proiettore lineare di $E$ du $G$} è una funzione lineare $p:E \to G$ che restringe all'identità su $G$.
+	Un \defining{proiettore lineare di $E$ su $G$} è una funzione lineare $p:E \to G$ che restringe all'identità su $G$.
 \end{definition}
 
 \begin{lemma}
@@ -993,7 +998,7 @@ In generale, se io ho due insiemi chiusi la loro somma non è chiusa!
 	Allora $G$ ammette un supplementare topologico se e solo se esiste un proiettore lineare e continuo $p:E \to G$.
 \end{lemma}
 \begin{proof}
-	Se esiste un supplementare topologico, il~\ref{th:top_sum} ci dà un proiettore su $G$ lineare e continuo.
+	Se esiste un supplementare topologico, il Teorema~\ref{th:top_sum} ci dà un proiettore su $G$ lineare e continuo.
 	D'altra parte, se $p$ è un tale proiettore, $\ker p$ è un sottospazio chiuso di $E$. È evidente che $\ker p \cap G = \{0\}$ e $E = \ker p \oplus G$: se $x \in E$, $x - p(x) \in \ker p$, $p(x) \in G$ e $p(x) +(x- p(x)) = x$.
 \end{proof}
 
@@ -1005,13 +1010,13 @@ In generale, se io ho due insiemi chiusi la loro somma non è chiusa!
 	Sia $E$ Banach, sia $G$ sottospazio di $E$.
 	\begin{enumerate}
 		\item Se $\dim G$ è finita, allora $G$ ammette un supplementare topologico.
-		\item Se $G$ è chiuso e $\operatorname{codim} G = \dim E/G$, allora $G$ ammette un supplementare topologico.
+		\item Se $G$ è chiuso e $\operatorname{codim} G = \dim E/G$ è finita, allora $G$ ammette un supplementare topologico.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
 	\leavevmode
 	\begin{enumerate}
-		\item Sia $e_1, \ldots, e_n$ una base di $G$. Per Hahn--Banach, gli elementi della base duale si estendono a elementi di $E'$, per cui possiamo definire un proiettore lineare e continuo su $G$ dato da
+		\item Sia $e_1, \ldots, e_n$ una base di $G$. Per Hahn--Banach, gli elementi della base duale (in $G'$) si estendono a elementi di $E'$, per cui possiamo definire un proiettore lineare e continuo su $G$ dato da
 		\begin{equation*}
 			p(x) = \sum_{i=1}^n e^*_i(x)\,e_1, \qquad \text{per ogni $x \in E$}
 		\end{equation*}

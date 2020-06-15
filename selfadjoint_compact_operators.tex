@@ -1,4 +1,4 @@
-\chapter{Operatori compatti e autoauggiunti}
+\chapter{Operatori compatti e autoaggiunti}
 
 \section{Operatore aggiunto e operatori aggiunti}
 Sia $(E, (\cdot, \cdot))$ uno spazio con prodotto scalare.
@@ -27,7 +27,7 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 \end{proof}
 
 \begin{remark}
-	Il teorema utilizza la completezza di $H$ quando si assume che ${H = \ker T \oplus (\ker T)^\perp}$. Questo è vero solo se $H$ è di Hilbert: il Teorema~\ref{th:hilb_ort_decomp} si rifà al Teorema~\ref{th:hilb_projector_subspace}, che a sua volta segue dal Lemma~\ref{lemma:hilb_proj}, che è dimostrato dal teorema della proiezione (Teorema~\ref{th:hilb_projection}) il quale usa in maniera essenziale la completezza.
+	La completezza di $H$ interviene quando si assume ${H = \ker T \oplus (\ker T)^\perp}$. Questo è vero solo se $H$ è di Hilbert: il Teorema~\ref{th:hilb_ort_decomp} si rifà al Teorema~\ref{th:hilb_projector_subspace}, che a sua volta segue dal Lemma~\ref{lemma:hilb_proj}, che è dimostrato dal teorema della proiezione (Teorema~\ref{th:hilb_projection}) il quale usa in maniera essenziale la completezza.
 \end{remark}
 
 \begin{corollary}
@@ -155,9 +155,10 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 	\begin{description}
 		\item[$(\Longrightarrow)$] Si fissi $x \in H$. Siccome $(Tx,x) = (x,Tx) = \conj{(Tx,x)}$, segue che tale numero debba essere reale.
 		\item[$(\implied)$] Per le forme sesquilineari su spazi complessi vale la seguente formula `di polarizzazione':
-		\begin{equation*}
-			4 (Tx,y) = (T(x+y),x+y) - (T(x-y), x-y) + i\left[ (T(x+iy),x+iy) - (T(x-iy), x-iy) \right].
-		\end{equation*}
+		\begin{eqalign*}
+			4 (Tx,y) = &(T(x+y),x+y) - (T(x-y), x-y) +\\
+				&\qquad + i\left[ (T(x+iy),x+iy) - (T(x-iy), x-iy) \right].
+		\end{eqalign*}
 		Ora, siccome $(Tx,x) \in \R$ per ogni $x \in H$, possiamo scambiare gli argomenti senza dover coniugare. Se facciamo ciò nella formula appena scritta, è evidente che otteniamo $4(x,Ty)$, perciò abbiamo provato che $T$ è autoauggiunto.
 	\end{description}
 \end{proof}
@@ -422,9 +423,10 @@ L'ultimo punto è falso in $\R$:
 		da cui $(\lambda_1 - \lambda_2)(x,y) = 0$ che implica $(x,y) = 0$ in quanto abbiamo supposto $\lambda_1 \neq \lambda_2$.
 		\item Si può dimostrare che se $T$ è autoauggiunto, allora $\|T\| = \sup_{\|x\|=1} |(Tx,x)|$. Nel caso $T$ sia compatto e non banale, allora esiste una successione $\{x_n\}_{n \in \N}$ in $H$, di norma unitaria, tale che $|(Tx_n,x_n)| \conv \|T\|$.
 		Salvo passare ad una sottosuccessione, $(Tx_n, x_n) \conv \|T\|$ o $-\|T\|$, Chiamiamo questo limite $\mu$. Si ha
-		\begin{equation*}
-			\|Tx_n - \mu x_n\|^2  = \|Tx_n\|^2 - 2 \mu \Re{Tx_n, x_n} + \mu^2 \|x_n\|^2 \leq \|T\|^2 - 2\mu \underbrace{(Tx_n, x_n)}_{\conv \mu} + \mu^2 \conv 0.
-		\end{equation*}
+		\begin{eqalign*}
+			\|Tx_n - \mu x_n\|^2  &= \|Tx_n\|^2 - 2 \mu \Re{Tx_n, x_n} + \mu^2 \|x_n\|^2\\
+			&\leq \|T\|^2 - 2\mu \underbrace{(Tx_n, x_n)}_{\conv \mu} + \mu^2 \conv 0.
+		\end{eqalign*}
 		Per compattezza di $T$, a meno di passare ad una sottosuccessione, $Tx_n$ converge. Allora la convergenza di $Tx_n$ implica la convergenza di $\mu x_n$ (carabinieri). Segue che $x_n \conv x$, per cui $Tx_n - \mu x_n \conv Tx - \mu x = 0$, e $\|x\| =1$ dunque $x \neq 0$.
 	\end{enumerate}
 \end{proof}
