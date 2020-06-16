@@ -177,7 +177,7 @@ Per svolgere l'esercizio, è utile il seguente:
 			f(x) \leq \alpha < \beta \leq f(y), \qquad \text{per ogni $x \in C$, $y \in K$.}
 		\end{equation*}
 	\end{theorem}
-	Sapendo ciò, ci poniamo nel caso banale $C \neq E$. Prendiamo un punto $x_0 \in E \setminus C$. Il singoletto $\{x_0\}$ è compatto e convesso, dunque per il teorema di Hahn--Banach geometrico possiamo separarli con un iperpiano, cioè esistono $f \in E$' ed $\alpha, \beta \in \R$ tali che
+	Sapendo ciò, ci poniamo nel caso non banale $C \neq E$. Prendiamo un punto $x_0 \in E \setminus C$. Il singoletto $\{x_0\}$ è compatto e convesso, dunque per il teorema di Hahn--Banach geometrico possiamo separarli con un iperpiano, cioè esistono $f \in E$' ed $\alpha, \beta \in \R$ tali che
 	\begin{equation*}
 		f(x) \leq \alpha < \beta \leq f(x_0), \qquad \text{per ogni $x \in C$}.
 	\end{equation*}
@@ -223,7 +223,7 @@ Per svolgere l'esercizio, è utile il seguente:
 	\begin{enumerate}
 		\item Si veda il Teorema~\ref{th:weak_conv_and_cont}.
 		\item Banalmente, siccome la topologia debole è meno fine.
-		\item Sia $J_y : E' \to \R$ la valutazione su $y \in E$. Vale $\|J_y\|_{E' \to \R} = \|y\|_E$ (Corollario~\ref{cor:eval_norm}), quindi si ha che $x_n \weakconv x$ implica $J_{x_n} \conv J_x$ puntualmente. Si conclude applicando il Corollario~\ref{cor:banach_steinhaus_liminf} del teorema di Banach--Steinhaus.
+		\item Sia $J_y : E' \to \R$ la valutazione su $y \in E$. Vale $\|J_y\|_{E''} = \|y\|_E$ (Corollario~\ref{cor:eval_norm}), quindi si ha che $x_n \weakconv x$ implica $J_{x_n} \conv J_x$ puntualmente. Si conclude applicando il Corollario~\ref{cor:banach_steinhaus_liminf} del teorema di Banach--Steinhaus.
 		\item Si ha
 		\begin{eqalign*}
 			|f_n(x_n) - f(x)| &\leq |f_n(x_n) - f(x_n)| + |f(x_n) - f(x)|\\
@@ -292,20 +292,21 @@ Per svolgere l'esercizio, è utile il seguente:
 Si osservi che la continuità di $T$ è fallita perchè siamo stati in grado di scegliere un aperto limitato in $\R$. Se equipaggiassimo $\R \cup \{+\infty\}$ con la topologia inferiore (la topologia generata dalle semirette destre aperte), ciò non sarebbe possibile.
 
 Ricordiamo che in questa topologia, $x_n \conv x$ se e solo se $x \leq \liminf_n x_n$. In particolare, tale topologia non è di Hausdorff!
+Una mappa a valori in $\R$ che sia continua rispetto alla topologia inferiore è detta \defining{inferiormente semicontinua}.
 
 \begin{theorem}
 \label{th:weaktop_seven}
 	Sia $E$ normato, $F : {E \to (-\infty, +\infty]}$ convessa.
-	Se ${F : (E, \|\cdot\|_E) \to \R_{\inf}}$ è continua, allora $F : (E, \sigma(E,E')) \to \R_{\inf}$ è continua.
+	Se ${F : (E, \|\cdot\|_E) \to \R}$ è inferiormente semicontinua, allora $F : (E, \sigma(E,E')) \to \R$ è inferiormente semicontinua.
 	In particolare, se $x_n \weakconv x$ allora $F(x) \leq \liminf_n F(x_n)$.
 \end{theorem}
 \begin{proof}
 	Sia $C \subseteq (-\infty, + \infty]$ chiuso, cioè $C=(-\infty, M]$. Per convessità di $F$, $F^{-1}(C)$ è convesso\footnote{Si usa il fatto che presi due punti qualunque $x,y \in E$, $F(x+t(y-x)) \leq F(x) + t(F(y) - F(x))$, per ogni $t \in [0,1]$. Si noti che $C$ deve avere la forma di una semiretta sinistra affinchè questa disuguaglianza sia utile.}.
-	Dacchè $F$ è continua, si ha che $F^{-1}(C)$ è fortemente chiuso. Ma fortemente chiuso e convesso implica debolmente chiuso, quindi il teorema è dimostrato.
+	Dacchè $F$ è topologica, si ha che $F^{-1}(C)$ è fortemente chiuso. Ma fortemente chiuso e convesso implica debolmente chiuso, quindi il teorema è dimostrato.
 \end{proof}
 
 \begin{remark}
-	Dal teorema segue che la funzione $T: \Czero[0,1] \to (-\infty,+\infty]$ data dall'integrale del quadrato sia debolmente continua.
+	Dal teorema segue che la funzione $T: \Czero[0,1] \to (-\infty,+\infty]$ data dall'integrale del quadrato è debolmente continua.
 \end{remark}
 
 \begin{exercise}
@@ -575,7 +576,7 @@ Ricordiamo:
 \end{proof}
 
 \begin{remark}
-	Sostanzialmente, il teorema di Alaouglu mostra che la topologia debole$^*$ è la topologia prodotto, in quanto le valutazioni si comportano $J_x$ come proiezioni.
+	Sostanzialmente, il teorema di Alaouglu mostra che la topologia debole$^*$ è la topologia prodotto, in quanto le valutazioni puntuali si comportano come proiezioni.
 \end{remark}
 
 \subsection{Spazi riflessivi, teorema di Kakutani}

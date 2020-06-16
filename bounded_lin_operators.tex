@@ -46,7 +46,7 @@ Se $(E, d_E)$ è completo come spazio metrico, $(E, \|-\|_E)$ si dice \defining{
 	\leavevmode
 	\begin{description}
 		\item[$(1) \implies (2)$] Ovvio.
-		\item[$(2) \implies (3)$] La continuità in $x_0$ singifica che per ogni $\varepsilon > 0$ esiste $\delta > 0$ tale che
+		\item[$(2) \implies (3)$] La continuità in $x_0$ significa che per ogni $\varepsilon > 0$ esiste $\delta > 0$ tale che
 		$$
 			\|x-x_0\|_E < \delta \implies \|Tx - Tx_0\|_F < \varepsilon.
 		$$
@@ -960,7 +960,7 @@ Gli operatori a grafico chiuso generalizzano gli operatori continui, come esplor
 	Vale dunque il teorema della mappa aperta, cioè è possibile trovare una palla aperta $B_{G+L}(0, C) \subseteq T(B_{G \times L}(0, 1))$, che in pratica significa che ogni $w \in G+L$ che abbia norma inferiore a $C$ è esprimibile come $\tilde x + \tilde y$, per $\tilde x \in G$ ed $\tilde y \in L$ e $\|\tilde x\|+\|\tilde y\|<1$.
 	Sia $z \in G+L$, $z \neq 0$. Definiamo $w=C/(2\|z\|) z$. Questo vettore cade nella palla $B_{G+L}(0, C)$, e quindi per la considerazione appena fatta
 	\begin{equation*}
-		\frac{c}{2 \|z\|}\, z = \tilde x + \tilde y
+		\frac{C}{2 \|z\|}\, z = \tilde x + \tilde y
 	\end{equation*}
 	da cui $x = \frac{2\|z\|}C \tilde x$ e $y= \frac{2\|z\|}C \tilde y$, che verificano le disuguaglianze in tesi.
 \end{proof}
@@ -972,7 +972,7 @@ In generale, se io ho due insiemi chiusi la loro somma non è chiusa!
 \end{counterexample}
 
 \begin{counterexample}[La chiusura è necessaria]
-	Sia $E= \ell^2 \times \ell^2$, $G = \{(x,0) \in E \suchthat x \in \ell^2\}$ e $L=\{(x,Tx) \in E \suchthat x \in \ell^2\}$ per $T: \ell^2 \to \ell^2$ che manda $\{x_n\}_{n \in \N}$ in $\{x_n/n\}_{n \in \N}$. $G$ è chiuso perchè sottospazio, $L$ è continuo perchè $T$ lineare continuo, ma $G+L$ non è chiuso in quanto se così fosse, $M=\{(0, Tx) \suchthat x \in \ell^2\}$ sarebbe chiuso, da cui $N= \im T$ sarebbe chiuso, assurdo, perchè $N$ è denso e $T$ non è suriettivo.
+	Sia $E= \ell^2 \times \ell^2$, $G = \{(x,0) \in E \suchthat x \in \ell^2\}$ e $L=\{(x,Tx) \in E \suchthat x \in \ell^2\}$ per $T: \ell^2 \to \ell^2$ che manda $\{x_n\}_{n \in \N}$ in $\{x_n/n\}_{n \in \N}$. $G$ è chiuso perchè sottospazio, $L$ è chiuso perchè $T$ lineare continuo, ma $G+L$ non è chiuso in quanto se così fosse, $M=\{(0, Tx) \suchthat x \in \ell^2\}$ sarebbe chiuso, da cui $N= \im T$ sarebbe chiuso, assurdo, perchè $N$ è denso e $T$ non è suriettivo.
 \end{counterexample}
 
 \begin{definition}
