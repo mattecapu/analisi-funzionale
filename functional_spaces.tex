@@ -2,8 +2,8 @@
 \section{Riflessività, separabilità e dualità in $L^p$}
 Sia $(\Omega, \M, \mu)$ uno spazio di misura. Ricordiamo che, per $p \in [1,\infty)$, definiamo
 \begin{eqalign*}
-	\|f\|_p &:= \left( \int |f|^p\,d\mu \right)^{1/p}\!\!, \qquad f:\Omega \to \R,\\
-	L^p(\Omega) &:= \{ f : \Omega \to \R \suchthat \|f\|_p < \infty \}
+	\|f\|_{L^p} &:= \left( \int |f|^p\,\de\mu \right)^{1/p}\!\!, \qquad f:\Omega \to \R,\\
+	L^p(\Omega) &:= \{ f : \Omega \to \R \suchthat \|f\|_{L^p} < \infty \}
 \end{eqalign*}
 Mentre
 \begin{eqalign*}
@@ -18,23 +18,23 @@ Nel seguente, assumeremo che $(\Omega, \M, \mu)$ sia $\sigma$-finito, ossia che 
 \begin{theorem}[Disuguaglianza di Clarkson]
 	Se $2 \leq p < \infty$, ed $f,g \in \L^p(\Omega)$, si ha:
 	\begin{equation*}
-		\left\|\frac{f+g}2 \right\|_p^p + \left\|\frac{f - g}2 \right\|_p^p \leq \frac{\|f\|_p^p + \|g\|_p^p}2,
+		\left\|\frac{f+g}2 \right\|_{L^p}^p + \left\|\frac{f - g}2 \right\|_{L^p}^p \leq \frac{\|f\|_{L^p}^p + \|g\|_{L^p}^p}2,
 	\end{equation*}
-	mentre se $1 < p \leq 2$:>
+	mentre se $1 < p \leq 2$:
 	\begin{equation*}
-		\left\|\frac{f+g}2 \right\|_p^{p'} + \left\|\frac{f - g}2 \right\|_p^{p'} \leq \left( \frac{\|f\|_p^p + \|g\|_p^p}2 \right)^{1/p-1}
+		\left\|\frac{f+g}2 \right\|_{L^p}^q + \left\|\frac{f - g}2 \right\|_{L^p}^q \leq \left( \frac{\|f\|_{L^p}^p + \|g\|_{L^p}^p}2 \right)^{1/p-1}
 	\end{equation*}
-	dove $p' = p/(p-1)$ è il \defining{coinugato di Young} di $p$.
+	dove $q = p/(p-1)$ è il \defining{coniugato di H\"older} di $p$.
 \end{theorem}
 Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 \begin{proof}[Dimostrazione della prima]
 	Riconduciamo la disuguaglianza in oggetto all'analoga disuguaglianza numerica:
 	\begin{equation*}
-		\left\|\frac{a+b}2 \right\|_p^p + \left\|\frac{a - b}2 \right\|_p^p \leq \frac{\|a\|_p^p + \|b\|_p^p}2, \qquad \text{per ogni $a,b \in \R$}.
+		\left\|\frac{a+b}2 \right\|_{L^p}^p + \left\|\frac{a - b}2 \right\|_{L^p}^p \leq \frac{\|a\|_{L^p}^p + \|b\|_{L^p}^p}2, \qquad \text{per ogni $a,b \in \R$}.
 	\end{equation*}
-	Questa si prova dalla disuguaglianza di Jensen per i reali\footnote{Si ottiene come caso particolare della disuguaglianza di Jensen per gli spazi $\ell^p$, applicandola a successione di soli due elementi (cioè con $a_n = 0$ per $n>2$).}
+	Questa si prova dalla disuguaglianza di Jensen per i reali\footnote{Si ottiene come caso particolare della disuguaglianza di Jensen (Teorema~\ref{th:jensen}) applicandola ad una successione di soli due elementi (cioè con $a_n = 0$ per $n>2$).}
 	\begin{equation*}
-		(A^p + B^p)^{1/p} \leq (A^2+B^2)^{p/2}, \qquad \text{per ogni $A,B \geq 0$}.
+		(A^p + B^p)^{1/p} \leq (A^2+B^2)^{1/2}, \qquad \text{per ogni $A,B \geq 0$}.
 	\end{equation*}
 	Si pone allora:
 	\begin{equation*}
@@ -59,86 +59,99 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 	Se $1 < p < \infty$, allora $L^p(\Omega)$ è uniformemente convesso e quindi riflessivo.
 \end{theorem}
 \begin{proof}
-	Siano $f,g \in L^p(\Omega)$ e supponiamo $\|f\|_p, \|g\|_p \leq 1$, $\|f-g\|_p < \varepsilon$ per $\varepsilon>0$ fissato. Sia $p \geq 2$: dalla prima disuguaglianza di Clarkson:
-	\begin{eqalign*}
-		\left\| \frac{f+g}2 \right\|^p + \left\| \frac{f-g}2 \right\|_p^p &\leq \frac{\|f\|^p_p+\|g\|^p_p}2\\
-		\left\| \frac{f+g}2 \right\| &\leq \left(\frac{\|f\|^p_p+\|g\|^p_p}2 - \left\| \frac{f-g}2\right\|_p^p \right)^{1/p}\\
-		&\leq \left( 1 - \left(\frac{\varepsilon}{2}\right)^p \right)^{1/p}
-	\end{eqalign*}
-	Ma questo sicuramente si può stimare con $1-\delta$ scegliendo opportunamente $\delta > 0$. Per $1 < p \leq 2$ si usa la seconda disuguaglianza in maniera analoga.
+	Siano $f,g \in L^p(\Omega)$ e supponiamo $\|f\|_{L^p}, \|g\|_{L^p} \leq 1$, $\|f-g\|_{L^p} < \varepsilon$ per $\varepsilon>0$ fissato.
+	Sia $p \geq 2$: dalla prima disuguaglianza di Clarkson:
+	\begin{equation*}
+		\left\| \frac{f+g}2 \right\|
+		\leq \left(\frac{\|f\|_{L^p}^p+\|g\|_{L^p}^p}2 - \left\| \frac{f-g}2\right\|_{L^p}^p \right)^{1/p}
+		\leq \left( 1 - \left(\frac{\varepsilon}{2}\right)^p \right)^{1/p} = 1 - \underbrace{\frac1p \left(\frac{\varepsilon}{2}\right)^p + o(\varepsilon^p)}_{\delta}.
+	\end{equation*}
+	Per $1 < p \leq 2$ si usa la seconda disuguaglianza in maniera analoga.
 \end{proof}
 
 \begin{theorem}[di rappresentazione di Riesz]
 \label{th:riesz_repr}
-	Sia $1 \leq p < \infty$, sia $\varphi \in L^p(\Omega)'$.
-	Allora esiste $u \in L^{p'}(\Omega)$ tale che
+	Sia $1 \leq p < \infty$, e sia $q$ il suo coniugato di H\"older.
+	Per ogni $\varphi \in L^p(\Omega)'$, esiste $u \in L^q(\Omega)$ tale che
 	\begin{equation*}
-		\langle \varphi, f \rangle = \int_\Omega uf\,d\mu, \qquad \text{per ogni $f \in L^p(\Omega)$}.
+		\langle \varphi, f \rangle = \int_\Omega uf\,\de\mu, \qquad \text{per ogni $f \in L^p(\Omega)$}.
 	\end{equation*}
-	Inoltre, $\|\varphi\|_{(L^p)'} = \|u\|_{p'}$.
+	Inoltre, $\|\varphi\|_{(L^p)'} = \|u\|_{L^q}$.
 \end{theorem}
 \begin{proof}
 	La dimostrazione si distingue in due casi.
 
-	\textbf{Caso $p \neq 1$}. Consideriamo $T:L^{p'} \to (L^p)'$ che agisce su $u \in L^{p'}$ come
+	\textbf{Caso $p \neq 1$}. Consideriamo $T:L^q \to (L^p)'$ che agisce su $u \in L^q$ come
 	\begin{equation*}
-		Tu = f \mapsto \int_\Omega uf \,d\mu.
+		\langle Tu, f \rangle := \int_\Omega uf \,\de\mu.
 	\end{equation*}
 	Vale
 	\begin{equation*}
-		|\langle Tu, f \rangle| = \left| \int_\Omega uf\,d\mu \right| \underset{\text{H\"o}}\leq \|u\|_{p'} \|f\|_p
+		|\langle Tu, f \rangle| = \left| \int_\Omega uf\,\de\mu \right| \underset{\text{H\"o}}\leq \|u\|_{L^q} \|f\|_{L^p}
 	\end{equation*}
-	quindi $Tu$ è lineare continuo, e si ha $\|Tu\| \leq \|u\|$. Fissato ora $u \in L^{p'}$, definiamo $f := |u|^{p'-2} \, u$. Si ha
+	quindi $Tu$ è lineare e continuo ($T$ è ben definito), e si ha $\|Tu\|_{(L^p)'} \leq \|u\|_{L^q}$.
+
+	Fissato ora $u \in L^q$, definiamo $u' := |u|^{q-2} \, u$. Si ha
 	\begin{equation*}
-		\|f\|_p = \left( \int_\Omega |u|^{p^2/(p-1) - 2p + p} \right)^{1/p} = \|u\|_{p'}^{1/(p-1)} < \infty.
+		\|u'\|_{L^p}
+		= \left( \int_\Omega |u|^{(q-2)p}\,|u|^p\,\de\mu \right)^{1/p}
+		= \left( \int_\Omega |u|^{p+q-2p+p}\,\de\mu \right)^{1/p}
+		= \|u\|_{L^q}^{q/p} < \infty.
 	\end{equation*}
 	Perciò
 	\begin{equation*}
-		\frac{|\langle Tu, f\rangle|}{\|f\|_{L^p}} = \frac{\int_\Omega |u|^{p'-2}|u|^2\,d\mu}{\|u\|_{p'}^{1/(p-1)}} = \|u\|_{p'}.
+		\frac{|\langle Tu, u'\rangle|}{\|u'\|_{L^p}} = \frac{{\displaystyle \int_\Omega} |u|^{q-2}|u|^2\,\de\mu}{\|u\|_{L^q}^{q/p}} = \|u\|_{L^q}^{q(1-1/p)} = \|u\|_{L^q}.
 	\end{equation*}
-	Segue che il bound ottenuto sopra è sharp, e quindi che $Tu$ è un isometria per ogni $u \in L^{p'}$.
+	Segue che $\|Tu\|_{(L^p)'} = \|u\|_{L^q}$, e quindi che $T$ è un'isometria.
+	Per completezza di $L^q$ allora, $T(L^q)$ è chiuso in $(L^p)'$.
 
-	Per completezza di $L^{p'}$ allora, $T(L^{p'})$ è chiuso in $(L^p)'$. Per provare che $T$ è suriettivo basta allora provarne la densità. Per fare ciò, prendiamo $F \in (L^p)''$ e supponiamo $F\vert_{T(L^{p'})} \equiv 0$. Dalla riflessività di $L^p$ sappiamo che $F= \xi_h$ per un certo $h \in L^p$. Ma allora
+	Per provare che $T$ è suriettivo basta allora provarne la densità. Per fare ciò, prendiamo $F \in (L^p)''$ e supponiamo $F\vert_{T(L^q)} \equiv 0$.
+	Dalla riflessività di $L^p$ sappiamo che $F = J_h$ per un certo $h \in L^p$. Ma allora
 	\begin{equation*}
-		0 = \langle F, T(u) \rangle = \langle T(u), h \rangle, \qquad \text{per ogni $u \in L^{p'}$}.
+		0 = \langle F, Tu \rangle = \langle Tu, h \rangle, \qquad \text{per ogni $u \in L^q$}.
 	\end{equation*}
 	Definiamo $u = |h|^{p-2} h$. Si ha
 	\begin{equation*}
-		0 = \langle Tu, h \rangle = \int_\Omega uh\,d\mu = \int_\Omega |h|^p\,d\mu
+		0 = \langle Tu, h \rangle = \int_\Omega uh\,\de\mu = \int_\Omega |h|^p\,\de\mu.
 	\end{equation*}
 	Segue che $h=0$, e dunque $F \equiv 0$, dimostrando la densità dell'immagine di $T$ in $(L^p)'$.
 
-	\textbf{Caso $p=1$}. Osserviamo che data $\varphi \in (L^1)'$, essa induce un funzionale su $L^2$. Ricordiamo che abbiamo assunto $\Omega$ essere $\sigma$-finito, quindi in particolare possiamo scrivere $\Omega = \bigcup_{n \in \N} \Omega_n$ dove, senza perdita di generalità, si ha $\Omega_n \subseteq \Omega_{n+1}$ e $\mu(\Omega) < \infty$.
+	\textbf{Caso $p=1$}. Ricordiamo che abbiamo assunto $\Omega$ essere $\sigma$-finito, quindi in particolare possiamo scrivere $\Omega = \bigcup_{n \in \N} \Omega_n$ dove, senza perdita di generalità, si ha $\Omega_n \subseteq \Omega_{n+1}$ e $\mu(\Omega) < \infty$.
 	Sia inoltre $\theta \in L^2$, $\theta > 0$ e pari ad una costante $\varepsilon_n$ su ciascuno degli $\Omega_{n+1} \setminus \Omega_n$ [per esempio: $\varepsilon_n = \sqrt{1/(n^2 \mu(\Omega_{n+1}\setminus \Omega_n))}$].
 
-	Definiamo ora $\psi : L^2 \to \R$ come $\psi(f) = \langle \varphi, f \theta \rangle$. Per la disuguaglianza di H\"older, $f\theta \in L^1$. Inoltre $\psi$ è lineare (ovvio) e continua:
+	Osserviamo che data $\varphi \in (L^1)'$, essa induce un funzionale su $L^2$, viz. $\psi : L^2 \to \R$ definito come $\psi(f) = \langle \varphi, f \theta \rangle$.
+	Infatti, per la disuguaglianza di H\"older, $f\theta \in L^1$. Inoltre $\psi$ è lineare (ovvio) e continua:
 	\begin{equation}
 	\label{eq:riesz_norm}
 		|\langle \psi, f \rangle|=|\langle \varphi, f\theta\rangle| \leq \|\varphi\|_{(L^1)'} \|f\theta\|_1 \leq \|\varphi\|_{(L^1)'}\|\theta\|_2\|f\|_2.
 	\end{equation}
 	Dunque $\psi \in (L^2)'$, e per il caso $p=2$ (già dimostrato) del teorema di Riesz, esiste unica $v \in L^2$ tale che
 	\begin{equation*}
-		\psi(f) = \langle \varphi, f\theta \rangle = \int_\Omega fv \,d\mu, \qquad \text{per ogni $f \in L^2$}.
+		\psi(f) = \langle \varphi, f\theta \rangle = \int_\Omega fv \,\de\mu, \qquad \text{per ogni $f \in L^2$}.
 	\end{equation*}
-	Volendo calcolare $\langle \varphi, g \rangle$ ($g \in L^1$) potremmo procedere così:
+	A questo punto potremmo osservare che, se $g/\theta \in L^2$:
 	\begin{equation}
 	\label{eq:riesz_star}
 		\langle \varphi, g \rangle = \langle \varphi, \frac{g}\theta\, \theta \rangle
-		= \int_\Omega \frac{g}\theta\, v \,d\mu
-		= \int_\Omega g \left( \frac{v}\theta \right)\,d\mu
-		= \int_\Omega gu\,d\mu, \quad \text{dove $u = v/\theta$}.
+		= \int_\Omega \frac{g}\theta\, v \,\de\mu
+		= \int_\Omega g \left( \frac{v}\theta \right)\,\de\mu
+		= \int_\Omega gu\,\de\mu, \quad \text{dove $u = v/\theta$}.
 	\end{equation}
-	Ciò vale se $g/\theta \in L^2$. Proviamo ora che
+	Dunque $u$ è un naturale candidato per essere l'elemento di $L^\infty$ che cerchiamo. C'è da dimostrare quindi che
 	\begin{enumerate}
-		\item $u \in L^\infty$, $\|u\|_\infty \leq \|\varphi\|$ (in realtà $\|u\|_\infty = \|\varphi\|$). %, ma siccome $v$ rappresenta $\varphi$ e dalla~\eqref{eq:riesz_norm}, si ha $\|u\theta\|_2 = \|v\|_2 = \|\psi\|_{(L^2)'} \leq \|\varphi\|_{(L^1)^1}\|\theta\|_2$ e dunque $\|u\|_2 \leq \|\varphi\|$)
-		Osserviamo che~\eqref{eq:riesz_star} vale ancora se al posto di $g$ uso $g' \ind_{\Omega_n}$ per $g' \in L^\infty$ perchè in quel caso $g' \ind_{\Omega_n} \in L^p$ per ogni $p$ e $\theta$ è limitata dal basso da una costante, quindi $g' \ind_{\Omega_n}/\theta \in L^2$. Dunque~\eqref{eq:riesz_star} si riscrive come
+		\item $u \in L^\infty$, cioè che $\|u\|_\infty \leq \|\varphi\|$, e
+		\item $\langle \varphi, g \rangle = \int_\Omega gu\,\de\mu$ per ogni $g \in L^1$.
+	\end{enumerate}
+	Proviamo ora questi due claim.
+	\begin{enumerate}
+		\item Osserviamo che~\eqref{eq:riesz_star} vale ancora se al posto di $g$ uso $g' \ind_{\Omega_n}$ per $g' \in L^\infty$ perchè in quel caso $g' \ind_{\Omega_n} \in L^p$ per ogni $p$ e $\theta$ è limitata dal basso da una costante, quindi $g' \ind_{\Omega_n}/\theta \in L^2$. Dunque~\eqref{eq:riesz_star} si riscrive come
 		\begin{equation}
 		\label{eq:riesz_starstar}
-			\langle \varphi, g \ind_{\Omega_n} \rangle = \int_\Omega g \ind_{\Omega_n} u\,d\mu, \qquad \text{per ogni $g \in L^\infty$}.
+			\langle \varphi, g \ind_{\Omega_n} \rangle = \int_\Omega g \ind_{\Omega_n} u\,\de\mu, \qquad \text{per ogni $g \in L^\infty$}.
 		\end{equation}
 		Fissiamo ora $C > \|\varphi\|$ e sia $A = \{\|u\| > C\}$. Proviamo che $\mu(A) = 0$. Posto $g := \ind_A \sgn u$, dalla~\eqref{eq:riesz_starstar} segue
 		\begin{equation*}
-			\langle \varphi, \ind_A \ind_{\Omega_n} \sgn u \rangle = \int_{A \cap \Omega_n} |u|\,d\mu \geq C \mu(A \cap \Omega_n).
+			\langle \varphi, \ind_A \ind_{\Omega_n} \sgn u \rangle = \int_{A \cap \Omega_n} |u|\,\de\mu \geq C \mu(A \cap \Omega_n).
 		\end{equation*}
 		D'altra parte,
 		\begin{equation*}
@@ -154,23 +167,24 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 		\end{equation*}
 		contraddicendo l'ipotesi che $C > \|\varphi\|$. Siccome $\mu(A \cap \Omega_n) = 0$ per ogni $n \in \N$, $\|u\| < C$ quasi certamente, da cui concludiamo che $\|u\|_\infty \leq \|\varphi\|$, come dovevasi dimostrare.
 
-		\item $\langle \varphi, g \rangle = \int_\Omega gu\,d\mu$ per ogni $g \in L^1$. Dimostriamo questo con un procedimento di troncatura: definiamo, per ogni $n \in \N$:
+		\item Useremo un procedimento di troncatura: definiamo, per ogni $n \in \N$:
 		\begin{equation*}
 			g_n(x) = \begin{cases}
 				g(x) & |g(x)| \leq n\\
 				n \frac{g(x)}{|g(x)|} & \text{altrimenti}
 			\end{cases}
 		\end{equation*}
-		Chiaramente: $g_n \conv g$, e $g_n \leq g$, dunque $g_n \convin{L^1} g$. Inoltre $g_n \in \L^\infty$, quindi possiamo usare la~\eqref{eq:riesz_starstar} per dire
+		Chiaramente: $g_n \conv g$, e $g_n \leq g$, dunque $g_n \convin{L^1} g$. Inoltre $g_n \in L^\infty$, quindi possiamo usare la~\eqref{eq:riesz_starstar} per dire
 		\begin{equation*}
-			\langle \varphi, g_n \ind_{\Omega_n} \rangle = \int_\Omega g_n \ind_{\Omega_n} u \,d\mu,
+			\langle \varphi, g_n \ind_{\Omega_n} \rangle = \int_\Omega g_n \ind_{\Omega_n} u \,\de\mu,
 		\end{equation*}
-		Si ha comunque $g_n \ind_n \convin{L^1} g$, perchè gli $\Omega_n$ invadono $\Omega$. Da ciò deduciamo che $\langle \varphi, g_n \ind_{\Omega_n} \rangle \conv \langle \varphi, g \rangle$ per continuità, e $\int_\Omega  g_n \ind_{\Omega_n} u \,d\mu \conv \int_\Omega g u \,d\mu$ siccome $u \in L^\infty$. Ma questo è il teorema di Riesz cercato:
+		Si ha comunque $g_n \ind_n \convin{L^1} g$, perchè gli $\Omega_n$ invadono $\Omega$.
+		Da ciò deduciamo che $\langle \varphi, g_n \ind_{\Omega_n} \rangle \conv \langle \varphi, g \rangle$ per continuità, e $\int_\Omega  g_n \ind_{\Omega_n} u \,\de\mu \conv \int_\Omega g u \,\de\mu$ siccome $u \in L^\infty$. Ma questo è il risultato cercato:
 		\begin{equation*}
-			\langle \varphi, g \rangle = \int_\Omega gu\,d\mu.
+			\langle \varphi, g \rangle = \int_\Omega gu\,\de\mu.
 		\end{equation*}
 	\end{enumerate}
-	Da ciò segue che $\|\varphi\| \leq \|u\|$, e quindi che $\|\varphi\|=\|u\|$.
+	Il teorema è provato poichè, come conseguenza ulteriore del secondo punto, $\|\varphi\|_{(L^1)'} \leq \|u\|_{L^\infty}$, e quindi $\|\varphi\|_{(L^1)'}=\|u\|_{L^\infty}$ come anticipato.
 \end{proof}
 
 \begin{remark}
@@ -192,25 +206,28 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 	\begin{equation*}
 		u_n = \frac1{\mu(\Omega_n)} \ind_{\Omega_n}, \qquad n \in \N.
 	\end{equation*}
-	Se $L^1$ fosse riflessivo, questa successione (che è limitata) converge debolmente ad $u \in L^1$ (a meno di passare ad una sottosuccessione). Ciò implica che
+	Se $L^1$ fosse riflessivo, questa successione (che è limitata) convergerebbe debolmente ad $u \in L^1$ (a meno di passare ad una sottosuccessione). Ciò implicherebbe che
 	\begin{equation*}
-		\int_\Omega u_n \varphi \,d\mu \conv \int_\Omega u \varphi\,d\mu, \qquad \text{per ogni $\varphi \in L^\infty$}.
+		\int_\Omega u_n \varphi \,\de\mu \conv \int_\Omega u \varphi\,\de\mu, \qquad \text{per ogni $\varphi \in L^\infty$}.
 	\end{equation*}
-	Allora fissato $j \in \N$, si ha in particolare:
+	Ma fissato $j \in \N$, si ha:
 	\begin{equation*}
-		\int_\Omega u_n \ind_{\Omega_j} \,d\mu \conv[n] \int_\Omega u \ind_{\Omega_j}\,d\mu.
+		\int_\Omega u_n \ind_{\Omega_j} \,\de\mu \conv[n] \int_\Omega u \ind_{\Omega_j}\,\de\mu.
 	\end{equation*}
 	Siccome gli $\Omega_n$ sono decrescenti, per $n \geq j$ si ha $\Omega_j \supseteq \Omega_n$, dunque $u_n \ind_{\Omega_j} = \frac1{\mu(\Omega_n)} \ind_{\Omega_n}$, che integrato su tutto $\Omega$ fa $1$. Dunque
 	\begin{equation*}
-		\int_\Omega u \ind_{\Omega_j} \,d\mu = 1.
+		\int_\Omega u \ind_{\Omega_j} \,\de\mu = 1.
 	\end{equation*}
-	Ma siccome questo vale per ogni $j \in \N$, e $\ind_{\Omega_j} \conv[j] 0$, contraddizione.
+	Ma siccome questo vale per ogni $j \in \N$, e $\int_\Omega u \ind_{\Omega_j}\,\de\mu \conv[j] 0$, avremmo una contraddizione.
 
-	Nel secondo caso, possiamo, senza perdita di generalità, assumere che $\Omega$ sia l'unione disgiunta di una quantità numerabile di punti $\{a_n\}_{n \in \N}$. In tal caso, $L^1 = \ell^1$, e proviamo che $\ell^1$ non è riflessivo. Infatti se così fosse, la successione degli elementi naturali $\{e_n\}_{n \in \N}$ avrebbe una sottosuccessione debolmente convergente ad $u \in \ell^1$. Siccome $\vec 1 =(1,1, \ldots) \in \ell^\infty$, si ha che $e_n \cdot \vec 1 \conv u \cdot \vec 1$, ma ciò significa che
+	Nel secondo caso possiamo, senza perdita di generalità, assumere che $\Omega$ sia l'unione disgiunta di una quantità numerabile di punti $\{a_n\}_{n \in \N}$.
+	In tal caso, $L^1 = \ell^1$, e proviamo che $\ell^1$ non è riflessivo.
+	Infatti se così fosse, la successione degli elementi naturali $\{e_n\}_{n \in \N}$ avrebbe una sottosuccessione debolmente convergente ad $u \in \ell^1$. Siccome $\vec 1 =(1,1, \ldots) \in \ell^\infty$, si ha che $e_n \cdot \vec 1 \conv u \cdot \vec 1$, ma ciò significa che
 	\begin{equation*}
 		1 \conv u \cdot \vec 1
 	\end{equation*}
-	È pacifico però che $\e_n \weakconv u$ implica la convergenza puntuale che implica $u= \vec 0$. D'altro canto $0 \cdot \vec 1 = 0 \neq 1$.
+	e quindi $u \cdot \vec 1 = 1$.
+	È pacifico però che $\e_n \weakconv u$ implica la convergenza puntuale, la quale ha come limite $\vec 0$. D'altro canto $0 \cdot \vec 1 \neq 1$.
 
 	Rimane solo il caso in cui il numero di atomi è finito, nel quale è banale che $L^1$ è riflessivo (perchè finito-dimensionale).
 \end{proof}
@@ -218,12 +235,14 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 
 \begin{lemma}
-\label{lemma:lemmino}
+\label{lemma:neg_sep_lemma}
 	Sia $(X,d)$ metrico ove esiste un aperto partizionato da una famiglia più che numerabile di aperti.
 	Allora $(X,d)$ non è separabile.
 \end{lemma}
 \begin{proof}
-	Supponiamo per assurdo che $(X,d)$ sia separabile, cioè che esista $X'=\{x_n\}_{n \in \N}$ denso in $X$. Sia $\{A_i\}_{i \in I}$ la partizione in ipotesi. Per densità di $X'$, per ogni $i \in I$ esiste un $n_i \in \N$ tale che $x_{n_i} \in A_i$. D'altro canto ciò non è possibile, siccome $\card{I} > \card\N$ e tutti gli $A_i$ sono disgiunti e non vuoti.
+	Supponiamo per assurdo che $(X,d)$ sia separabile, cioè che esista $X'=\{x_n\}_{n \in \N}$ denso in $X$. Sia $\{A_i\}_{i \in I}$ la partizione in ipotesi.
+	Per densità di $X'$, per ogni $i \in I$ esiste un $n_i \in \N$ tale che $x_{n_i} \in A_i$.
+	D'altro canto ciò non è possibile, siccome $\card{I} > \card\N$ e tutti gli $A_i$ sono disgiunti e non vuoti.
 \end{proof}
 
 \begin{theorem}
@@ -236,21 +255,27 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 \end{remark}
 
 \begin{proof}
-	Nel caso $1 \leq p < \infty$, basta dimostrare che $L^p(\R^n)$ è separabile, essendo che $L^p(\Omega) \leq L^p(\R^n)$ (immergo estendendo le funzioni di $\Omega$ con zero). Usando il fatto che $\Czero_c(\R^n)$ è denso in $L^p(\R^n)$, è possibile vedere che tutte le combinazioni lineari a coefficienti razionali di funzioni caratteristiche del tipo
+	Nel caso $1 \leq p < \infty$, basta dimostrare che $L^p(\R^n)$ è separabile, essendo che $L^p(\Omega) \leq L^p(\R^n)$ (immergo estendendo le funzioni di $\Omega$ con zero).
+	Usando il fatto che $\Czero_c(\R^n)$ è denso in $L^p(\R^n)$, è possibile vedere che tutte le combinazioni lineari a coefficienti razionali di funzioni caratteristiche del tipo
 	\begin{equation*}
 		\ind_{\prod_{i=1}^N (a_i,b_i)}, \quad a_i \leq b_i \in \Q,
 	\end{equation*}
 	sono dense in $L^p$.
 
-	Nel caso $p=\infty$, consideriamo la famiglia $\{W_i\}_{i \in I}$ di tutte le palle aperte contenute in $\Omega$. Per ogni $i \neq j$, si ha $W_i \Delta W_j \neq \varnothing$, da cui $\|\ind_{W_i} - \ind_{W_j}\|_\infty \geq 1$. Consideriamo allora la famiglia
+	Nel caso $p=\infty$, consideriamo la famiglia $\{W_i\}_{i \in I}$ di tutte le palle aperte contenute in $\Omega$.
+	Per ogni $i \neq j$, si ha $W_i \Delta W_j \neq \varnothing$, da cui $\|\ind_{W_i} - \ind_{W_j}\|_\infty \geq 1$.
+	Consideriamo allora la famiglia
 	\begin{equation*}
 		\{ B_{L^\infty(\Omega)}(\ind_{W_i}, 1/2) \suchthat i \in I\}.
 	\end{equation*}
-	Affermiamo che tale famiglia è fatta da aperti disgiunti e non vuoti. Banalmente le palle in oggetto sono aperte e non vuote. Per verificare la disgiunzione, supponiamo per assurdo che, per certi $i \neq j$, esista $f \in B_{L^\infty(\Omega)}(\ind_{W_i}, 1/2) \cap B_{L^\infty(\Omega)}(\ind_{W_j}, 1/2)$. Allora
+	Affermiamo che tale famiglia è fatta da aperti disgiunti e non vuoti.
+	Banalmente le palle in oggetto sono aperte e non vuote. Per verificare la disgiunzione, supponiamo per assurdo che, per certi $i \neq j$, esista $f \in B_{L^\infty(\Omega)}(\ind_{W_i}, 1/2) \cap B_{L^\infty(\Omega)}(\ind_{W_j}, 1/2)$.
+	Allora
 	\begin{equation*}
 			\| \ind_{W_i} - \ind_{W_j} \| \leq \|\ind_{W_i} - f\|_\infty + \|f-\ind_{W_j}\|_\infty < \frac12 + \frac12 = 1,
 	\end{equation*}
-	assurdo. Perciò Lemma~\ref{lemma:lemmino} segue la tesi.
+	assurdo.
+	Perciò dal Lemma~\ref{lemma:neg_sep_lemma} segue la tesi.
 \end{proof}
 
 \begin{remark}
@@ -259,11 +284,11 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 
 \section{Compattezza}
 \begin{definition}
-	Sia $(X,d)$ uno spazio metrico, un insieme $A \subseteq X$ si dice \defining{totalmente limitato} se per ogni $\varepsilon > 0$ esistono $n_\varepsilon \in \N$ ed $n_\varepsilon$ palle $B_1, \ldots, B_{n_\varepsilon}$ di raggio $\varepsilon$ che ricoprono $A$.
+	Sia $(X,d)$ uno spazio metrico, un insieme $A \subseteq X$ si dice \defining{totalmente limitato} se per ogni $\varepsilon > 0$ esiste una famiglia finita $B_1, \ldots, B_{n_\varepsilon}$ di palle aperte di raggio $\varepsilon$ che ricoprono $A$.
 \end{definition}
 
 \begin{remark}
-	Ogni insieme totalmente limitato è limitato, ma il viceversa non vale, ad esempio in uno spazio normato di dimensione infinita.
+	Ogni insieme totalmente limitato è limitato, ma in uno spazio normato di dimensione infinita non vale il viceversa (si pensi alla palla unitaria, Teorema~\ref{th:unit_ball_not_compact}).
 \end{remark}
 
 \begin{lemma}
@@ -271,8 +296,9 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 	Allora $X$ è totalmente limitato se e solo se da ogni successione si può estrarre una sottosuccessione di Cauchy.
 \end{lemma}
 \begin{proof}
-	Facile. Se la successione ha immagine finita, ok. Altrimenti scelgo $\varepsilon =1/n$, trovo un numero finito di palle. Una di queste contiene una coda della successione. Procedo così ed estraggo la sottosuccessione cercata.
-
+	Facile. Se la successione ha immagine finita, ok. Altrimenti, per ogni $\varepsilon = 1/n$, ricopro $X$ con un numero finito di palle, per cui almeno una di queste contiene una coda della successione.
+	Sceglo il termine $n$-esimo da una di queste palle con la coda, la considero il nuovo $X$, e procedo allo steso modo.
+	Chiaramente la successione estratta in questa maniera è di Cauchy.
 	Viceversa, negando l'ipotesi otteniamo una rete di $\varepsilon$-palle infinita i cui centri non ammettono una sottosuccessione di Cauchy.
 \end{proof}
 
@@ -285,17 +311,12 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 		\item $(X,d)$ è completo e totalmente limitato.
 	\end{enumerate}
 \end{theorem}
-
-\begin{remark}
-	$A \subseteq \R^n$ è limitato se e soltanto se è totalmente limitato
-\end{remark}
-
-\begin{definition}
-	Sia $(X,d)$ metrico, $A \subseteq X$ si dice precompatto se $A$ è relativamente compatto, cioè $\closure A$ è compatto.
-\end{definition}
+\begin{proof}
+	Omissis.
+\end{proof}
 
 \begin{corollary}
-	Sia $(X,d)$ uno spazio metrico completo, $A \subseteq X$ è precompatto se e solo se è totalmente limitato.
+	Sia $(X,d)$ uno spazio metrico completo, $A \subseteq X$ è relativamente compatto\footnote{Cioè ha chiusura compatta.} se e solo se è totalmente limitato.
 \end{corollary}
 \begin{proof}
 	\leavevmode
@@ -305,7 +326,16 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 	\end{description}
 \end{proof}
 
-Indichiamo con $\Czero_b$ il fascio delle funzioni continue limitate su $(X,d)$. Si osservi che se $X$ è compatto, $\Czero_b = \Czero$.
+\begin{corollary}
+\label{cor:comp_implies_sep}
+	Se $(X, d)$ è compatto allora $(X, d)$ è separabile.
+\end{corollary}
+\begin{proof}
+	Si consideri la successione di ricoprimenti data dalle palle di raggio $q_n$, dove $\{q_n\}_{n \in \N}$ è un'enumerazione dei razionali. Ciascuno di questi ricoprimenti ammette un raffinamento finito.
+	I centri di tutti questi raffinamenti formano un insieme denso e numerabile.
+\end{proof}
+
+Indichiamo con $\Czero_b(X)$ le funzioni continue e limitate su $(X,d)$. Si osservi che se $X$ è compatto, $\Czero_b(X) \equiv \Czero(X)$.
 
 \begin{definition}
 	Sia $(X,d)$ metrico, $E \subseteq X$.
@@ -337,60 +367,70 @@ Indichiamo con $\Czero_b$ il fascio delle funzioni continue limitate su $(X,d)$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Si noti che $(X, d)$ compatto implica $(X,d)$ separabile. Infatti si consideri la successione di ricoprimenti data dalle palle di raggio $q_n$, dove $\{q_n\}_{n \in \N}$ è un'enumerazione dei razionali. Ciascuno di questi ricoprimenti ammette un raffinamento finito. I centri di tutti questi raffinamenti formano un insieme denso e numerabile.
-
-	Sia $\delta$ il modulo di equicontinuità di $\mathcal F$. Per compattezza, $X$ è totalmente limitato, dunque posso trovare, per ogni $\varepsilon > 0$, un ricoprimento finito (di cardinalità $n_\delta \in \N$) di $X$ costituito da $\delta_\varepsilon$-palle i cui centri posso assumere cadere in $E$ denso numerabile.
-
+	Sia $\delta$ il modulo di equicontinuità di $\mathcal F$.
+	Per compattezza, $X$ è totalmente limitato, dunque posso trovare, per ogni $\varepsilon > 0$, un ricoprimento finito (di cardinalità $n_\delta \in \N$) di $X$ costituito da $\delta_\varepsilon$-palle i cui centri, posso assumere, cadono in $E$ denso numerabile (siccome compatto implica separabile, Corollario~\ref{cor:comp_implies_sep}).
+	Allora si ha:
 	\begin{enumerate}
 		\item Per ogni $x \in X$ esiste $1 \leq i \leq n_\delta$ tale che $x \in B(x_i, \delta)$. Allora
 		\begin{equation*}
-			|f_n(x)| \leq |f_n(x) - f_n(x_1)| + |f_n(x_1)| \leq \varepsilon + \sup_{1 \leq i \leq n_\delta} |f_n(x_i)| \leq M.
+			|f_n(x)| \leq |f_n(x) - f_n(x_1)| + |f_n(x_1)| \leq \varepsilon + \sup_{1 \leq i \leq n_\delta} |f_n(x_i)| = M \lneq \infty,
 		\end{equation*}
+		cioè $\mathcal F$ è equilimitata.
 
-		\item Dal Lemma~\ref{lemma:funsp_three}, a meno di passare ad una sottosuccessione, $\{f_n\}_{n \in \N}$ converge puntualmente in $E$. D'altro canto, per qualsiasi $x \in X$ esiste $1 \leq i \leq n_\delta$ tale che $x \in B(x_i, \delta)$. Si mostra che $\{f_n\}_{n \in \N}$ è Cauchy: infatti
-		\begin{eqalign*}
-			|f_n(x) - f_m(x)| &\leq |f_n(x)-f_n(x_i)|+ |f_n(x_i) - f_m(x_i)| + |f_m(x_i) - f_m(x)|\\
-			&\leq \varepsilon + |f_n(x_i) - f_m(x_i)| + \varepsilon
-		\end{eqalign*}
-		e il termine centrale è inferiore a $\varepsilon$ per $n,m \in \N$ sufficientemente grandi.
-		Per completezza di $\Czero(X)$, concludiamo che $f_n \conv f \in X$ uniformemente.
+		\item Dal Lemma~\ref{lemma:funsp_three}, a meno di passare ad una sottosuccessione, $\{f_n\}_{n \in \N}$ converge puntualmente in $E$. D'altro canto, per qualsiasi $x \in X$ esiste $1 \leq i \leq n_\delta$ tale che $x \in B(x_i, \delta)$. Si mostra che $\{f_n\}_{n \in \N}$ è Cauchy: infatti presi $n,m \in \N$ sufficientemente grandi, si ha
+		\begin{equation*}
+			|f_n(x) - f_m(x)| \leq \underbrace{|f_n(x)-f_n(x_i)|}_{< \varepsilon\ \text{(per equicont.)}} + \underbrace{|f_n(x_i) - f_m(x_i)|}_{< \varepsilon\ \text{(per conv. pt.)}} + \underbrace{|f_m(x_i) - f_m(x)|}_{< \varepsilon\ \text{(per equicont.)}} < 3\varepsilon
+		\end{equation*}
+		Si noti che solo la stima centrale non è, a priori, uniforme rispetto ad $x \in X$.
+		Tuttavia siccome essa dipende da un numero finito di punti (i centri $x_i$ delle $\delta_\varepsilon$-palle), possiamo renderla uniforme scegliendo $n,m \in \N$ sufficientemente grandi da soddisfare la disuguaglianza per ogni $x_i$.
+		In definitiva possiamo concludere che la successione è di Cauchy in $\Czero(X)$, ed essendo questo spazio completo concludiamo che $f_n \conv f \in X$ uniformemente, come desiderato.
 	\end{enumerate}
 \end{proof}
 
-Questa forma che abbiamo appena visto sarebbe da chiamare più propriamente `teorema di Ascoli'. Il contributo di Arzelà è il seguente corollario:
+Il teorema appena dimostrato sarebbe da chiamare più propriamente `teorema di Ascoli'. Il contributo di Arzelà è in realtà nel seguente corollario:
 
-\begin{corollary}[Caratterizzazione dei compatti di $\Czero$]
+\begin{corollary}%[Caratterizzazione dei compatti di $\Czero(X)$]
 	Sia $(X,d)$ spazio metrico compatto e sia $A \subseteq \Czero(X)$.
-	Allora $A$ è totalmente limitato in $(\Czero(X), \|\cdot\|_\infty)$ se e solo se $A$ è equilimitata ed equicontinua.
+	Allora $A$ è totalmente limitato in $(\Czero(X), \|\cdot\|_\infty)$ se e soltanto se $A$ è una famiglia equilimitata ed equicontinua.
 \end{corollary}
+% \begin{remark}
+% 	Il teorema di Heine--Borel (Teorema~\ref{th:heine_borel}) ci dice che $A$ totalmente limitato in $\Czero(X)$ è compatto, poichè tale spazio è completo quando
+% \end{remark}
 \begin{proof}
 	\leavevmode
 	\begin{description}
-		\item[$(\Longrightarrow)$] Dalla totale limitatezza, otteniamo che $A$ è limitato in $\Czero$, quindi $A$ è equilimitata come famiglia funzionale.
-		D'altra parte, per ogni $\varepsilon > 0$ esistono $f_1, \ldots, f_{n_\varepsilon} \in A$ tali che le palle $B(f_i, \varepsilon)$ ricoprono $A$. In particolare, comunque preso $f \in A$ esiste un $1 \leq i \leq n_\varepsilon$ tale che $\|f-f_i\|_\infty < \varepsilon$. Siano ora $x,y \in X$:
-		\begin{eqalign*}
-			|f(x) - f(y)| &\leq |f(x) - f_i(y)| + |f_i(x) - f_i(y)| + |f_i(y) - f(x)|\\
-			&\leq \varepsilon + |f_i(x) - f_i(y)| + \varepsilon
-		\end{eqalign*}
-		e $|f_i(x) - f_i(y)| < \varepsilon$ per uniforme continuità di $f_i$ (quindi a patto di prendere $\delta$ sufficientemente piccolo). Siccome le $f_i$ sono in numero finito, tale $\delta$ è effettivamente indipendente da $x$, e dunque abbiamo ottenuto l'equicontinuità di $A$.
-		\item[$(\implied)$] Dal teorema di Ascoli--Arzelà, data una successione in $A$ questa ammette un'estratta convergente. Pertanto $A$ soddisfa una delle condizioni di compattezza negli spazi metrici (Teorema~\ref{th:heine_borel})
+		\item[$(\Longrightarrow)$] Dalla totale limitatezza, otteniamo che $A$ è limitato in $\Czero(X)$, quindi $A$ è equilimitata come famiglia funzionale.
+		D'altra parte, per ogni $\varepsilon > 0$ esistono $f_1, \ldots, f_{n_\varepsilon} \in A$ tali che le palle $B(f_i, \varepsilon)$ ricoprono $A$. In particolare, comunque preso $f \in A$ esiste un $1 \leq i \leq n_\varepsilon$ tale che $\|f-f_i\|_\infty < \varepsilon$.
+		Inoltre, siccome $X$ è compatto, ciascuna di queste $f_i$ è uniformemente continua con modulo di continuità $\delta_i$.
+		Siano dunque $x, y \in X$ a distanza inferiore di $\delta := \min_{1 \leq i \leq n_\varepsilon} \delta_i$. Abbiamo:
+		\begin{equation*}
+			|f(x) - f(y)| \leq \underbrace{|f(x) - f_i(y)|}_{< \varepsilon\ \text{(per tot. lim.)}} + \underbrace{|f_i(x) - f_i(y)|}_{< \varepsilon\ \text{(per unif. cont.)}} + \underbrace{|f_i(y) - f(x)|}_{< \varepsilon\ \text{(per tot. lim.)}}
+		\end{equation*}
+		cioe $A$ è una famiglia equicontinuità.
+
+		\item[$(\implied)$] Dal teorema di Ascoli--Arzelà, data una successione in $A$ questa ammette un'estratta uniformemente convergente.
+		Pertanto $A$ soddisfa una delle condizioni di compattezza negli spazi metrici (Teorema~\ref{th:heine_borel}), e quindi $A$ è totalmente limitata.
 	\end{description}
 \end{proof}
+
+In definitiva, il teorema di Ascoli--Arzelà ed il suo corollario danno una caratterizzazione dei compatti di $\Czero(X)$ per $X$ metrico compatto.
+
+Esiste un risultato simile per la caratterizzazione della compattezza in $L^p(\R^n)$, che però non dimostriamo:
 
 \begin{theorem}
 	Sia $p \in [1,\infty)$, sia $\{f_n\}_{n \in \N}$ una successione in $L^p(\R^n)$ tale che
 	\begin{description}
 		\item[Equilimitatezza.] Esiste $M>0$ che limita uniformemente le norme:
 		\begin{equation*}
-			\|f_n\|_{p} \leq M, \qquad \text{per ogni $n \in \N$}.
+			\|f_n\|_{L^p} \leq M, \qquad \text{per ogni $n \in \N$}.
 		\end{equation*}
 		\item[Equicontinuità delle traslate.] Per ogni $\varepsilon > 0$, esiste $\delta > 0$ tale che
 		\begin{equation*}
-			\int_{\R^n} |f_n(x+h) - f_n(x)|^p \,dx < \varepsilon, \qquad \text{per ogni $\|h\| < \delta$, $n \in \N$}.
+			\int_{\R^n} |f_n(x+h) - f_n(x)|^p \,\dx < \varepsilon, \qquad \text{per ogni $\|h\| < \delta$, $n \in \N$}.
 		\end{equation*}
 		\item[Equi-$p$-concentrazione.] Per ogni $\varepsilon > 0$, esiste $R > 0$ tale che
 		\begin{equation*}
-			\int_{\R^n \setminus B(0,R)} |f_n(x)|^p\,dx < \varepsilon, \qquad \text{per ogni $n \in \N$}.
+			\int_{\R^n \setminus B(0,R)} |f_n(x)|^p\,\dx < \varepsilon, \qquad \text{per ogni $n \in \N$}.
 		\end{equation*}
 	\end{description}
 \end{theorem}

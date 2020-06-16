@@ -739,21 +739,25 @@ Moralmente, questo teorema vuol dire:
 	Allora $E$ è separabile.
 \end{theorem}
 \begin{proof}
-	Sia $\{f_n\}_{n \in \N}$ denso in $E'$. Ricordiamo che $\|f_n\| = \sup_{\|x\|=1} \langle f_n, x \rangle$. Dunque per ogni $n \in \N$, esiste $x_n \in \E$ di norma unitaria tale per cui $\langle f_n, x_n \rangle \geq \frac12 \|f_n\|$.
+	Sia $\{f_n\}_{n \in \N}$ denso in $E'$. Ricordiamo che $\|f_n\|_{E'} = \sup_{\|x\|=1} |\langle f_n, x \rangle|$. Dunque per ogni $n \in \N$, esiste $x_n \in \E$ di norma unitaria tale per cui
+	\begin{equation*}
+	\label{eq:dense_set_ineq}
+		|\langle f_n, x_n \rangle| \geq \frac12 \|f_n\|.
+	\end{equation*}
+	Sia $L = \R[x_n,\, n \in \N]$ lo spazio vettoriale reale generato dai punti $\{x_n\}_{n \in \N}$. Dimostriamo che $L$ è denso in $E$. Per il Corollario~\ref{cor:boundlin_four}, ciò equivale a dimostrare che per ogni $f \in E'$, $f\vert_L \equiv 0$ comporta $f \equiv  0$.
 
-	Sia $L = \R[x_n \suchthat n \in \N]$ lo spazio vettoriale relae generato dai punti $\{x_n\}_{n \in \N}$. Dimostriamo che $L$ è denso in $E$. Per il Corollario~\ref{cor:boundlin_four}, ciò equivale a dimostrare che per ogni $f \in E'$, $f\vert_L \equiv 0$ comporta $f \equiv  0$.
-
-	Sia dunque $f \in E'$ che si annulla su $L$. Per ogni $\varepsilon > 0$ esiste $n \in \N$ tale che $\|f-f_n\| < \varepsilon$. Si ha
+	Sia dunque $f \in E'$ che si annulla su $L$. Per ogni $\varepsilon > 0$ esiste $n \in \N$ tale che $\|f-f_n\| < \varepsilon$.
+	Si ha
 	\begin{eqalign*}
 		\|f\| &\leq \|f-f_n\| + \|f_n\|\\
-			&\leq \varepsilon + 2 \langle f_n, x_n \rangle \comment{per ipotesi su $x_n$}\\
-			&= \varepsilon + 2 \langle f_n - f, x_n \rangle \comment{per ipotesi su $f$}\\
-			&\leq \varepsilon + 2 \|f_n - f\|\|x_n\|\\
+			&\leq \varepsilon + 2 |\langle f_n, x_n \rangle| \comment{per \eqref{eq:dense_set_ineq}}\\
+			&= \varepsilon + 2 |\langle f_n - f, x_n \rangle| \comment{poichè $f(x_n) = 0$}\\
+			&\leq \varepsilon + 2 \|f_n - f\|_{E'} \|x_n\|\\
 			&\leq 3\varepsilon.
 	\end{eqalign*}
-	Dunque $\|f\| = 0$, da cui $f \equiv 0$.
+	Dunque $\|f\|_{E'} = 0$, da cui $f \equiv 0$, come desiderato.
 
-	Infine, lo spazio vettoriale razionale $\Q[x_n \suchthat n \in \N]$ è denso in $L$ e numerabile, provando la separabilità di $E$.
+	Infine, lo spazio vettoriale razionale $\Q[x_n,\, n \in \N]$ è denso in $L$ e numerabile, provando la separabilità di $E$.
 \end{proof}
 
 \begin{remark}
@@ -761,6 +765,7 @@ Moralmente, questo teorema vuol dire:
 \end{remark}
 
 \begin{corollary}
+\label{cor:ref_sep_dual}
 	Sia $E$ spazio di Banach.
 	Allora $E$ è riflessivo e separabile se e solo se $E'$ è riflessivo e separabile.
 \end{corollary}
@@ -777,7 +782,7 @@ Per parlare di compattezza per successioni bisogna essere in un contesto metrico
 \begin{theorem}
 \label{th:weaktop_fourteen}
 	Sia $E$ normato e separabile, e sia $\{x_n\}_{n \in \N}$ denso in $\closure B_E(0,1)$.
-	Definiamo su $B_{E'}(0,1)$ la seguente distanza:
+	Definiamo su $\closure B_{E'}(0,1)$ la seguente distanza:
 	\begin{equation*}
 		d(f,g) = \sum_{n=1}^\infty \frac1{2^n} |\langle f-g, x_n\rangle|, \qquad \text{per ogni $f,g \in B_{E'}(0,1)$}.
 	\end{equation*}
@@ -785,36 +790,38 @@ Per parlare di compattezza per successioni bisogna essere in un contesto metrico
 	In particolare, $(\closure B_{E'}(0,1), \sigma(E',E))$ è metrizzabile.
 \end{theorem}
 \begin{proof}
-	Omettiamo la semplice verifica che $d$ è sia ben definita come metrica. Scegliamo invece $f_0 \in \closure B_{E'}(0,1)$. Vogliamo mostrare che ogni intorno debole$^*$ di $f_0$ contiene un intorno metrico di $f_0$, e viceversa.
+	Omettiamo la semplice verifica del fatto che $d$ sia ben definita come metrica.
+	Scegliamo $f_0 \in \closure B_{E'}(0,1)$. Vogliamo mostrare che ogni intorno metrico di $f_0$ contiene un intorno debole$^*$ di $f_0$, e viceversa.
 
-	Fissiamo $r > 0$, che ci dà la palla $U=\{f \in \closure B_{E'}(0,1) \suchthat d(f,f_0) < r \}$. Definiamo
+	Nel primo caso, fissiamo la palla $B_d(f_0, r) \subseteq \closure B_{E'}(0,1)$.
+	Definiamo la seguente famiglia di intorni deboli$^*$:
 	\begin{equation*}
 		V_{n,\varepsilon} = \{ f \in \closure B_{E'}(0,1) \suchthat |\langle f-f_0, x_i \rangle| < \varepsilon, \text{per ogni $i=1, \ldots,n$}\}.
 	\end{equation*}
 	Sia $f \in V_{n,\varepsilon}$, abbiamo
 	\begin{eqalign*}
 		d(f,f_0) &= \sum_{i=1}^\infty \frac1{2^i}|\langle f-f_0, x_i\rangle|\\
-		&= \sum_{i=1}^n \frac1{2^i}|\langle f-f_0, x_i\rangle| + \sum_{i=n+1}^\infty \frac1{2^i}|\langle f-f_0, x_i\rangle|\\
+		&= \sum_{i=1}^n \frac1{2^i}\underbrace{|\langle f-f_0, x_i\rangle|}_{< \varepsilon} + \sum_{i=n+1}^\infty \frac1{2^i}\underbrace{|\langle f-f_0, x_i\rangle|}_{< \underbrace{\|f-f_0\|_{E'}}_{< \|f\|_{E'} + \|f_0\|_{E'} = 2}\underbrace{\|x_i\|_E}_{=1}}\\
 		&\leq \varepsilon \sum_{i=1}^n \frac1{2^i} + 2 \sum_{i=n+1}^\infty \frac1{2^i}.
 	\end{eqalign*}
-	Ora fissato $n$ sufficientemente grande, il secondo termine è inferiore di $r/2$, e preso $\varepsilon$ sufficientemente piccolo, il primo termine è inferiore di $r/2$. Pertanto esiste un $V_{n',\varepsilon'}$ contenuto nella palla $U$.
+	Si osservi ora che il primo termine è controllato in magnitudine da $\varepsilon$, mentre il secondo lo è da $n$.
+	Dunque, scegliendo $\varepsilon$ sufficientemente piccolo ed $n$ sufficientemente grande, possiamo rendere entrambi i termini inferiori a $r/2$.
+	Il corrispondente $V_{n,\varepsilon}$ sarà allora contenuto nella palla $B_d(f_0, r)$.
 
 	Viceversa, prendiamo un intorno debole$^*$ $V$ di $f_0$:
 	\begin{equation*}
 		V = \{f \in \closure B_{E'}(0,1) \suchthat |\langle f-f_0, y_i \rangle| < \varepsilon, \text{per ogni $i=1,\ldots,n$}\}, \quad y_1, \ldots, y_n \in E.
 	\end{equation*}
-	Cerchiamo un $r > 0$ per cui la palla metrica di raggio $r$ e centro $f_0$ sia contenuta in $V$. Per una $f \in E'$, essere in tale palla implica che
-	\begin{equation*}
-		|\langle f-f_0, x_i \rangle| < 2^i \, r.
-	\end{equation*}
-	Possiamo assumere che gli $y_i$ usati per definire $V$ siano normalizzati. Fissato allora $\delta > 0$, per densità degli $\{x_n\}_{n \in \N}$, esistono $x_{h_1}, \ldots, x_{h_n}$ tali che $\|y_i - x_{h_i}\| < \delta$ per ogni $i=1,\ldots,n$.
+	Senza perdita di generalità, possiamo assumere che gli $y_i$ usati per definire $V$ siano normalizzati.
+	Cerchiamo un $r > 0$ per cui la palla metrica di raggio $r$ e centro $f_0$ sia contenuta in $V$. Supponiamo che $f \in B_d(f_0, r)$, necessariamente $|\langle f-f_0, x_i \rangle| < 2^i \, r$ per ogni $i \in \N$.
+	Inoltre, fissato $\delta > 0$, per densità degli $\{x_n\}_{n \in \N}$ esistono $x_{h_1}, \ldots, x_{h_n}$ tali che $\|y_i - x_{h_i}\| < \delta$ per ogni $i=1,\ldots,n$.
 	Verifichiamo ora che $|\langle f-f_0, y_i \rangle| < \varepsilon$:
 	\begin{eqalign*}
 		|\langle f-f_0, y_i \rangle| &\leq |\langle f-f_0, y_i - x_{h_i} \rangle| + |\langle f-f_0, x_{h_i} \rangle|\\
-			&\leq \|f-f_0\| \underbrace{\|y_i-x_{h_i}\|}_{< \delta} + r 2^{h_i}\\
-			&< \underbrace{2 \delta}_{(1)} + \underbrace{r 2^{\max_i h_i}}_{(2)}.
+		&\leq \|f-f_0\| \underbrace{\|y_i-x_{h_i}\|}_{< \delta} +\; r 2^{h_i}\\
+		&< 2 \delta + r 2^{\max_i h_i}.
 	\end{eqalign*}
-	Scegliendo $r$ e $\delta$ sufficientemente piccoli, $(1), (2) < \varepsilon/2$ e dunque la disuguaglianza è dimostrata.
+	Scegliendo $r$ e $\delta$ sufficientemente piccoli ambo i termini possono essere resi inferiori a $\varepsilon/2$ e dunque la disuguaglianza è dimostrata.
 \end{proof}
 
 \begin{remark}
@@ -829,7 +836,7 @@ Diamo ora un corollario al teorema di Banach--Alaouglu (Teorema~\ref{th:banach_a
 	Allora ogni successione limitata di $E'$ ammette una sottosuccessione debolmente$^*$ convergente.
 \end{corollary}
 \begin{proof}
-	A meno di riscalamento, si può assumere che la successione $\{f_n\}_{n \in \N}$ in oggetto sia contenuta nella palla unitaria chiusa di $E'$. Per il teorema di Banach--Alaouglu, quest'ultima è compatta e per il teorema precedente è metrizzabile (perchè $E$ è separabile). Allora il teorema segue per fatti generali sulle successioni nei compatti di uno spazio metrico.
+	A meno di riscalamento, si può assumere che la successione $\{f_n\}_{n \in \N}$ in oggetto sia contenuta nella palla unitaria chiusa di $E'$. Per il teorema di Banach--Alaouglu, quest'ultima è debolmente$^*$ compatta e per il teorema precedente è metrizzabile rispetto alla topologia debole$^*$ (dacchè $E$ è separabile). Allora il teorema segue per fatti generali sulle successioni nei compatti di uno spazio metrico.
 \end{proof}
 
 \begin{theorem}
@@ -838,36 +845,45 @@ Diamo ora un corollario al teorema di Banach--Alaouglu (Teorema~\ref{th:banach_a
 \end{theorem}
 \begin{proof}
 	Sia $\{x_n\}_{n \in \N}$ una successione limitata.
-	Si definisce il sottospazio $M = \langle x_n \suchthat n \in \N \rangle$. Esso è chiuso in $E$, quindi riflessivo e separabile. Consideriamo l'isometria canonica $J : M \to M''$, intesa come mappa tra gli spazi deboli. Restringiamola alla palla unitaria chiusa di $M$, e corestringiamola all'immagine di tale palla.
-	Affermiamo che tale immagine sia metrizzabile. Siccome $M'$ è riflessivo, la topologia debole di $M''$ è coincidente con la topologia debole$^*$. Inoltre $M'$ è separabile, da cui deduciamo che $\closure B_{M''}(0,1)$ è metrizzabile. Ma tale palla è omeomorfa a $\closure B_M(0,1)$ in topologia debole, quindi dal teorema di Kakutani $\closure B_M(0,1)$ è compatta. La tesi segue dunque per fatti generali sulle successioni nei compatti di uno spazio metrico.
+	Si consideri il sottospazio $M = \R[x_n,\, n \in \N]$. Esso è chiuso in $E$, quindi Banach e riflessivo anch'esso, e banalmente separabile.
+	Consideriamo l'isometria canonica $J : M \to M''$, intesa come mappa tra gli spazi deboli. Restringiamola alla palla unitaria chiusa di $M$, e corestringiamola all'immagine di tale palla.
+
+	Affermiamo che tale immagine sia metrizzabile. Siccome $M'$ è riflessivo (Corollario~\ref{cor:ref_sep_dual}), la topologia debole di $M''$ è coincidente con la topologia debole$^*$.
+	Inoltre $M'$ è separabile (ibid.), da cui deduciamo che $\closure B_{M''}(0,1)$ è metrizzabile.
+	Ma tale palla è omeomorfa a $\closure B_M(0,1)$ in topologia debole, quindi dal teorema di Kakutani $\closure B_M(0,1)$ è compatta per riflessività di $M$.
+	La tesi segue dunque per fatti generali sulle successioni nei compatti di uno spazio metrico.
+\end{proof}
+\begin{proof}[Dimostrazione alternativa]
+	Sia $\{x_n\}_{n \in \N}$ una successione limitata.
+	Si consideri il sottospazio $M = \R[x_n,\, n \in \N]$. Esso è chiuso in $E$, quindi Banach e riflessivo anch'esso, e banalmente separabile.
+	Per il Corollario~\ref{cor:weaktop_three} dunque, $\{x_n\}_{n \in \N}$ ammette una sottosuccessione debolmente$^*$ convergente in $M'' \iso M$.
+	D'altra parte, siccome $M'$ è riflessivo (Corollario~\ref{cor:ref_sep_dual}), la topologia debole$^*$ di $M''$ coincide con la topologia debole. Pertanto il teorema è provato
 \end{proof}
 
-Quindi se $E$ è di Banach:
-\begin{equation*}
-	\text{$E$ separabile} \sse \text{$(\closure B_{E'}(0,1),\, \sigma(E', E))$ è metrizzabile}
-\end{equation*}
-\begin{equation*}
-	\text{$E'$ separabile} \sse \text{$(\closure B_E(0,1),\, \sigma(E, E'))$ è metrizzabile}
-\end{equation*}
+In definitiva, se $E$ è di Banach:
+\begin{eqalign*}
+	\text{$E$ separabile} &\sse \text{$(\closure B_{E'}(0,1),\, \sigma(E', E))$ è metrizzabile},\\
+	\text{$E'$ separabile} &\sse \text{$(\closure B_E(0,1),\, \sigma(E, E'))$ è metrizzabile}.
+\end{eqalign*}
 
 \section{Spazi uniformemente convessi}
 Cerchiamo un criterio per stabilire la riflessività di uno spazio.
 
-Uno spazio uniformemente convesso è, moralmente, uno spazio che ha `le palle tonde'.
-
 \begin{definition}
 	Si dice che uno spazio normato $E$ è \defining{uniformemente convesso} se per ogni $\varepsilon > 0$ esiste $\delta > 0$ tale che per ogni $x,y \in E$ di norma al più unitaria, distanti al più $\varepsilon$, si ha
 	\begin{equation*}
-		\left\|\frac{x+y}2\right| < 1-\delta.
+		\left\|\frac{x+y}2\right\| < 1-\delta.
 	\end{equation*}
 \end{definition}
 
-La condizione di uniforme convessità impone che il punto medio tra due punti della palla sia sufficientemente lontano dal bordo. Ciò non vale se le palle sono quadrate o rombiche, ad esempio.
+Uno spazio uniformemente convesso è, moralmente, uno spazio che `ha le palle tonde'.
+La condizione di uniforme convessità impone che il punto medio tra due punti della palla sia sufficientemente lontano dal bordo. Ciò non vale se le palle sono quadrate, ad esempio, come in norma $1$ o $\infty$.
+
 La contronomiale di questa condizione è che se il punto medio di due punti è sufficientemente vicino al bordo, allora tali punti non possono essere troppo lontani tra di loro.
 
 \begin{theorem}[Milman]
 \label{th:milman}
-	Se $E$ è uno spazio di Banach uniformemente convesso, allora $E$ è riflessivo.
+	Ogni spazio di Banach uniformemente convesso è riflessivo.
 \end{theorem}
 \begin{proof}
 	Omissis. Vedere \cite{brezis2010functional}.
@@ -879,24 +895,19 @@ La contronomiale di questa condizione è che se il punto medio di due punti è s
 	Allora $x_n \conv x$.
 \end{theorem}
 \begin{remark}
-	Il teorema dice che
+	In buona sostanza, il teorema dice che
 	\begin{center}
-		convergenza debole + convergenza delle norme = convergenza in norma.
+		convergenza debole $+$ convergenza delle norme $\implies$ convergenza in norma.
 	\end{center}
+	Infatti si ricordi che $\|x\| \leq \liminf_n \|x_n\|$ per una successione debolmente convergente, quindi l'ipotesi è equivalente a dire che $\lim_n \|x_n\| = \|x\|$.
 \end{remark}
 \begin{proof}
-	Si ricordi che $\|x\| \leq \liminf_n \|x_n\|$ per una successione debolmente convergente, quindi l'ipotesi è equivalente a dire che $\lim_n \|x_n\| = \|x\|$.
-
-	Assumiamo che $x \neq 0$ e $x_n$ sia definitivamente non-nulla. Poniamo $y_n = x_n/\|x_n\|$, sia $y = x/\|x\|$. Chiaramente $y_n \weakconv y$, $y_n + y \weakconv 2y$ e $(y_n+y)/2 \weakconv y$. Si ha
-	\begin{eqalign*}
-		1 = \|y\| &\leq \liminf_n \left\|\frac{y_n+y}2\right\|\\[.7ex]
-			&\leq \limsup_n \frac{\|y_n\|+\|y\|}2\\
-			&= 1
-	\end{eqalign*}
+	Se $x=0$, il teorema è immediatamente verificato.
+	Supponiamo allora che $x \neq 0$ e, senza perdita di generalità, che $x_n$ sia sempre non nulla (poichè una qualsiasi successione le cui norme non sono infinitesime è definitivamente non nulla). Poniamo $y_n = x_n/\|x_n\|$, sia $y = x/\|x\|$. Chiaramente $y_n \weakconv y$, $y_n + y \weakconv 2y$ e $(y_n+y)/2 \weakconv y$. Si ha
+	\begin{equation*}
+		1 = \|y\| \leq \liminf_n \left\|\frac{y_n+y}2\right\|
+			\leq \liminf_n \frac{\|y_n\|+\|y\|}2
+			= 1
+	\end{equation*}
 	Segue che $\|(y_n+y)/2\| \conv 1$, cioè il punto medio di $y_n$ e $y$ sta convergendo al bordo. Per uniforme convessità allora, necessariamente $\|y_n - y\| \conv 0$ fortemente, cioè $x_n \conv x$.
 \end{proof}
-
-Di solito il teorema si legge così:
-\begin{center}
-	$x_n \weakconv x$ e $\|x_n\| \conv \|x\|$ implica $x_n \conv x$.
-\end{center}

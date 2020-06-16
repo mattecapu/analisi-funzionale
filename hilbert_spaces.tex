@@ -1,8 +1,8 @@
 \chapter{Spazi di Hilbert}
-Indichiamo con $\conj{x}$ il complesso coniugato di $x \in \C$.
+Indichiamo con $\conj{x}$ il complesso coniugato $a-ib$ di $x = a+ib \in \C$.
 
 \begin{definition}
-	Sia $\K = \R$ o $\C$, e sia $E$ uno spazio vettoriale su $\K$. $E$ si dice \defining{pre-Hilbertiano} o spazio con prodotto scalare se esiste una funzione
+	Sia $\K = \R$ o $\C$, e sia $E$ uno spazio vettoriale su $\K$. $E$ si dice \defining{pre-hilbertiano} o \defining{spazio con prodotto scalare} se esiste una funzione
 	\begin{equation*}
 		\text{\underline{prodotto scalare}} \qquad (\cdot,\cdot) : E \times E \to \K
 	\end{equation*}
@@ -10,9 +10,9 @@ Indichiamo con $\conj{x}$ il complesso coniugato di $x \in \C$.
 	\begin{description}
 		\item[Definita positività]
 		\begin{equation*}
-			\text{$(x,x) \geq 0$, $(x,x) = 0$ se e solo se $x=0$}, \quad \text{per ogni $x \in E$};
+			\text{$(x,x) \geq 0$, e $(x,x) = 0$ se e solo se $x=0$}, \quad \text{per ogni $x \in E$};
 		\end{equation*}
-		\item[Coniugato simmetrico]
+		\item[Coniugata simmetria]
 		\begin{equation*}
 			\text{$(x,y) = \conj{(y,x)}$}, \quad \text{per ogni $x,y \in E$};
 		\end{equation*}
@@ -27,7 +27,7 @@ Indichiamo con $\conj{x}$ il complesso coniugato di $x \in \C$.
 \begin{remark}
 	Dagli assiomi segue anche la proprietà:
 	\begin{description}
-		\item[Antilinearità nel secondo argomento]
+		\item[Sesquilinearità nel secondo argomento]
 		\begin{equation*}
 			\text{$(x, \alpha y + \beta y') = \conj\alpha (x,y) + \conj\beta (x,y')$}, \quad \text{per ogni $x,y,y' \in E$ e $\alpha,\beta \in \K$}.
 		\end{equation*}
@@ -63,7 +63,7 @@ per cui valgono le seguenti identità:
 	\end{equation*}
 \end{lemma}
 
-\begin{corollary}
+\begin{lemma}[Proiezione ortogonale]
 	Per ogni $x,y \in E$, $y \neq 0$, si ha
 	\begin{equation*}
 		x - \frac{(x,y)y}{\|y\|^2} \perp y
@@ -71,9 +71,9 @@ per cui valgono le seguenti identità:
 	e quindi
 	\begin{equation}
 	\label{eq:fourier_coeff}
-		\left\|x - \frac{(x,y)y}{\|y\|^2}\right\| = \|x\|^2 - \frac{|(x,y)|^2}{\|y\|^2}
+		\left\|x - \frac{(x,y)y}{\|y\|^2}\right\|^2 = \|x\|^2 - \frac{|(x,y)|^2}{\|y\|^2}
 	\end{equation}
-\end{corollary}
+\end{lemma}
 
 \begin{lemma}[Cauchy--Schwarz(--Bunyakovsky)]
 	Per ogni $x,y \in E$, si ha che
@@ -97,7 +97,7 @@ per cui valgono le seguenti identità:
 	In sostanza dobbiamo mostrare che la disuguaglianza triangolare sussiste:
 	\begin{eqalign*}
 		\|x+y\|^2 &= \|x\|^2 + 2 \Re{x,y} + \|y\|^2\\
-		&\leq \|x\|^2+ 2\|x\|\|y\| + \|y\|^2\\
+		&\underset{C-S}\leq \|x\|^2+ 2\|x\|\|y\| + \|y\|^2\\
 		&= (\|x\|+\|y\|)^2
 	\end{eqalign*}
 \end{proof}
@@ -112,12 +112,12 @@ per cui valgono le seguenti identità:
 		\end{equation*}
 		\item se $\sum_{n=1}^\infty x_n$ è una serie convergente in $E$, si ha
 		\begin{equation*}
-			\sum_{n=1}^\infty (x_n, y) = (\sum_{n=1}^\infty x_n, y), \quad \text{per ogni $y \in E$}.
+			\sum_{n=1}^\infty (x_n, y) = ({\textstyle \sum_{n=1}^\infty} x_n, y), \quad \text{per ogni $y \in E$}.
 		\end{equation*}
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
-	La disuguaglianza di Cauchy--Schwarz testimonia che $(\cdot, \cdot)$ è un'operatore limitato, ergo continuo.
+	La disuguaglianza di Cauchy--Schwarz testimonia che $(\cdot, \cdot)$ è un operatore limitato, ergo continuo, e dunque soddisfa le identità richieste.
 \end{proof}
 
 \begin{definition}
@@ -187,7 +187,7 @@ per cui valgono le seguenti identità:
 \end{exercise}
 
 \begin{exercise}
-	Soa $(\Omega, \M, \mu)$ spazio di misura. Supponiamo che esistano $B_1, B_2 \in \M$, $B_1 \subseteq B_2$, tali che $0 < \mu(B_1) < \mu(b_2) < \infty$.
+	Sia $(\Omega, \M, \mu)$ spazio di misura. Supponiamo che esistano $B_1, B_2 \in \M$, $B_1 \subseteq B_2$, tali che $0 < \mu(B_1) < \mu(B_2) < \infty$.
 	Allora, per $1 \leq p \leq \infty$, $p \neq 2$, $L^p(\Omega)$ non è di Hilbert.
 
 	\textbf{Svolgimento}.
