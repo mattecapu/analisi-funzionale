@@ -16,18 +16,10 @@
 }
 
 % equation environments
-\def\beq#1\eeq{\begin{flalign}#1\end{flalign}}
-\def\bneq#1\eeq{\begin{flalign*}#1\end{flalign*}}
-\def\bceq#1\eceq{\begin{gather}#1\end{gather}}
-
 \newenvironment{eqalign}{\begin{equation}\begin{aligned}}{\end{aligned}\end{equation}}
 \newenvironment{eqalign*}{\begin{equation*}\begin{aligned}}{\end{aligned}\end{equation*}}
 
 % commutative diagrams
-%\tikzset{ampersand replacement=\&}
-\def\bncd#1\ecd{\begin{center}\begin{tikzcd}#1\end{tikzcd}\end{center}}
-\def\bcd#1\ecd{\begin{equation}\begin{tikzcd}#1\end{tikzcd}\end{equation}}
-
 \newenvironment{diagram}{\begin{equation}\begin{tikzcd}}{\end{tikzcd}\end{equation}}
 \newenvironment{diagram*}{\begin{equation*}\begin{tikzcd}}{\end{tikzcd}\end{equation*}}
 
@@ -221,17 +213,6 @@
 \newcommand{\parts}[1]{\mathcal{P}\left({#1}\right)}
 \newcommand{\continuum}{\mathfrak{c}}
 
-% sequences
-\newcommand{\seq}[3][\N]{\left\{#2_{#3}\right\}_{#3 \in #1}}
-\newcommand{\subseq}[4][\N]{\left\{#2_{#3_{#4}}\right\}_{#4 \in #1}}
-
-% image of a sequence
-\newcommand{\imseq}[4][\N]{\left\{#3\left(#2_{#4}\right)\right\}_{#4 \in #1}}
-\newcommand{\imsubseq}[5][\N]{\left\{#3\left(#2_{#4_{#5}}\right)\right\}_{#5 \in #1}}
-
-% finite sequence
-\newcommand{\finseq}[3]{\left\{#1_{#2}\right\}_{#2 \leq #3}}
-
 % diameter of a set
 \newcommand{\diam}{\operatorname{diam}}
 
@@ -248,35 +229,15 @@
 \newcommand{\yy}{\vv{y}}
 \newcommand{\zz}{\vv{z}}
 
-% big kernel, cokernel & image
-\newcommand{\Ker}{\operatorname{Ker}}
-\newcommand{\coker}{\operatorname{coker}}
-\newcommand{\Imm}{\operatorname{Im}}
+% image
 \newcommand{\im}{\operatorname{im}}
-
-% group of inner automorphisms
-\newcommand{\Inn}{\operatorname{Inn}}
-
-% action of a group
-\newcommand{\acts}{\curvearrowright}
-% weak action groupoid
-\newcommand{\wag}{\mathbin{/\mkern-6mu/}}
 
 % linear span
 \newcommand{\Span}{\operatorname{span}}
 
-% direct sum
-\newcommand{\dir}{\oplus}
-\newcommand{\bigdir}{\bigoplus}
-
 % tensor product
 \newcommand{\tens}[1][]{\otimes_{#1}}
 \newcommand{\bigtens}{\bigotimes}
-
-% operations in an Heyting algebra
-\newcommand{\hey}{\Rightarrow}
-\newcommand{\bigsup}{\bigvee}
-\newcommand{\biginf}{\bigwedge}
 
 % differential
 \newcommand{\diff}[1]{\operatorname{d}{#1}}
@@ -284,21 +245,26 @@
 \newcommand{\jac}{\operatorname{\vv{J}}}
 
 % derivatives
-\newcommand{\der}[2]{\frac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\de}{\mathrm{d}}
+\newcommand{\dx}{\de x}
+\newcommand{\dt}{\de t}
+\newcommand{\ds}{\de s}
+
+\newcommand{\der}[2]{\frac{\de{#1}}{\de{#2}}}
 \newcommand{\pder}[2]{\frac{\partial {#1}}{\partial {#2}}}
 
 % second derivatives
-\newcommand{\sder}[2]{\frac{\mathrm{d}^2{#1}}{\mathrm{d}{#2}^2}}
+\newcommand{\sder}[2]{\frac{\de^2{#1}}{\de{#2}^2}}
 \newcommand{\spder}[3]{\frac{\partial^2{#1}}{\partial{#2} \partial{#3}}}
 % second derivative on the same coordinate
 \newcommand{\sdpder}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
 
 % big derivatives
-\newcommand{\bigder}[2]{\dfrac{\strut \mathrm{d}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\bigder}[2]{\dfrac{\strut \de{#1}}{\de{#2}}}
 \newcommand{\bigpder}[2]{\dfrac{\strut \partial {#1}}{\partial {#2}}}
 
 % big second derivatives
-\newcommand{\bigsder}[2]{\dfrac{\strut \mathrm{d}^2 {#1}}{\mathrm{d}{#2}^2}}
+\newcommand{\bigsder}[2]{\dfrac{\strut \de^2 {#1}}{\de{#2}^2}}
 \newcommand{\bigspder}[3]{\dfrac{\strut \partial^2 {#1}}{\partial {#2} \partial {#3}}}
 % big second derivative on the same coordinate
 \newcommand{\bigsdpder}[2]{\dfrac{\strut \partial^2 {#1}}{\partial {#2}^2}}
@@ -320,10 +286,9 @@
 \newcommand{\sign}{\operatorname{}{sgn}}
 
 % modes of convergence
-\newcommand{\conv}[1][]{\underset{{#1}}{\longrightarrow}}
 \newcommand{\uniconv}[1][I]{\underset{{#1}}{\rightrightarrows}}
-\newcommand{\punconv}[1][I]{\conv[#1]}
-\newcommand{\convin}[2][]{\overset{#2}{\underset{{#1}}{\longrightarrow}}}
+\newcommand{\conv}[1][]{\underset{{#1}}{\rightarrow}}
+\newcommand{\weakconv}{\rightharpoonup}
 
 % regularity classes
 \newcommand{\Cn}{\mathcal{C}}
@@ -334,10 +299,6 @@
 
 % Lipschitz
 \newcommand{\Lip}{\mathrm{Lip}}
-
-% Lebesgue spaces and spaces of Lebesgue-integrable functions
-\newcommand{\leb}{L}
-\newcommand{\lebint}{\mathcal{L}}
 
 % holomorphic and meromorphic
 \newcommand{\hol}{\mathcal{H}}
@@ -350,20 +311,10 @@
 \newcommand{\identity}{\mathrm{id}}
 \newcommand{\id}{\mathrm{id}}
 
-% spectrum
-\newcommand{\Spec}{\operatorname{Spec}}
-% maximal spectrum
-\newcommand{\mSpec}{\operatorname{mSpec}}
-
-% galois group
-\newcommand{\Gal}{\operatorname{Gal}}
-
 % topological notions
-\newcommand{\interior}[1]{\mathring{#1}}
+\newcommand{\interior}[1]{\operatorname{int}\left(#1\right)}
 \newcommand{\closure}[1]{\overline{#1}}
 \newcommand{\boundary}[1]{\operatorname{Fr}{#1}}
-\newcommand{\adherence}[1]{\operatorname{Ad}{#1}}
-\newcommand{\derived}[1]{\mathcal{D}\left({#1}\right)}
 
 % Alexandrov compactification
 \newcommand{\alexandrov}[1]{\check{#1}}
@@ -387,11 +338,7 @@
 \newcommand{\toin}[1]{\underset{#1}\to}
 \newcommand{\fromin}[1]{\underset{#1}\ot}
 
-% profunctor arrow
-\newcommand{\profto}{\mathrel{\ooalign{\hfil$\mapstochar$\hfil\cr$\to$\cr}}}
-
 \newcommand{\cat}[1]{\mathbf{#1}}
-\newcommand{\tripos}[1]{\mathsf{#1}}
 \newcommand{\lang}[1]{\mathcal{#1}}
 \newcommand{\theory}[1]{\mathbb{#1}}
 \newcommand{\topos}[1]{\mathcal{#1}}
@@ -399,7 +346,6 @@
 % big categories
 \newcommand{\Cat}{\cat{Cat}}
 \newcommand{\CAT}{\cat{CAT}}
-\newcommand{\InvCat}{\cat{InvCat}}
 
 \newcommand{\Set}{\cat{Set}}
 \newcommand{\FinSet}{\cat{FinSet}}
@@ -414,31 +360,13 @@
 \newcommand{\Grpd}{\cat{Grpd}}
 \newcommand{\Man}{\cat{Man}}
 \newcommand{\Meas}{\cat{Meas}}
-\newcommand{\preHey}{\cat{preHey}}
 
 % spaces
 \newcommand{\Top}{\cat{Top}}
-\newcommand{\Hmt}{\cat{Hmt}}
-\newcommand{\Ho}{\operatorname{Ho}}
-\newcommand{\Loc}{\cat{Loc}}
-
-% frames
-\newcommand{\Frm}{\cat{Frm}}
-
-% complete - algebras
-\newcommand{\CHey}{\cat{CHey}}
-\newcommand{\CBool}{\cat{CBool}}
-
-% the effective topos
-\newcommand{\Eff}{\mathcal{E}ff}
 
 % sheaves categories
 \newcommand{\Sh}{\operatorname{Sh}}
 \newcommand{\Psh}{\operatorname{Psh}}
-
-% pointed categories
-\newcommand{\pSet}{\Set_\bullet}
-\newcommand{\pTop}{\Top_\bullet}
 
 % opposite category
 \newcommand{\op}{\mathsf{op}}
@@ -458,26 +386,9 @@
 % subobjects
 \newcommand{\Sub}{\operatorname{Sub}}
 
-% Yoneda embedding
-\font\maljapanese=dmjhira at 2ex
-\newcommand{\yo}{\operatorname{\text{\maljapanese\char"48}\!}}
-
-% evaluation map
-\newcommand{\ev}{\operatorname{ev}}
-
 % true/false predicate maps
 \newcommand{\true}{\mathsf{true}}
 \newcommand{\false}{\mathsf{false}}
-
-% F left adjoint to G symbol
-\newcommand{\adj}{\dashv}
-
-% forcing symbol
-\newcommand{\forces}{\vDash}
-
-% entailment
-\newcommand{\entails}{\vdash}
-\newcommand{\bientails}{\dashv\vdash}
 
 % acronyms
 \newcommand{\LEM}{\mathsf{LEM}}
