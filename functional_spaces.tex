@@ -227,7 +227,7 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 		1 \conv u \cdot \vec 1
 	\end{equation*}
 	e quindi $u \cdot \vec 1 = 1$.
-	È pacifico però che $\e_n \weakconv u$ implica la convergenza puntuale, la quale ha come limite $\vec 0$. D'altro canto $0 \cdot \vec 1 \neq 1$.
+	È pacifico però che $e_n \weakconv u$ implica la convergenza puntuale (siccome tra i funzionali di $(\ell^1)'$ vi sono anche le proiezioni), la quale ha come limite $\vec 0$. D'altro canto $0 \cdot \vec 1 \neq 1$.
 
 	Rimane solo il caso in cui il numero di atomi è finito, nel quale è banale che $L^1$ è riflessivo (perchè finito-dimensionale).
 \end{proof}
@@ -297,7 +297,7 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 \end{lemma}
 \begin{proof}
 	Facile. Se la successione ha immagine finita, ok. Altrimenti, per ogni $\varepsilon = 1/n$, ricopro $X$ con un numero finito di palle, per cui almeno una di queste contiene una coda della successione.
-	Sceglo il termine $n$-esimo da una di queste palle con la coda, la considero il nuovo $X$, e procedo allo steso modo.
+	Sceglo il termine $n$-esimo da una di queste palle con la coda, la considero il nuovo $X$, e procedo allo stesso modo.
 	Chiaramente la successione estratta in questa maniera è di Cauchy.
 	Viceversa, negando l'ipotesi otteniamo una rete di $\varepsilon$-palle infinita i cui centri non ammettono una sottosuccessione di Cauchy.
 \end{proof}
@@ -367,8 +367,8 @@ Indichiamo con $\Czero_b(X)$ le funzioni continue e limitate su $(X,d)$. Si osse
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Sia $\delta$ il modulo di equicontinuità di $\mathcal F$.
-	Per compattezza, $X$ è totalmente limitato, dunque posso trovare, per ogni $\varepsilon > 0$, un ricoprimento finito (di cardinalità $n_\delta \in \N$) di $X$ costituito da $\delta_\varepsilon$-palle i cui centri, posso assumere, cadono in $E$ denso numerabile (siccome compatto implica separabile, Corollario~\ref{cor:comp_implies_sep}).
+	Fissiamo $\varepsilon > 0$. Sia $\delta := \delta_\varepsilon > 0$ il modulo di equicontinuità di $\mathcal F$ associato a $\varepsilon$.
+	Per compattezza, $X$ è totalmente limitato, dunque posso trovare, per ogni $\varepsilon > 0$, un ricoprimento finito (di cardinalità $n_\delta \in \N$) di $X$ costituito da $\delta$-palle i cui centri, posso assumere, cadono in $E$ denso numerabile (siccome compatto implica separabile, Corollario~\ref{cor:comp_implies_sep}).
 	Allora si ha:
 	\begin{enumerate}
 		\item Per ogni $x \in X$ esiste $1 \leq i \leq n_\delta$ tale che $x \in B(x_i, \delta)$. Allora
@@ -382,7 +382,7 @@ Indichiamo con $\Czero_b(X)$ le funzioni continue e limitate su $(X,d)$. Si osse
 			|f_n(x) - f_m(x)| \leq \underbrace{|f_n(x)-f_n(x_i)|}_{< \varepsilon\ \text{(per equicont.)}} + \underbrace{|f_n(x_i) - f_m(x_i)|}_{< \varepsilon\ \text{(per conv. pt.)}} + \underbrace{|f_m(x_i) - f_m(x)|}_{< \varepsilon\ \text{(per equicont.)}} < 3\varepsilon
 		\end{equation*}
 		Si noti che solo la stima centrale non è, a priori, uniforme rispetto ad $x \in X$.
-		Tuttavia siccome essa dipende da un numero finito di punti (i centri $x_i$ delle $\delta_\varepsilon$-palle), possiamo renderla uniforme scegliendo $n,m \in \N$ sufficientemente grandi da soddisfare la disuguaglianza per ogni $x_i$.
+		Tuttavia siccome essa dipende da un numero finito di punti (i centri $x_i$ delle $\delta$-palle), possiamo renderla uniforme scegliendo $n,m \in \N$ sufficientemente grandi da soddisfare la disuguaglianza per ogni $x_i$.
 		In definitiva possiamo concludere che la successione è di Cauchy in $\Czero(X)$, ed essendo questo spazio completo concludiamo che $f_n \conv f \in X$ uniformemente, come desiderato.
 	\end{enumerate}
 \end{proof}
@@ -404,9 +404,9 @@ Il teorema appena dimostrato sarebbe da chiamare più propriamente `teorema di A
 		Inoltre, siccome $X$ è compatto, ciascuna di queste $f_i$ è uniformemente continua con modulo di continuità $\delta_i$.
 		Siano dunque $x, y \in X$ a distanza inferiore di $\delta := \min_{1 \leq i \leq n_\varepsilon} \delta_i$. Abbiamo:
 		\begin{equation*}
-			|f(x) - f(y)| \leq \underbrace{|f(x) - f_i(y)|}_{< \varepsilon\ \text{(per tot. lim.)}} + \underbrace{|f_i(x) - f_i(y)|}_{< \varepsilon\ \text{(per unif. cont.)}} + \underbrace{|f_i(y) - f(x)|}_{< \varepsilon\ \text{(per tot. lim.)}}
+			|f(x) - f(y)| \leq \underbrace{|f(x) - f_i(y)|}_{< \varepsilon\ \text{(per tot. lim.)}} + \underbrace{|f_i(x) - f_i(y)|}_{< \varepsilon\ \text{(per unif. cont.)}} + \underbrace{|f_i(y) - f(x)|}_{< \varepsilon\ \text{(per tot. lim.)}} < 3\varepsilon.
 		\end{equation*}
-		cioe $A$ è una famiglia equicontinuità.
+		cioe $A$ è una famiglia equicontinua.
 
 		\item[$(\implied)$] Dal teorema di Ascoli--Arzelà, data una successione in $A$ questa ammette un'estratta uniformemente convergente.
 		Pertanto $A$ soddisfa una delle condizioni di compattezza negli spazi metrici (Teorema~\ref{th:heine_borel}), e quindi $A$ è totalmente limitata.

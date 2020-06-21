@@ -137,7 +137,7 @@ per cui valgono le seguenti identità:
 			\mathcal R[a,b] = \{f :[a,b] \to \C \suchthat \text{$f$ è Riemann-integrabile} \}
 		\end{equation*}
 		con il prodotto scalare $(f,g) = \int_a^b f(t)\conj{g(t)}\,\dt$ è pre-hilbertiano ma non hilbertiano.
-		Infatti la funzione $f = 1/(x-1)^{1/4}$ è $L^2(a,b)$, dunque ammette una successione di approssimanti $\{f_n\}_{n \in \N} \subseteq \Cinfty_c(a,b)$ che convergono a $f$ in $L^2$. Questa è quindi una successione di Cauchy che non converge in $\mathcal R[a,b]$, in quanto $f \notin \mathcal R[a,b]$ essendo illimitata in $a$.
+		Infatti la funzione $f = 1/(x-a)^{1/4}$ è $L^2(a,b)$, dunque ammette una successione di approssimanti $\{f_n\}_{n \in \N} \subseteq \Cinfty_c(a,b)$ che convergono a $f$ in $L^2$. Questa è quindi una successione di Cauchy che non converge in $\mathcal R[a,b]$, in quanto $f \notin \mathcal R[a,b]$ essendo illimitata in $a$.
 		Un'altra maniera di vedere che $\mathcal R[a,b]$ non è completo è prendendo la funzione indicatrice di un insieme $C \subset (a,b)$ chiuso, vuoto all'interno, e di misura positiva\footnote{Insieme di Smith--Volterra--Cantor.}. Allora non è Riemann-integrabile perchè ha un insieme non negligibile di discontinuità isolate, ma come nel precedente esempio ammette una successione di Cauchy di approssimanti in $L^2$.
 	\end{enumerate}
 \end{example}
@@ -205,7 +205,7 @@ per cui valgono le seguenti identità:
 	\begin{equation}
 		(x+y)^r \neq x^r + y^r
 	\end{equation}
-	che non è verificata a meno che $r=1$, cioè $p=2$
+	che è vero a a meno che $r=1$, cioè $p=2$.
 \end{exercise}
 
 \begin{theorem}
@@ -216,11 +216,11 @@ per cui valgono le seguenti identità:
 	Siano $\varepsilon > 0$, $x,y \in H$ e $\|x\|, \|y\| \leq 1$ tali che $\|x-y\| < \varepsilon$. Per provare l'uniforme convessità, cerchiamo $\delta >0$ tale che $\|(x+y)/2\| < 1-\delta$.
 	Per l'identità del parallelogrammo, abbiamo
 	\begin{equation*}
-		\left\|\frac{x+y}2\right\|^2+\left\|\frac{x-y}2\right\|^2 = \frac{\|x\|^2}2 + \frac{2\|y\|^2}2
+		\left\|\frac{x+y}2\right\|^2+\left\|\frac{x-y}2\right\|^2 = \frac{\|x\|^2}2 + \frac{\|y\|^2}2
 	\end{equation*}
 	da cui
 	\begin{equation*}
-		\left\|\frac{x+y}2\right\|^2 = \frac{\|x\|^2}2 + \frac{2\|y\|^2}2 - \left\|\frac{x-y}2\right\|^2 \leq 1 - \underbrace{\frac{\varepsilon^2}4}_\delta.
+		\left\|\frac{x+y}2\right\|^2 = \frac{\|x\|^2}2 + \frac{\|y\|^2}2 - \left\|\frac{x-y}2\right\|^2 \leq 1 - \underbrace{\frac{\varepsilon^2}4}_\delta.
 	\end{equation*}
 \end{proof}
 
@@ -237,7 +237,7 @@ per cui valgono le seguenti identità:
 		&= \|y_n-x - (y_m - x)\|^2\\
 		&= -\|y_n+y_m - 2x\|^2 + 2 \|y_n-x\|^2 + 2\|y_m-x\|^2 \comment{id. del parallelogrammo}\\
 		&= -4\left\|\frac{y_n+y_m}2 - x\right\|^2 + 2 \|y_n-x\|^2 + 2\|y_m-x\|^2\\
-		&= \underbrace{-4d^2}_{\frac12 (y_n+y_m) \in K} + 2\left( d + \frac1n\right)^2 + 2\left( d + \frac1m\right)^2\\
+		&\leq \underbrace{-4d^2}_{\frac12 (y_n+y_m) \in K} +\angle 2\left( d + \frac1n\right)^2 + 2\left( d + \frac1m\right)^2\\
 		&= \cancel{-4d^2} + \cancel{2d^2} + \frac{4d}{n} + \cancel{2d^2} + \frac{4d}m + o\left(\frac1n, \frac1m\right)\\
 		&\conv[n,m] 0.
 	\end{eqalign}
@@ -264,7 +264,7 @@ per cui valgono le seguenti identità:
 
 \begin{lemma}
 \label{lemma:hilb_proj}
-	Sia $H$ spazio di Hilbert, $K \subseteq H$ convesso e chuso, $x \in H$.
+	Sia $H$ spazio di Hilbert, $K \subseteq H$ convesso e chiuso, $x \in H$.
 	La proiezione di $y \in K$ di $x$ su $K$ è caratterizzata dalla seguente condizione:
 	\begin{equation*}
 		\begin{cases}
@@ -281,7 +281,7 @@ per cui valgono le seguenti identità:
 			\cancel{\|x-y\|^2} &\leq \|x - (y + t(z-y))\|^2\\
 			&= \cancel{\|x-y\|^2} - 2\Re{x-y, t(z-y)} + \|t(z-y)\|^2\\[1ex]
 			2\Re{x-y, t(z-y)} &\leq t^2 \|z-y\|^2\\[1ex]
-			\Re{x-y, z-y} &\leq t \|z-y\|^2
+			\Re{x-y, z-y} &\leq \frac{t}2 \|z-y\|^2
 		\end{eqalign*}
 		Mandando $t \to 0$, otteniamo la disuguaglianza cercata.
 
@@ -296,19 +296,20 @@ per cui valgono le seguenti identità:
 
 \begin{lemma}
 \label{lemma:hilb_seven}
-	Sia $H$ spazio di Hilbert, $K \subseteq H$ convesso e chuso.
+	Sia $H$ spazio di Hilbert, $K \subseteq H$ convesso e chiuso.
 	La funzione $P_k : H \to K$ definito da
 	\begin{equation*}
 		P_kx = \text{`proiezione di $x$ su $K$'}
 	\end{equation*}
-	è una contrazione nel senso metrico, e dunque in particolare $P_k$ è Lipschitz-continua.
+	è una contrazione nel senso metrico; in particolare $P_k$ è Lipschitz-continua.
 \end{lemma}
 \begin{proof}
 	Poniamo $y_1 = P_kx_1$ e $y_2 = P_k x_2$. Sappiamo che, per ogni $z \in K$:
 	\begin{equation*}
 		\Re{x_1 -y_1, z-y_1} \leq 0, \qquad \Re{x_2 -y_2, z-y_2} \leq 0
 	\end{equation*}
-	In particolare, queste valgono per $z=y_2$ e $z=y_1$, rispettivamente. Sommando le disuguaglianze in questi due casi, otteniamo (ha cambiato i segni ad entrambe le entrate della seconda):
+	In particolare, queste valgono per $z=y_2$ e $z=y_1$, rispettivamente.
+	Sottraendo le disuguaglianze in questi due casi, otteniamo:
 	\begin{equation*}
 		\Re{x_1-y_1-x_2+y_2, y_2-y_1} \leq 0
 	\end{equation*}
@@ -336,17 +337,18 @@ per cui valgono le seguenti identità:
 	Inoltre, $P_V$ è \emph{lineare} e continua, di norma unitaria, ed è un proiettore (Definizione~\ref{def:projector}).
 \end{theorem}
 \begin{proof}
-	Dal Lemma~\ref{lemma:hilb_proj} sappiamo già che $y \in V$ e $\Re{x-y,z-y} \leq 0$ per ogni $z \in V$. Siccome $V$ è uno spazio vettoriale, possiamo scrivere ogni $z \in V$ come $z = y + \tilde z$, per un altro $\tilde z \in V$. Inoltre $\tilde z \in V$ se e solo se $-\tilde x \in V$. In sostanza, otteniamo:
+	Dal Lemma~\ref{lemma:hilb_proj} sappiamo già che $y \in V$ e $\Re{x-y,z-y} \leq 0$ per ogni $z \in V$. Siccome $V$ è uno spazio vettoriale, possiamo scrivere ogni $z \in V$ come $z = y + \tilde z$, per un altro $\tilde z \in V$.
+	Inoltre $\tilde z \in V$ se e solo se $-\tilde z \in V$. In sostanza, otteniamo:
 	\begin{equation*}
-		\Re{x-y, \tilde z} \geq 0, \qquad \text{per ogni $\tilde z \in V$}.
+		\Re{x-y, \tilde z} \geq 0, \quad \Re{x-y, \tilde z} \leq 0, \qquad \text{per ogni $\tilde z \in V$}.
 	\end{equation*}
+	cioè che $\Re(x-y,\tilde z) = 0$.
 	Rimane da mostrare che $\Im{x-y,\tilde x} = 0$. Ma è questa è la parte reale di $i \tilde z$, dunque concludiamo che $(x-y, \tilde z) = 0$.
 
 	Mostriamo che $P_V$ è lineare. Supponiamo che $P_Vx_1 = y_1$ e $P_V x_2 = y_2$. Si ha
-	\begin{eqalign*}
-		(x_1-y_1, z) = 0, \qquad \text{per ogni $z \in V$}.
-		(x_2-y_2, z) = 0, \qquad \text{per ogni $z \in V$}.
-	\end{eqalign*}
+	\begin{equation*}
+		 (x_1-y_1, z) = (x_2-y_2, z) = 0, \qquad \text{per ogni $z \in V$}.
+	\end{equation*}
 	e allora per ogni $\alpha, \beta \in \K$:
 	\begin{equation*}
 		(\alpha x_1 + \beta x_2 - \alpha y_1 - \beta y_2, z) = \alpha (x_1 -y_1, z) + \beta (x_2-y_2, z) = 0, \qquad \text{per ogni $z \in V$}.
@@ -355,7 +357,7 @@ per cui valgono le seguenti identità:
 	\begin{equation*}
 		\|P_V x - P_V 0 \| \leq \|x -0\|
 	\end{equation*}
-	da cui $\|P_V\| \leq 1$.
+	da cui $\|P_V\| \leq 1$. Si ha $\|P_V\| = 1$ in quanto $P_V\vert_V \equiv 1_V$.
 \end{proof}
 \begin{corollary}
 	Sia $H$ spazio di Hilbert, $V \leq H$ sottospazio chiuso.
@@ -369,7 +371,7 @@ per cui valgono le seguenti identità:
 \begin{remark}
 	Se $V$ è un sottospazio a dimensione finita di $H$ hilbertiano, sia $u_1, \ldots, u_n$ una base ortonormale di $V$. Allora il proiettore si scrive in maniera molto semplice:
 	\begin{equation*}
-		P_V x = \sum_{i=1}^n (x-i, u_i)\,u_i
+		P_V x = \sum_{i=1}^n (x_i, u_i)\,u_i.
 	\end{equation*}
 	Infatti
 	\begin{enumerate}
@@ -381,7 +383,7 @@ per cui valgono le seguenti identità:
 	\end{enumerate}
 	Se non avessimo normalità della base, allora
 	\begin{equation*}
-		P_V x = \sum_{i=1}^n \frac{(x-i, u_i)}{(u_i, u_i)}\,u_i
+		P_V x = \sum_{i=1}^n \frac{(x_i, u_i)}{(u_i, u_i)}\,u_i
 	\end{equation*}
 \end{remark}
 
@@ -424,10 +426,10 @@ per cui valgono le seguenti identità:
 
 \begin{lemma}
 \label{lemma:hilb_ort_comp}
-	Sia $E$ spazio con prodotto scalare, allora:
+	Sia $E$ spazio con prodotto scalare, $S \subseteq R \subseteq H$ allora:
 	\begin{enumerate}
 		\item $S^\perp$ è un sottospazio chiuso di $H$,
-		\item se $S \subseteq R \subseteq H$, $R^\perp \subseteq S^\perp$,
+		\item $R^\perp \subseteq S^\perp$,
 		\item $S^\perp = \closure{S}^\perp = \langle S \rangle ^\perp = \closure{\langle S \rangle}^\perp$.
 	\end{enumerate}
 \end{lemma}
@@ -495,7 +497,7 @@ per cui valgono le seguenti identità:
 	\end{equation*}
 \end{proof}
 
-\begin{theorem}[disuguaglianza di Bessel]
+\begin{theorem}[Disuguaglianza di Bessel]
 	Sia $E$ spazio con prodotto scalare, sia $\{u_n\}_{n \in \N}$ un insieme ortonormale.
 	Allora per ogni $x \in E$ vale
 	\begin{equation*}
@@ -528,9 +530,9 @@ per cui valgono le seguenti identità:
 \begin{proof}
 	\leavevmode
 	\begin{enumerate}
-		\item Per completezza, possiamo caratterizzare le $\sum_{n=1}^\infty a_n u_n$ convergenti con la condizione di Cauchy. Ma vale
+		\item Per completezza, possiamo caratterizzare le $\sum_{n=1}^\infty a_n u_n$ convergenti con la condizione di Cauchy. Ma vale (teorema di Pitagora)
 		\begin{equation*}
-			\left\| \sum_{k=n}^m a_k u_k \right\|^2 = \sum_{k=1}^m |a_k|^2
+			\left\| \sum_{k=n}^m a_k u_k \right\|^2 = \sum_{k=n}^m |a_k|^2
 		\end{equation*}
 		per cui la serie $\sum_{n=1}^\infty a_n u_n$ è di Cauchy se e solo se $\sum_{n=1}^\infty |a_n|^2$ è di Cauchy.
 
@@ -550,9 +552,13 @@ per cui valgono le seguenti identità:
 \begin{definition}
 	Sia $H$ spazio di Hilbert. Una famiglia di vettori $\{u_\alpha\}_{\alpha \in A}$ di $H$ è detta \defining{base hilbertiana} o \defining{sistema ortonormale completo} se
 	\begin{equation*}
-		(u_\alpha, u_\beta) = \delta_{\alpha\beta}, \qquad \closure{\langle u_\alpha, \alpha \in A \rangle} = H.
+		(u_\alpha, u_\beta) = \delta_{\alpha\beta}, \qquad \closure{\langle u_\alpha,\, \alpha \in A \rangle} = H.
 	\end{equation*}
 \end{definition}
+
+\begin{remark}
+	Una base hilbertiana non è necessariamente una base in senso algebrico!
+\end{remark}
 
 \begin{theorem}[di Fourier]
 	Sia $H$ spazio di Hilbert, e $\{u_n\}_{n \in \N}$ una successione ortonormale in $H$.
@@ -594,7 +600,7 @@ Dunque le basi hilbertiane hanno proprietà molto forti, del tutto paragonabili 
 	Allora esiste una base hilbertiana.
 \end{theorem}
 \begin{proof}[Dimostrazione con la bomba atomica]
-	Sia $P$ la famiglia dei sottoinsiemi ortonormali di $H$. Ordiniamo $P$ con la relazione di inclusione. $P$ è banalmente induttivo, e non vuoto. Dunque esiste un elemento massimale non banale $\tilde S \in P$, e questa affermiamo essere una base hilbertiana. Infatti. $\langle \tilde S \rangle = H$. Infatti $H = \closure {\langle \tilde S \rangle} \oplus \langle \tilde S \rangle^\perp$, dunque per massimalità di $\tilde S$, $\langle \tilde S \rangle^\perp = 0$.
+	Sia $P$ la famiglia dei sottoinsiemi ortonormali di $H$. Ordiniamo $P$ con la relazione di inclusione. $P$ è banalmente induttivo, e non vuoto. Dunque esiste un elemento massimale non banale $\tilde S \in P$, e questa affermiamo essere una base hilbertiana. Infatti $\langle \tilde S \rangle = H$ mentre $H = \closure {\langle \tilde S \rangle} \oplus \langle \tilde S \rangle^\perp$, dunque per massimalità di $\tilde S$, $\langle \tilde S \rangle^\perp = 0$.
 \end{proof}
 
 \begin{remark}
@@ -669,7 +675,7 @@ e quindi, come visto sopra, esiste una sottofamiglia numerabile $A_x \subset A$ 
 
 \begin{theorem}[di Fourier \emph{bis}]
 \label{th:fourier_bis}
-	Sia $H$ spazio di HIlbert, $\{u_\alpha\}_{\alpha \in A}$ insieme ortonormale.
+	Sia $H$ spazio di Hilbert, $\{u_\alpha\}_{\alpha \in A}$ insieme ortonormale.
 	Allora sono equivalenti le seguenti affermazioni:
 	\begin{enumerate}
 		\item $\{u_\alpha\}_{\alpha \in A}$ è una base hilbertiana
@@ -719,7 +725,7 @@ Mettiamoci ora in $\Czero[-1,1]$. Siccome $\Czero[-1,1]$ è denso in $L^2[-1,1]$
 	\begin{equation*}
 		P_n(x) = \der{^n}{x^n} (x^2-1)^n.
 	\end{equation*}
-	Per la precisione, i polinomi di Legendre nromalizzati dalla condizione $P_n(1) =1$ sono
+	Per la precisione, i polinomi di Legendre normalizzati dalla condizione $P_n(1) =1$ sono
 	\begin{equation*}
 		P_n(x) = \frac1{2^n n!} \der{^n}{x^n} (x^2-1)^n.
 	\end{equation*}
@@ -732,11 +738,11 @@ Mettiamoci ora in $\Czero[-1,1]$. Siccome $\Czero[-1,1]$ è denso in $L^2[-1,1]$
 	\end{equation*}
 	Supponiamo che $n \geq m+1$. Allora ci avvaliamo dell'integrazione per parti $m+1$ volte:
 	\begin{eqalign*}
-		&\int_{-1}^1 \der{^n}{x^n} (x^2-1)^n\, \der{^m}{x^m} (x^2-1)^m \,dx =\\
-		&=(-1)^{m+1} \int_{-1}^1 \der{^{n-m-1}}{x^{n-m-1}} (x^2-1)^n\, \der{^{2m+1}}{x^{2m+1}} (x^2-1)^m \,dx.
+		\int_{-1}^1 \der{^n}{x^n} (x^2-1)^n\, \der{^m}{x^m} (x^2-1)^m \,\dx =
+		(-1)^{m+1} \int_{-1}^1 \der{^{n-m-1}}{x^{n-m-1}} (x^2-1)^n\, \der{^{2m+1}}{x^{2m+1}} (x^2-1)^m \,\dx.
 	\end{eqalign*}
 	Notiamo che non ci sono termini di bordo: essendo $n \geq m+1$, la derivata $n-m-1$ (e tutte quelle intermedie) contengono un fattore $x^2-1$, che si annulla in $\pm 1$.
-	Ora, per terminare, è sufficiente notare che il secondo fattore dell'integranda è una derivata $2m+1$ di un polinomio di grado $m$, dunque nulla.
+	Ora, per terminare, è sufficiente notare che il secondo fattore dell'integranda è una derivata $(2m+1)$-esima di un polinomio di grado $m$, dunque nulla.
 \end{proof}
 
 \begin{theorem}[Stone--Weierstrass]
@@ -769,18 +775,18 @@ Questi polinomi sono densi nello spazio delle funzioni continue e $2\pi$-periodi
 \end{lemma}
 \begin{proof}
 	Cercheremo di applicare Stone--Weierstrass.
-	Consideriamo come spazio metrico $X = [-\pi,\pi]$. D'altra parte non possiamo aspettarci che i polinomi trigonometrici separino i punti di $X$, in quanto su $-\pi$ e $\pi$ hanno sempre lo stesso valore.
-	Questo ostacolo si può sorpassare andando ad identificare i punti $-\pi$ e $\pi$ e quindi passando alla più naturale algebra delle funzioni continue su $S^1$. La proiezione $X \to \S^1$ è data da $x \mapsto \e^{ix}$.
+	Per farlo tuttavia, non possiamo considerare come spazio metrico $X = [-\pi,\pi]$: i polinomi trigonometrici (tutte le funzioni $2\pi$-periodiche, in realtà) non separano $-\pi$ e $\pi$.
+	Questo ostacolo si può scavalcare andando ad identificare i punti $-\pi$ e $\pi$, e quindi passando alla più naturale algebra delle funzioni continue su $S^1$. La proiezione $X \to \S^1$ è data da $x \mapsto \e^{ix}$.
 	Su tale spazio, è immediato verificare che i polinomi trigonometrici formano una $C^*$-algebra che separa i punti e non si annulla mai.
 \end{proof}
 
 \begin{theorem}
 \label{th:hilb_thirteen}
-	Le funzioni
+	La famiglia ortonormale di funzioni
 	\begin{equation*}
-		u_n = \frac{\e^{inx}}{\sqrt{2\pi}}, \quad n \in \Z, x \in [-\pi,\pi]
+		u_n = \frac{\e^{inx}}{\sqrt{2\pi}}, \quad n \in \Z,\ x \in [-\pi,\pi]
 	\end{equation*}
-	costituiscono una base hilbertiana di $L^2(-\pi, \pi)$. Quindi, per ogni $f in L^2(-\pi,\pi)$, si ha (in $L^2(-\pi,\pi)$):
+	costituisce una base hilbertiana di $L^2(-\pi, \pi)$. Quindi, per ogni $f \in L^2(-\pi,\pi)$, si ha (in $L^2(-\pi,\pi)$):
 	\begin{equation}
 	\label{eq:fourier_series}
 		f(x) = \sum_{n=-\infty}^\infty (f,u_n)\,u_n(x) = \sum_{n=-\infty}^\infty c_n\,\e^{inx}

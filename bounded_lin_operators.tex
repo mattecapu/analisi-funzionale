@@ -685,11 +685,12 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 \begin{exercise}
 	Sia $(x_n)_{n \in \N}$ una successione di numeri reali, provare che se $\sum_{n=1}^\infty x_n y_n$ converge per ogni $(y_n)_{n \in \N} \in \ell^2$, allora $(x_n)_{n \in \N} \in \ell^2$, e viceversa.
 
-	\textbf{Svolgimento}. Per ogni $n \in \N$ fissato, consideriamo gli operatori $T_n : \ell^2 \to \R$ definita come $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
+	\textbf{Svolgimento}. Per ogni $n \in \N$ fissato, consideriamo l'operatore $T_n : \ell^2 \to \R$ definito come $T_ny = \sum_{k=1}^n x_ky_k$ per $y \in \ell^2$. Ovviamente tali operatori sono lineari, e inoltre
 	\begin{equation*}
 		|T_ny| = \left| \sum_{k=1}^n x_k y_k \right| \underset{C-S}\leq \left( \sum_{k=1}^n |x_k|^2\right)^{1/2}\! \left( \sum_{k=1}^n |y_k|^2 \right)^{1/2}
 	\end{equation*}
-	dove l'uguaglianza vale se e solo se $y$ e $x$ sono proporzionali. Dunque la norma ${\ell^2}'$ di $T_n$ è sicuramente inferiore o uguale di $\left( \sum_{k=1}^n |x_k|^2\right)^{1/2} = \|x\|_{\ell^2} < \infty$, e siccome questo bound è realizzato da $y=x$, vale l'uguaglianza, quindi $T_n$ è continuo.
+	dove l'uguaglianza vale se e solo se $y$ e $x$ sono proporzionali. Dunque la norma ${\ell^2}'$ di $T_n$ è sicuramente inferiore o uguale di $\left( \sum_{k=1}^n |x_k|^2\right)^{1/2} = \|x\|_{\ell^2} < \infty$, e siccome questo bound è realizzato da $y=x$, vale l'uguaglianza.
+	In particolare, ogni $T_n$ è continuo.
 
 	Osserviamo ora che $\{T_n\}_{n \in \N}$ è puntualmente limitata per l'ipotesi sulla convergenza di $\sum_{n=1}^\infty x_n y_n$. Allora possiamo usare Banach--Steinhaus per dedurre che $\{T_n\}_{n \in \N}$ è limitata in norma ${\ell^2}'$, cioè che
 	\begin{equation*}
@@ -710,14 +711,14 @@ Chiaramente $c_{00} \subsetneq c_0 \subsetneq c$.
 \label{ex:ellp_iso_ellq}
 	Sia $1 \leq p < \infty$, $q$ coniugato di $p$, e
 	\begin{eqalign*}
-		\Phi : \ell^q &\longto {\ell^p}'\\
+		\Phi : \ell^q &\longto (\ell^p)'\\
 			x &\longmapsto (y \mapsto \sum_{k=1}^\infty x_k y_k)
 	\end{eqalign*}
-	Si dimostri che $\Phi$ è un'isometria suriettiva (in quanto isometria, è sempre iniettiva).
+	Si dimostri che $\Phi$ è un'isometria suriettiva.
 
 	\textbf{Svolgimento}. La buona definizione di $\Phi$ è oggetto della disuguaglianza di H\"older. Il fatto che $\Phi$ sia isometria è lasciato come esercizio.
 
-	Fissato ora $y \in \ell^p$, scriviamolo così: $y=(y_k)_{k \in \N} = \sum_{k=1}^\infty y_k e_k$, dove $(e_k)_h = \delta_{hk}$ (warning: questo funziona solo per $p < \infty$). Sia ora $F \in {\ell^p}'$. Si ha, per continuità di $F$:
+	Fissato ora $y \in \ell^p$, scriviamolo così: $y=(y_k)_{k \in \N} = \sum_{k=1}^\infty y_k e_k$, dove $(e_k)_h = \delta_{hk}$ (warning: questo funziona solo per $p < \infty$). Sia ora $F \in (\ell^p)'$. Si ha, per continuità di $F$:
 	\begin{equation*}
 		F(y) = F({\textstyle \sum_{k=1}^\infty} y_k e_k) = \sum_{k=1}^\infty y_k F(e_k).
 	\end{equation*}
@@ -816,7 +817,7 @@ Un importantissimo, almeno a livello pratico, corollario del teorema della mappa
 	mentre nell'altro senso non funziona. Una successione che converge nel dominio ma non nel codominio è una qualsiasi successione con patologia in altezza (e.g. $u_n(x) = [-n^3(x-1/n^2)]_+$).
 \end{remark}
 
-Il completamento di $\Czero[0,1]$ è $L^1[0,1]$, il che spiega perchè l'integrale di Lebesgue sia così importante per la matematica.
+Infatti il completamento di $\Czero[0,1]$ rispetto alla norma $\|\cdot\|_{L^1}$ è $L^1[0,1]$, il che spiega perchè l'integrale di Lebesgue sia così importante per la matematica.
 
 \begin{example}
 	Sia $E = \Czero[0,1]$ con $\|\cdot\|_\infty$ e $F = \{ u \in \Cone[0,1] \suchthat u(0) = 0\}$ con $\|\cdot\|_\infty$.
@@ -834,7 +835,7 @@ Il completamento di $\Czero[0,1]$ è $L^1[0,1]$, il che spiega perchè l'integra
 
 \begin{remark}
 	Sia $(E, \|\cdot\|_1)$ uno spazio di Banach a dimensione infinita.
-	Si può dimostrare che esiste sempre una norma $\|\cdot\|_2$ tale che $(E, \|\cdot\|_2)$ è ancora di Banach ma $\|\cdot\|_1$ non è equivalente a $\|\cdot\|_2$, cioè  `essere di Banach' non è una proprietà ma una struttura.
+	Si può dimostrare che esiste sempre una norma $\|\cdot\|_2$ tale che $(E, \|\cdot\|_2)$ è ancora di Banach ma $\|\cdot\|_1$ non è equivalente a $\|\cdot\|_2$, cioè `essere di Banach' non è una proprietà ma una struttura.
 \end{remark}
 
 \begin{proof}[Dimostrazione del teorema della mappa aperta]

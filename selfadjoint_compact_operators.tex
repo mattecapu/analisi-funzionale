@@ -1,14 +1,14 @@
 \chapter{Operatori compatti e autoaggiunti}
 
-\section{Operatore aggiunto e operatori aggiunti}
+\section{Operatore aggiunto e operatori autoaggiunti}
 Sia $(E, (\cdot, \cdot))$ uno spazio con prodotto scalare.
 Fissato $y \in H$, consideriamo la funzione $R_y : H \to \C$ definito come
 \begin{equation*}
 	R_y x = (x,y).
 \end{equation*}
-Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque è un'isometria. Dunque la funzione $y \mapsto R_y$ da $E$ a $E'$ è un'isometria \emph{anti}lineare (perchè il secondo argomento del prodotto scalare è sesquilineare).
+Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque è un'isometria. Dunque la funzione $y \mapsto R_y$ da $E$ a $E'$ è un'isometria \emph{sesqui}lineare (perchè il secondo argomento del prodotto scalare è sesquilineare).
 
-\begin{theorem}
+\begin{theorem}[Riesz]
 \label{eq:ops_riesz}
 	Sia $(H, (\cdot,\cdot))$ di Hilbert.
 	Allora la mappa $R_-: H \to H'$ definita come $y \mapsto (-, y)$ è un'isometria suriettiva.
@@ -23,7 +23,7 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 	\begin{equation*}
 		(x-\alpha z, z) = (x,z) - \alpha \cancelto{1}{(z,z)} = 0,
 	\end{equation*}
-	cioè $(x,z) = \alpha$. Segue che $Tx = \alpha Tz = (x,z)Tz = (x, \conj{Tz}\, z)$, e quindi $T = R_{\conj{Tz} z}$ (infatti anche se $x \in \ker T$, $R_{\conj{Tz} }(x) = 0$).
+	cioè $(x,z) = \alpha$. Segue che $Tx = \alpha Tz = (x,z)Tz = (x, \conj{Tz}\, z)$, e quindi $T = R_{\conj{Tz} z}$ (infatti anche se $x \in \ker T$, $R_{\conj{Tz}}x = 0$).
 \end{proof}
 
 \begin{remark}
@@ -40,23 +40,24 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 	Allora $u_n \weakconv 0$, anche se $u_n \not\conv 0$.
 \end{corollary}
 \begin{proof}
-	Per Bessel,
+	Per Bessel, $\sum_{n=1}^\infty (x,u_n) u_n$ è convergente, dunque
 	\begin{equation*}
-		\lim_n (x, u_n) = 0, \qquad \text{per ogni $x \in H$}.
+		\lim_n \, (x, u_n) = 0, \qquad \text{per ogni $x \in H$}.
 	\end{equation*}
-	Dunque la tesi segue dal precedente. Infine la convergenza forte non sussiste in quanto $\|u_n\| = 1$ per ogni $n \in \N$.
+	Dunque la tesi segue dal precedente corollario.
+	Infine la convergenza forte non sussiste in quanto $\|u_n\| = 1$ per ogni $n \in \N$.
 \end{proof}
 
 \begin{definition}
 	Sia $H$ uno spazio di Hilbert, e sia $T:H \to H$ lineare e continuo.
 	Un operatore $T^* : H \to H$ si dice \defining{aggiunto} di $T$ se
 	\begin{equation*}
-		(Tx, y) = (x T^* y), \qquad \text{per ogni $x,y \in H$}.
+		(Tx, y) = (x, T^* y), \qquad \text{per ogni $x,y \in H$}.
 	\end{equation*}
 \end{definition}
 
 \begin{definition}
-	Si dice \defining{autoauggiunto} un operatore che coincide col proprio aggiunto.
+	Si dice \defining{autoaggiunto} un operatore che coincide col proprio aggiunto.
 \end{definition}
 
 \begin{lemma}
@@ -67,7 +68,7 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 	\begin{equation*}
 		\|T^* y\| = \|y^*\| = \|f_y\| \leq \|T\|\|y\|.
 	\end{equation*}
-	In particolare abbiamo dimostrato che $\|T^*\| \leq \|T\|$. Per vedere l'altra disuguaglianza, si noti che $(T^{**} = T$, infatti
+	In particolare abbiamo dimostrato che $\|T^*\| \leq \|T\|$. Per vedere l'altra disuguaglianza, si noti che $T^{**} = T$, infatti
 	\begin{equation*}
 		(T^*x, y) = \conj{(y, T^*x)} = \conj{(Ty, x)} = (x, Ty)
 	\end{equation*}
@@ -116,9 +117,9 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 	Verifichiamo ora che $T^*$ sia l'aggiunto di $T$:
 	\begin{eqalign*}
 		(Tf,g)_{L^2} &= \int_a^b \int_a^b K(t,s)\,f(s)\,\ds\, \conj{g(t)}\,\dt\\
-		&\underset{Fub.}= \int_a^b \int_a^b K(t,s) \,\conj{g(t)}\,\dt\,f(s)\,\ds\\
+		&\underset{\text{Fub}}= \int_a^b \int_a^b K(t,s) \,\conj{g(t)}\,\dt\,f(s)\,\ds\\
 		&= \int_a^b f(s)\, \conj{\int_a^b \conj{K(t,s)} \,g(t)\,\dt}\,\ds\\
-		&= (f, {\textstyle \int_a^b} \conj{K(t,s)}\,g(t)\,\dt).
+		&= (f, T^*g).
 	\end{eqalign*}
 \end{example}
 
@@ -136,19 +137,20 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 \begin{proof}
 	Sia $x \in \ker T$, allora $(x, T^*y) = (Tx, y)=0$, quindi $x \in (\im T^*)^\perp$.
 	D'altra parte, se $x \in (\im T^*)^\perp$ allora $0 = (x, T^*y) = (Tx,y)$ per ogni $y \in H$, cioè $Tx = 0$.
-	Infine, dalla prima segue che $(\ker T)^\perp = (\im T^*)^{\perp\perp} = \closure{\im T^*}$.
+	Da ciò segue che $(\ker T)^\perp = (\im T^*)^{\perp\perp} = \closure{\im T^*}$.
 \end{proof}
 
 \begin{remark}
-	Nel precedente, $\closure{-}$ indica la chiusura. Questo perchè dal Lemma~\ref{lemma:hilb_ort_comp} segue che se $S \leq H$, allora $S^{\perp\perp} = \closure{S}$.
+	Nel precedente, $\closure{\cdot}$ indica la chiusura.
+	Nell'ultimo passaggio della dimostrazione abbiamo usato il Lemma~\ref{lemma:hilb_ort_comp} per dire che se $S \leq H$, allora $S^{\perp\perp} = \closure{S}$.
 \end{remark}
 
 \begin{theorem}
 	Sia $H$ spazio di Hilbert \emph{complesso}, $T:H \to H$ lineare e continuo.
-	Allora $T$ è autoauggiunto se e solo se $(Tx, x) \in \R$ per ogni $x \in H$.
+	Allora $T$ è autoaggiunto se e solo se $(Tx, x) \in \R$ per ogni $x \in H$.
 \end{theorem}
 \begin{remark}
-	Questo fatto deriva da ragioni spettarli (si pensi al caso finito-dimensionale).
+	Questo fatto deriva da ragioni spettrali (si pensi al caso finito-dimensionale).
 \end{remark}
 \begin{proof}
 	\leavevmode
@@ -159,15 +161,16 @@ Sappiamo che tale operatore è lineare e continuo, di norma unitaria, e dunque �
 			4 (Tx,y) = &(T(x+y),x+y) - (T(x-y), x-y) +\\
 				&\qquad + i\left[ (T(x+iy),x+iy) - (T(x-iy), x-iy) \right].
 		\end{eqalign*}
-		Ora, siccome $(Tx,x) \in \R$ per ogni $x \in H$, possiamo scambiare gli argomenti senza dover coniugare. Se facciamo ciò nella formula appena scritta, è evidente che otteniamo $4(x,Ty)$, perciò abbiamo provato che $T$ è autoauggiunto.
+		Ora, siccome $(Tx,x) \in \R$ per ogni $x \in H$, possiamo scambiare gli argomenti senza dover coniugare. Se facciamo ciò nella formula appena scritta, è evidente che otteniamo $4(x,Ty)$, perciò abbiamo provato che $T$ è autoaggiunto.
 	\end{description}
 \end{proof}
 
+\section{Operatori compatti}
 Un altro approccio per gestire la compattezza negli spazi infinito-dimensionale è usare la seguente nozione di operatore:
 
 \begin{definition}
 	Siano $E$, $F$ spazi normati e $T:E \to F$ una funzione.
-	Diciamo che $T$ è un \defining{operatore compatto} se è lineare, e per ogni successione $\{x_n\}_{n \in \N}$ limitata in $E$ esiste una sottosuccessione la cui immagine secondo $T$ converge in $F$. Equivalentemente, per ogni $A \subseteq E$ limitato, si ha $T(A)$ è relativamente compatto.
+	Diciamo che $T$ è un \defining{operatore compatto} se è lineare e per ogni successione $\{x_n\}_{n \in \N}$ limitata in $E$ esiste una sottosuccessione la cui immagine secondo $T$ converge in $F$. Equivalentemente, per ogni $A \subseteq E$ limitato, si ha $T(A)$ è relativamente compatto.
 \end{definition}
 
 \begin{example}[\emph{L'identità è il nemico numero uno della compattezza.}]
@@ -227,7 +230,7 @@ Un altro approccio per gestire la compattezza negli spazi infinito-dimensionale 
 		\end{eqalign*}
 		\item Equicontinuità. Siccome $K$ è continua su un compatto, lo è uniformemente. Dunque fissato $\varepsilon > 0$, esiste $\delta > 0$ tale che
 		\begin{equation*}
-			|t_1-t_2| < \delta,\ |s_1, s_2| < \delta \implies |K(t_1,s_1) - K(t_2, s_2)| \leq \varepsilon.
+			|t_1 - t_2| < \delta,\ |s_1 - s_2| < \delta \implies |K(t_1,s_1) - K(t_2, s_2)| \leq \varepsilon.
 		\end{equation*}
 		Si ha
 		\begin{eqalign*}
@@ -237,7 +240,7 @@ Un altro approccio per gestire la compattezza negli spazi infinito-dimensionale 
 			&\leq \varepsilon M, \qquad \text{per ogni $n \in \N$}.
 		\end{eqalign*}
 	\end{enumerate}
-	Dal teorema di Ascoli--Arzelà dunque, esiste una sottosuccessione $Tf_{n_m}$ che converge uniformemente a $g \in Czero[a,b]$, e pertanto converge in $L^2(a,b)$ ad una funzione $L^2(a,b)$.
+	Dal teorema di Ascoli--Arzelà dunque, esiste una sottosuccessione $Tf_{n_m}$ che converge uniformemente a $g \in \Czero[a,b]$, e pertanto converge in $L^2(a,b)$ ad una funzione $L^2(a,b)$.
 \end{example}
 
 \begin{theorem}
@@ -250,8 +253,9 @@ Un altro approccio per gestire la compattezza negli spazi infinito-dimensionale 
 	Sia $\{T_n\}_{n \in \N}$ una successione di operatori compatti, tali che $T_n \conv T \in E \to F$ in norma operatoriale.
 	Sia ora $\{x_n\}_{n \in \N}$ una successione limitata in $E$. Diagonalizziamo $\{T_mx_n\}_{m, n \in \N}$ raffinando gli indici delle estratte convergenti progredendo con $m \in \N$.
 	La diagonale così ottenuta, che chiamiamo $\{y_n\}_{n \in \N}$, ha la proprietà che $T_m(y_n)$ converge rispetto ad $n$.
-	Proviamo oa che $\{Ty_n\}_{n \in \N}$ mostrando che è di Cauchy.
-	Si fissi $\varepsilon > 0$, allora esiste $\bar n \in \N$ tale che $\|T-T_{\bar n}\| z < \varepsilon$. Otteniamo:
+	Proviamo ora che $\{Ty_n\}_{n \in \N}$ mostrando che è di Cauchy.
+	Si fissi $\varepsilon > 0$, allora esiste $\bar n \in \N$ tale che $\|T-T_n\| < \varepsilon$ se $n \geq n_\varepsilon$.
+	Otteniamo:
 	\begin{eqalign*}
 		\|Ty_n - Ty_m\| &= \|Ty_n - T_{\bar n}y_n\| + \|T_{\bar n}y_n - T_{\bar n}y_m\| + \|T_{\bar n} y_m - Ty_m\|\\
 		&\leq \underbrace{\|T-T_{\bar n}\|\|y_n\|}_{< M\varepsilon} + \underbrace{\|T_{\bar n}y_n - T_{\bar n}y_m\|}_{\text{$< \varepsilon$ se $n,m$ suff. grandi}} + \underbrace{\|T-T_{\bar n}\|\|y_m\|}_{< M\varepsilon}\\
@@ -259,7 +263,11 @@ Un altro approccio per gestire la compattezza negli spazi infinito-dimensionale 
 	\end{eqalign*}
 \end{proof}
 
-Un operatore lineare e continuo si dice di rango finito se la sua immagine ha dimensione finita. Un tale operatore è automaticamene compatto, siccome manda limitati in limitati ma nell'immagine gli insiemi limitati sono relativamente compatti.
+\begin{definition}
+	Un operatore lineare e continuo si dice \defining{di rango finito} se la sua immagine ha dimensione finita.
+\end{definition}
+
+Un tale operatore è automaticamente compatto, siccome manda limitati in limitati finito-dimensionali, per cui automaticamente relativamente compatti.
 
 \begin{corollary}
 	Se $E$, $F$ sono Banach, $\{T_n\}_{n \in \N}$ una successione di operatori di rango finito che converge ad un operatore $T$ in $E \to F$, allora $T$ è compatto.
@@ -269,7 +277,7 @@ Un operatore lineare e continuo si dice di rango finito se la sua immagine ha di
 	È vero il viceversa? È vero che ogni operatore compatto sia limite di operatori di rango finito?
 \end{question*}
 
-Sul problema lavorò Grothendieck, che lo ha relazionato ad altri problemi dell'analisi funzionale ma non è riuscito a risolverlo. Ci riuscì infine Enflo nel suo articolo \cite{enflo1973counterexample}.
+Sul problema lavorò Grothendieck, che lo ha relazionato ad altri problemi dell'analisi funzionale ma non è riuscito a risolverlo. Ci riuscì infine Enflo nel suo articolo \cite{enflo1973counterexample}, rispondendo negativamente.
 
 \begin{figure}[h]
 	\centering
@@ -283,17 +291,20 @@ Sul problema lavorò Grothendieck, che lo ha relazionato ad altri problemi dell'
 \begin{definition}
 	Sia $E$ uno spazio di Banach, sia $T:E \to E$ lineare e continuo. Si chiama \defining{insieme risolvente} di $T$ l'insieme
 	\begin{equation*}
-		\rho(T) = \{\lambda \in \C \suchthat \text{$T-\lambda I$ è biettiva} \}.
+		\rho(T) = \{\lambda \in \C \suchthat \text{$T-\lambda I$ invertibile} \}.
 	\end{equation*}
 	In altre parole,
 	\begin{equation*}
-		\lambda \in \rho(T) \sse \text{per ogni $y \in E$ esiste $x \in E$ tale che $Tx - \lambda x = y$}.
+		\rho(T) = \{\lambda \in \C \suchthat \text{per ogni $y \in E$ esiste $x \in E$ tale che $Tx - \lambda x = y$}\}.
 	\end{equation*}
-	Per $\lambda \in \rho(T)$, si dice \defining{operatore risolvente} associato l'operatore $(T-\lambda I)^{-1}$. Infine, si dice \defining{spettro} di $T$ l'insieme
+	Si dice \defining{operatore risolvente} associato a $\lambda \in \rho(T)$ l'operatore $(T-\lambda I)^{-1}$. Infine, si dice \defining{spettro} di $T$ l'insieme
 	\begin{equation*}
 		\sigma(T) = \C \setminus \rho(T).
 	\end{equation*}
-	Lo spettro puntuale di $T$ è l'insieme di tutti i suoi autovalori e si indica con $\sigma_p(T)$.
+	Lo \defining{spettro puntuale} di $T$ è invece l'insieme di tutti i suoi autovalori:
+	\begin{equation*}
+		\sigma_p(T) = \{ \lambda \in \C \suchthat \text{esiste $x \in E$ per cui $Tx = \lambda x$} \}.
+	\end{equation*}
 \end{definition}
 
 \begin{remark}
@@ -313,36 +324,36 @@ Sul problema lavorò Grothendieck, che lo ha relazionato ad altri problemi dell'
 		(T-\lambda I)(x) = y,
 	\end{equation*}
 	da cui
-	\begin{eqalign*}
+	\begin{gather*}
 		Tx - \lambda x = y\\
 		Tx - \lambda_0 x + \lambda_0 x - \lambda x = y\\
 		(T-\lambda_0 I)x = y + (\lambda - \lambda_0) x\\
 		x = (T-\lambda_0 I)^{-1}(y + (\lambda - \lambda_0)x)\\
 		x = (\lambda - \lambda_0)(T-\lambda_0 I)^{-1}x + (T-\lambda_0 I)^{-1} y
-	\end{eqalign*}
-	che è un'equazione di punto fisso. Per il teorema del punto fisso di Banach--Caccioppoli\footnotemark, affinchè tale punto fisso esista  è sufficiente che l'operatore $(\lambda - \lambda_0)(T-\lambda_0I)^{-1}$ abbia norma strettamente inferiore di $1$, cioè che
+	\end{gather*}
+	che è un'equazione di punto fisso. Per il teorema del punto fisso di Banach--Caccioppoli\footnotemark, affinchè una soluzione $x \in E$ esista è sufficiente che l'operatore $(\lambda - \lambda_0)(T-\lambda_0I)^{-1}$ abbia norma strettamente inferiore di $1$, cioè che
 	\begin{equation*}
 		\lambda - \lambda_0 < \frac1{\|T-\lambda_0I\|}.
 	\end{equation*}
 	Dunque tutti i $\lambda$ in $B(\lambda_0, 1/\|T-\lambda_0I\|)$ sono risolventi, e quindi $\rho(T)$ è aperto.
 
 	\footnotetext{\begin{theorem*}[Banach--Caccioppoli]
-		Ogni contrazione (mappa lipschitziana con costante di Lipschitz $< 1$) di uno spazio metrico completo ammette un punto fisso, che si ottiene come limite della successione delle iterate di un punto qualunque.
+		Ogni contrazione di uno spazio metrico completo ammette almeno un punto fisso, viz. il limite della successione delle iterate di un punto qualunque.
 	\end{theorem*}
 	Il teorema ci permette di concludere che l'Italia in Miniatura ha un punto che è rappresentato da sè stesso. Per trovarlo, basta chiedere al bigliettaio dove sia la biglietteria, e così via.}
 
 	Dimostriamo ora che $\sigma(T) \subseteq B(0, \|T\|)$.
 	Sia $\lambda \neq 0$, $y \in E$, si ha
-	\begin{eqalign*}
+	\begin{gather*}
 		Tx-\lambda x = y\\
-		Tx = \lambda x + y\\
-		\frac{Tx}\lambda = x+ \frac{y}\lambda\\
-		\frac{Tx}\lambda - \frac{y}\lambda = x
-	\end{eqalign*}
+		\lambda x + y = Tx\\
+		x = \frac{Tx}\lambda - \frac{y}\lambda
+	\end{gather*}
 	che è ancora un'equazione di punto fisso. Ragionando come sopra, otteniamo che $\lambda \in \rho(T)$ se $\|T/\lambda\| < 1$, cioè se $\lambda > \|T\|$. Ma allora $\sigma(T) \subseteq B(0,\|T\|)$.
 
-	Infine, si può dimostrare che l'operatore che associa $\lambda \in \rho(T)$ al suo operatore risolvente è analitica, e si può dimostrare che $\lim_{|\lambda| \to \infty} (T-\lambda I)^{-1} = 0$ poichè sappiamo che $\rho(T)$ è contenuta nel complementare di una palla. Da ciò segue che $\|T-\lambda I^{-1}\|$ è limitata.
-	Ma se $\sigma(T) = \varnothing$, allora $\rho(T) = \C$ e siccome $\lambda \mapsto \|(T-\lambda I)^{-1}\|$ è analitica, dal teorema di Liouville otterremo che è costante. Siccome il limite è nullo, dovrebbe essere costantemente nulla, cioè $T-\lambda I = 0$, assurdo per un operatore invertibile.
+	Infine, si può dimostrare che l'operatore che associa $\lambda \in \rho(T)$ al suo operatore risolvente è analitico, e si può dimostrare che $\lim_{|\lambda| \to \infty} \|T-\lambda I\|^{-1} = 0$ poichè sappiamo che $\rho(T)$ è contenuta nel complementare di una palla. Da ciò segue che $\|T-\lambda I^{-1}\|$ è un numero finito.
+	Ma se $\sigma(T) = \varnothing$, allora $\rho(T) = \C$ e siccome $\lambda \mapsto \|(T-\lambda I)^{-1}\|$ è analitica e limitata, il teorema di Liouville implica che sia costante.
+	Siccome il limite è nullo, questa costante deve essere lo zero, cioè $T-\lambda I = 0$, assurdo per un operatore invertibile.
 \end{proof}
 
 L'ultimo punto è falso in $\R$:
@@ -355,7 +366,7 @@ L'ultimo punto è falso in $\R$:
 			-1 & 0
 		\end{pmatrix}x
 	\end{equation*}
-	Allora $\sigma(T) = \pm i$ mentre è vuoto in $\R$.
+	Allora $\sigma(T) = \pm i$ sarebbe vuoto in $\R$.
 \end{remark}
 
 \begin{exercise}
@@ -393,7 +404,7 @@ L'ultimo punto è falso in $\R$:
 	Sia $E$ spazio di Banach e sia $T:E \to E$ compatto.
 	Se $\dim E \lneq \infty$ allora $\sigma(T) = \sigma_p(T)$, mentre se $\dim E = \infty$ allora
 	\begin{equation*}
-		\sigma(T) = \{0\} \cup \underbrace{\{\lambda_1, \ldots, \lambda_n, \ldots\}}_{\text{autovalori al più numerabile}},
+		\sigma(T) = \{0\} \cup \underbrace{\{\lambda_1, \ldots, \lambda_n, \ldots\}}_{\text{autovalori, al più numerabile}},
 	\end{equation*}
 	cioè $T$ ha \defining{spettro discreto} e gli autovalori non nulli hanno molteplicità finite, ossia $\dim \ker(T-\lambda I) \lneq \infty$.
 	Inoltre, nel caso $\sigma(T)$ sia infinito, $\lambda_n \conv 0$.
@@ -404,7 +415,7 @@ L'ultimo punto è falso in $\R$:
 
 \begin{lemma}
 \label{lemma:ops_spectral_selfadjoint}
-	Sia $H$ spazio di Hilbert, $T:H \to H$ autoauggiunto.
+	Sia $H$ spazio di Hilbert, $T:H \to H$ autoaggiunto.
 	Allora
 	\begin{enumerate}
 		\item gli autovalori di $T$ sono reali,
@@ -415,17 +426,18 @@ L'ultimo punto è falso in $\R$:
 \begin{proof}
 	\leavevmode
 	\begin{enumerate}
-		\item Sappiamo che per $T$ autoauggiunto, $(Tx,x) \in \R$. D'altra parte da $Tx=\lambda x$ otteniamo che $(Tx,x) = \lambda (x,x)$ è reale, perciò necessariamente $\lambda \in \R$.
+		\item Sappiamo che per $T$ autoaggiunto, $(Tx,x) \in \R$. D'altra parte da $Tx=\lambda x$ otteniamo che $(Tx,x) = \lambda (x,x)$ è reale, perciò necessariamente $\lambda \in \R$.
 		\item Supponiamo che $x$ sia autovettore per $\lambda_1$ e $y$ per $\lambda_2 \neq \lambda_1$. Vale
 		\begin{equation*}
 			(\lambda_1 x, y) = (Tx, y) = (x, Ty) = (x, \lambda_2 y)
 		\end{equation*}
 		da cui $(\lambda_1 - \lambda_2)(x,y) = 0$ che implica $(x,y) = 0$ in quanto abbiamo supposto $\lambda_1 \neq \lambda_2$.
-		\item Si può dimostrare che se $T$ è autoauggiunto, allora $\|T\| = \sup_{\|x\|=1} |(Tx,x)|$. Nel caso $T$ sia compatto e non banale, allora esiste una successione $\{x_n\}_{n \in \N}$ in $H$, di norma unitaria, tale che $|(Tx_n,x_n)| \conv \|T\|$.
+		\item Si può dimostrare che se $T$ è autoaggiunto, allora $\|T\| = \sup_{\|x\|=1} |(Tx,x)|$. Nel caso $T$ sia compatto e non banale, allora esiste una successione $\{x_n\}_{n \in \N}$ in $H$, di norma unitaria, tale che $|(Tx_n,x_n)| \conv \|T\|$.
 		Salvo passare ad una sottosuccessione, $(Tx_n, x_n) \conv \|T\|$ o $-\|T\|$, Chiamiamo questo limite $\mu$. Si ha
 		\begin{eqalign*}
 			\|Tx_n - \mu x_n\|^2  &= \|Tx_n\|^2 - 2 \mu \Re{Tx_n, x_n} + \mu^2 \|x_n\|^2\\
-			&\leq \|T\|^2 - 2\mu \underbrace{(Tx_n, x_n)}_{\conv \mu} + \mu^2 \conv 0.
+			&\leq \|T\|^2 - 2\mu \underbrace{(Tx_n, x_n)}_{\conv \mu} + \mu^2\\[-3ex]
+			&\conv[n] 0.
 		\end{eqalign*}
 		Per compattezza di $T$, a meno di passare ad una sottosuccessione, $Tx_n$ converge. Allora la convergenza di $Tx_n$ implica la convergenza di $\mu x_n$ (carabinieri). Segue che $x_n \conv x$, per cui $Tx_n - \mu x_n \conv Tx - \mu x = 0$, e $\|x\| =1$ dunque $x \neq 0$.
 	\end{enumerate}
@@ -434,7 +446,7 @@ L'ultimo punto è falso in $\R$:
 Il seguente è un teorema spettrale per gli operatori compatti. Ne esiste una versione analoga per operatori non compatti, dimostrata da Stone, ed infine per operatori non limitati, dimostrato da Von Neumann.
 
 \begin{theorem}[Il famoso teorema di Hilbert--Schmidt]
-	Sia $T:H \to H$ un operatore compatto ed autoauggiunto su uno spazio di Hilbert $H$.
+	Sia $T:H \to H$ un operatore compatto ed autoaggiunto su uno spazio di Hilbert $H$.
 	Allora esiste una successione $\{u_n\}_{n \in \N}$ in $H$ di autovettori associati agli autovalori non nulli di $T$, tale che
 	\begin{enumerate}
 		\item $\{u_n\}_{n \in \N}$ è una base hilbertiana per $\closure{\im T}$.
@@ -453,7 +465,7 @@ Il seguente è un teorema spettrale per gli operatori compatti. Ne esiste una ve
 	\begin{equation*}
 		\Lambda = \{ \text{autovalori non nulli di $T$} \}
 	\end{equation*}
-	Abbiamo visto che $\dim \ker (T -\lambda I) = n_\lambda \lneq \infty$, per ogni autovalore $\lambda in \Lambda$. Dunque possiamo mettere insieme un insieme ortonormale numerabile andando a pescare una base ortonormale (finita) per ogni autospazio.
+	Abbiamo visto che $\dim \ker (T -\lambda I) = n_\lambda \lneq \infty$, per ogni autovalore $\lambda \in \Lambda$. Dunque possiamo mettere insieme un insieme ortonormale numerabile andando a pescare una base ortonormale (finita) per ogni autospazio.
 	Sia $U=\{u_n\}_{n \in \N}$ tale insieme, vogliamo provare che $\closure{\langle U \rangle} = \closure{\im T}$.
 	È banale che $U \subset \im T$ ($Tx = \lambda x \implies x = T(x/\lambda) \in \im T$).
 	Invece, supponiamo per assurdo che $\closure{\langle U \rangle } \subsetneq \closure{\im T}$. Siccome $\closure{\im T}$ è uno spazio di Hilbert, possiamo decomporlo come $\closure{\langle U \rangle} \oplus \closure{\langle U \rangle}^\perp$.
@@ -461,7 +473,7 @@ Il seguente è un teorema spettrale per gli operatori compatti. Ne esiste una ve
 	\begin{equation}
 		(Tx,y) = (x,Ty) = (x, \lambda y) = \underbrace{\lambda}_{\in \R} \underbrace{(x,y)}_{x \perp y} = 0.
 	\end{equation}
-	Siccome $T$ è compatto ed autoauggiunto, e abbiamo supposto che $\langle U \rangle^\perp$ sia diverso da $\{0\}$, allora dal Lemma~\ref{lemma:ops_spectral_selfadjoint} otteniamo che esiste $u \in \closure{\langle U \rangle}^\perp$ autovettore non nullo di $T$ associato a $\pm \|T\vert_{\closure{\langle U \rangle}^\perp}\|$. Ciò contraddice la massimalità di $U$, e dunque $\closure{\langle U \rangle} = \closure{\im T}$, e quest'ultimo spazio è hilbertiano.
+	Siccome $T$ è compatto ed autoaggiunto, e abbiamo supposto che $\langle U \rangle^\perp$ sia diverso da $\{0\}$, allora dal Lemma~\ref{lemma:ops_spectral_selfadjoint} otteniamo che esiste $u \in \closure{\langle U \rangle}^\perp$ autovettore non nullo di $T$ associato a $\pm \|T\vert_{\closure{\langle U \rangle}^\perp}\|$. Ciò contraddice la massimalità di $U$, e dunque $\closure{\langle U \rangle} = \closure{\im T}$, e quest'ultimo spazio è hilbertiano.
 
 	Sia $x \in H$, siccome $Tx \in \im T$, dal punto precedente (e per il teorema di Fourier) sappiamo che
 	\begin{equation*}
@@ -475,18 +487,18 @@ Il seguente è un teorema spettrale per gli operatori compatti. Ne esiste una ve
 \end{proof}
 
 \begin{corollary}
-	Se $T:H \to H$ è compatto ed autoauggiunto, allora $H$ possiede una base hilbertiana di autovettori di $T$.
+	Se $T:H \to H$ è compatto ed autoaggiunto, allora $H$ possiede una base hilbertiana di autovettori di $T$.
 \end{corollary}
 \begin{proof}
-	Infatti $H = \ker T \oplus \closure{\im T}$. Per il teorema precedente, $\closure{\im T}$ ha una base hilbertiana numerabile di autovettore, mentre $\ker T$ ha una base hilbertiana in quanto sottospazio chiuso in uno spazio di Hilbert. Siccome $\ker T$ è un autospazio per $T$, la tesi è provata.
+	Infatti $H = \ker T \oplus \closure{\im T}$. Per il teorema precedente, $\closure{\im T}$ ha una base hilbertiana numerabile di autovettori, mentre $\ker T$ ha una base hilbertiana in quanto sottospazio chiuso in uno spazio di Hilbert. Siccome $\ker T$ è un autospazio per $T$, la tesi è provata.
 \end{proof}
 
 \begin{remark}
-	Si noti che la decomposizione $H = \ker T \oplus \closure{\im T}$ associata ad un operatore compatto ed autoauggiunto esibisce $H$ diviso in una parte separabile (l'immagine, che ha una base hilbertiana numerabile) ed una non separabile. Chiaramente $\closure{\im T}$ non è necessariamente massimale.
+	Si noti che la decomposizione $H = \ker T \oplus \closure{\im T}$ associata ad un operatore compatto ed autoaggiunto esibisce $H$ diviso in una parte separabile (l'immagine, che ha una base hilbertiana numerabile) ed una non separabile. Chiaramente $\closure{\im T}$ non è necessariamente massimale.
 \end{remark}
 
 \begin{theorem}[dell'alternativa di Fredholm]
-	Sia $T:H \to H$ compatto e autoauggiunto. Consideriamo le seguenti equazioni:
+	Sia $T:H \to H$ compatto e autoaggiunto. Consideriamo le seguenti equazioni:
 	\begin{equation*}
 		(1)\ x - Tx = 0, \qquad (2)\ x-Tx = y.
 	\end{equation*}
