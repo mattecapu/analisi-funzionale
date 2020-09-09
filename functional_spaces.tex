@@ -116,7 +116,7 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 	\end{equation*}
 	Segue che $h=0$, e dunque $F \equiv 0$, dimostrando la densità dell'immagine di $T$ in $(L^p)'$.
 
-	\textbf{Caso $p=1$}. Ricordiamo che abbiamo assunto $\Omega$ essere $\sigma$-finito, quindi in particolare possiamo scrivere $\Omega = \bigcup_{n \in \N} \Omega_n$ dove, senza perdita di generalità, si ha $\Omega_n \subseteq \Omega_{n+1}$ e $\mu(\Omega) < \infty$.
+	\textbf{Caso $p=1$}. Ricordiamo che abbiamo assunto $\Omega$ essere $\sigma$-finito, quindi in particolare possiamo scrivere $\Omega = \bigcup_{n \in \N} \Omega_n$ dove, senza perdita di generalità, si ha $\Omega_n \subseteq \Omega_{n+1}$ e $\mu(\Omega_n) < \infty$ per ogni $n \in \N$.
 	Sia inoltre $\theta \in L^2$, $\theta > 0$ e pari ad una costante $\varepsilon_n$ su ciascuno degli $\Omega_{n+1} \setminus \Omega_n$ [per esempio: $\varepsilon_n = \sqrt{1/(n^2 \mu(\Omega_{n+1}\setminus \Omega_n))}$].
 
 	Osserviamo che data $\varphi \in (L^1)'$, essa induce un funzionale su $L^2$, viz. $\psi : L^2 \to \R$ definito come $\psi(f) = \langle \varphi, f \theta \rangle$.
@@ -174,11 +174,11 @@ Dimostreremo solo la prima, essendo la seconda parecchio più sofisticata.
 				n \frac{g(x)}{|g(x)|} & \text{altrimenti}
 			\end{cases}
 		\end{equation*}
-		Chiaramente: $g_n \conv g$, e $g_n \leq g$, dunque $g_n \convin{L^1} g$. Inoltre $g_n \in L^\infty$, quindi possiamo usare la~\eqref{eq:riesz_starstar} per dire
+		Chiaramente: $g_n \conv g$, e $g_n \leq g$, dunque $g_n \conv[L^1] g$. Inoltre $g_n \in L^\infty$, quindi possiamo usare la~\eqref{eq:riesz_starstar} per dire
 		\begin{equation*}
 			\langle \varphi, g_n \ind_{\Omega_n} \rangle = \int_\Omega g_n \ind_{\Omega_n} u \,\de\mu,
 		\end{equation*}
-		Si ha comunque $g_n \ind_n \convin{L^1} g$, perchè gli $\Omega_n$ invadono $\Omega$.
+		Si ha comunque $g_n \ind_n \conv[L^1] g$, perchè gli $\Omega_n$ invadono $\Omega$.
 		Da ciò deduciamo che $\langle \varphi, g_n \ind_{\Omega_n} \rangle \conv \langle \varphi, g \rangle$ per continuità, e $\int_\Omega  g_n \ind_{\Omega_n} u \,\de\mu \conv \int_\Omega g u \,\de\mu$ siccome $u \in L^\infty$. Ma questo è il risultato cercato:
 		\begin{equation*}
 			\langle \varphi, g \rangle = \int_\Omega gu\,\de\mu.
@@ -251,7 +251,7 @@ Consideriamo ora il caso $(\Omega, \M, \mu) = (\R^n, \L, m)$.
 
 \begin{remark}
 	Si può leggere questo teorema come il fatto che le funzioni regolari, ad esempio lisce, non sono dense in $L^\infty(\Omega)$. Questo perchè la convergenza uniforme conserva la regolarità, mentre in $L^\infty$ molti elementi non sono affatto regolari.
-	Questo ha come conseguenza che l'approssimazione regolare di una funzione $L^\infty$ è una questione delicata, ad esempio la mollificazione non converge in norme (ma solo debolmente$^*$).
+	Questo ha come conseguenza che l'approssimazione regolare di una funzione $L^\infty$ è una questione delicata, ad esempio la mollificazione non converge in norma (ma solo debolmente$^*$).
 \end{remark}
 
 \begin{proof}
